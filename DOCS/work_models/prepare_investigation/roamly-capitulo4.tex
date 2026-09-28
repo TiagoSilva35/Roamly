@@ -1,0 +1,219 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+
+\definecolor{roamly}{HTML}{0E6E68}
+\definecolor{nota}{HTML}{B86E00}
+
+\hypersetup{colorlinks=true,linkcolor=roamly,urlcolor=roamly}
+
+\newtcolorbox{foco}{colback=roamly!8,colframe=roamly,arc=2pt,boxrule=0.8pt,
+  fonttitle=\bfseries,title=Declaração de foco do projeto}
+\newtcolorbox{nota}[1][]{colback=nota!8,colframe=nota,arc=2pt,boxrule=0.8pt,
+  fonttitle=\bfseries,title=#1}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.35}
+
+\title{\textbf{Roamly}\\[4pt]\large Investigação Contextual na prática\\
+\normalsize Aplicação do Capítulo 4 de \textit{Contextual Design} (Beyer \& Holtzblatt, 1999)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Enquadramento}
+
+O \textbf{Roamly} é um agente de viagens baseado em inteligência artificial, direcionado sobretudo para jovens com orçamentos limitados. As plataformas de viagens existentes são fragmentadas: obrigam o utilizador a definir primeiro um destino e a pesquisar separadamente voos, alojamento e atividades. O Roamly pretende combinar automaticamente estas opções, com base no orçamento, nas datas, nos interesses, nas preferências e na flexibilidade do utilizador, e criar um itinerário personalizado e acessível.
+
+O Capítulo 4 de \textit{Contextual Design}, \textit{Contextual Inquiry in Practice}, descreve os passos concretos para preparar a recolha de dados junto dos utilizadores:
+\begin{enumerate}[nosep]
+  \item definir o foco do projeto;
+  \item desenhar a investigação conforme o tipo de projeto;
+  \item escolher a situação de entrevista adequada a cada tipo de tarefa;
+  \item decidir quem entrevistar.
+\end{enumerate}
+Este documento aplica cada um desses passos ao Roamly.
+
+%------------------------------------------------------------
+\section{Foco do projeto}
+
+\subsection{Do produto para o trabalho}
+
+Os autores observam que os projetos costumam definir-se pela solução que vão entregar. É o caso da nossa descrição inicial: «um agente de viagens baseado em IA». Para saber quem entrevistar e o que observar, esta descrição tem de ser transformada numa descrição do \textbf{trabalho} que o sistema vai apoiar. No caso do Roamly, esse trabalho não é «usar uma aplicação de viagens». É todo o processo pelo qual um jovem passa desde a vontade de viajar até regressar a casa com as contas acertadas.
+
+\begin{foco}
+Como é que jovens com pouco dinheiro decidem para onde ir, descobrem e comparam opções, juntam as peças (transporte, dormida, atividades) dentro de um orçamento, combinam com quem vai e ajustam a viagem quando algo muda.
+\end{foco}
+
+O livro recomenda que esta declaração use linguagem simples. Por isso escrevemos «juntar as peças» e não «agregação de serviços», e «combinar com quem vai» e não «coordenação multi-utilizador». Palavras simples levam o entrevistador a reparar num leque mais largo de comportamentos. Cada entrevistador deve escrever a declaração no seu caderno, para manter a entrevista no rumo certo.
+
+\subsection{Alargar o foco para além da ferramenta}
+
+O foco inicial tende a ser demasiado estreito, limitado àquilo que a ferramenta vai fazer. O capítulo propõe quatro perguntas para o alargar:
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}L@{}}
+\toprule
+\textbf{Pergunta} & \textbf{Aplicação ao Roamly} \\
+\midrule
+Que trabalho vamos apoiar? & Inspiração, escolha de destino, definição de datas flexíveis, pesquisa de voos, autocarros e comboios, alojamento, atividades, cálculo do custo total, reserva, divisão de despesas, alterações e imprevistos. \\
+Quem está envolvido? & O viajante, os amigos que vão, quem organiza pelo grupo, os pais (que financiam ou autorizam), quem já foi ao destino, criadores de conteúdo (TikTok, Instagram) e o ChatGPT, já usado como ajudante informal. \\
+Onde acontece fisicamente? & No telemóvel, em momentos soltos (autocarro, intervalos); no portátil, em sessões longas com muitas abas; em grupos de WhatsApp; presencialmente na faculdade ou no café. \\
+Em que contexto cultural? & Viajar barato vale como competência e motivo de orgulho. Há desconfiança de pacotes e de custos escondidos, pressão para não ficar de fora e o peso da opinião dos pais. \\
+\bottomrule
+\end{tabularx}
+\caption{Perguntas para alargar o foco do projeto.}
+\end{table}
+
+\subsection{Trabalho análogo (metáforas)}
+
+O livro sugere estudar atividades sem relação aparente com o domínio, mas com a mesma estrutura. Estas metáforas revelam aspetos escondidos do trabalho e, quando for útil, justificam entrevistas no próprio domínio da metáfora.
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{@{}p{3.4cm}LL@{}}
+\toprule
+\textbf{Metáfora} & \textbf{Estrutura em comum} & \textbf{O que observar} \\
+\midrule
+Agente de viagens de balcão & É o papel que o Roamly quer ocupar. & Que perguntas faz ao cliente, como descobre a flexibilidade real, como apresenta 2--3 alternativas. Justifica entrevistar 1--2 agentes. \\
+Montar um PC com orçamento fixo & Escolher componentes compatíveis entre si sem passar um teto de preço. & Como se trocam peças para caber no orçamento; ferramentas de compatibilidade como o PCPartPicker. \\
+Organizar um jantar ou festival de grupo & Decisão coletiva; alguém adianta o dinheiro e depois cobra. & Votações, lembretes, quem paga o quê, quem fica de fora. \\
+Compras de supermercado com orçamento & Lista de «hoje» vs.\ lista de «um dia»; substituições por marca branca. & Como se decide onde cortar e o que nunca se corta. \\
+\bottomrule
+\end{tabularx}
+\caption{Metáforas para o trabalho de planear uma viagem.}
+\end{table}
+
+%------------------------------------------------------------
+\section{Desenho da investigação: tipo de projeto}
+
+Para produtos comerciais, o capítulo distingue três pontos de partida, cada um com dados diferentes a recolher: \textit{produto conhecido}, \textit{novo domínio de trabalho} e \textit{nova tecnologia}. O Roamly cruza o primeiro e o terceiro.
+
+\paragraph{Produto conhecido.} Já existem Skyscanner, Google Flights, Booking, Hostelworld, Omio e GetYourGuide, e o mercado já tem expectativas. Daqui decorre que devemos:
+\begin{itemize}[nosep]
+  \item observar jovens a usar estes concorrentes, porque o Roamly tem de fazer pelo menos o mesmo, e um pouco melhor;
+  \item procurar os \textit{delighters}, necessidades que ninguém reconheceu, onde está a nossa diferenciação;
+  \item registar o que nas ferramentas atuais atrapalha: taxas que só aparecem no fim, datas fixas, resultados separados por tipo de serviço.
+\end{itemize}
+
+\paragraph{Nova tecnologia (agente de IA).} Para uma tecnologia nova, o livro manda procurar os seus \textbf{análogos} no mundo real e estudar como são usados:
+\begin{itemize}[nosep]
+  \item o análogo de um agente é um agente humano, ou o amigo que «trata de tudo»;
+  \item muitos jovens já pedem roteiros ao ChatGPT, e interessa ver o que fazem a seguir e onde deixam de confiar;
+  \item a característica nova é a combinação automática de opções, pelo que é preciso perceber como essa combinação é feita hoje à mão.
+\end{itemize}
+
+\begin{nota}[Princípio-chave do capítulo]
+«Todo o trabalho já está a ser feito de alguma forma.» Os jovens já planeiam viagens baratas, com abas abertas, capturas de ecrã, folhas de cálculo e grupos de WhatsApp. É esse trabalho atual que temos de estudar, e estudá-lo não impede a inovação.
+\end{nota}
+
+%------------------------------------------------------------
+\section{Desenho da situação de entrevista}
+
+O capítulo formula três perguntas para definir a situação de entrevista: \textit{como chego perto do trabalho?}, \textit{quão perto consigo chegar?} e \textit{como construo uma interpretação partilhada com o utilizador?} Planear uma viagem não é uma tarefa única e contínua. Mistura vários dos tipos de tarefa descritos no livro, e cada um exige uma técnica diferente.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.5cm}p{4.2cm}L@{}}
+\toprule
+\textbf{Tipo de tarefa} & \textbf{No planeamento de uma viagem} & \textbf{Técnica a usar} \\
+\midrule
+Normal & Uma sessão de pesquisa de voos e alojamento no portátil. & Entrevista contextual padrão (2--3\,h) com quem está a planear uma viagem real. Gravar apenas áudio. Pedir ao participante que guarde a pesquisa para a nossa visita. \\
+Intermitente & Ver um preço num intervalo, receber um alerta, um amigo envia um link. & \textbf{Criar um rasto}: durante 1--2 semanas o participante faz capturas de ecrã e anota cada momento em que pensa na viagem. Depois fazemos um relato retrospetivo, artefacto a artefacto. \\
+Extremamente longa & O planeamento pode durar semanas ou meses. & (1) Entrevistar pessoas em fases diferentes: a sonhar, a comparar, já com reserva, já regressadas. (2) \textit{Work walkthrough} de uma viagem passada, guiado pelos artefactos (emails de reserva, histórico do WhatsApp, capturas de ecrã, pagamentos MB Way). \\
+Interna (decisão) & «Vale a pena pagar mais 30\,€ por um voo direto?» & \textbf{Criar o evento}: pedir ao participante que planeie à nossa frente uma escapadinha real de fim de semana com 200\,€. Interromper com frequência e propor interpretações («Hesitaste aqui. Estás a pesar o quê?»). \\
+Não interrompível & Discussão do grupo no WhatsApp ou presencialmente. & Não intervir durante a discussão. Depois, rever o histórico da conversa com o participante e pedir-lhe que explique cada mensagem. \\
+\bottomrule
+\end{tabularx}
+\caption{Tipos de tarefa e técnicas de entrevista.}
+\end{table}
+
+\subsection{Estrutura de cada entrevista}
+
+Cada entrevista segue o modelo mestre--aprendiz e os princípios de contexto, parceria, interpretação e foco (Capítulo 3):
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}p{1.8cm}L@{}}
+\toprule
+\textbf{Fase} & \textbf{Duração} & \textbf{O que fazemos} \\
+\midrule
+Entrevista convencional & $\sim$15 min & Apresentação e consentimento. Perfil: idade, ocupação, número de viagens por ano, orçamento típico. Opinião geral sobre as ferramentas atuais. \\
+Transição & $\sim$30 s & Explicar as regras: «Vais planear como fazes normalmente. Nós interrompemos para perceber.» \\
+Entrevista contextual & 1h30--2h & Observar e perguntar. Manter tudo concreto (casos reais e não «normalmente\ldots») e seguir os artefactos: «De onde veio este link? Quem o vai ver a seguir?» \\
+Fecho & $\sim$15 min & Resumir o que é importante no trabalho do participante e deixá-lo corrigir. É a última oportunidade para validar as interpretações. \\
+\bottomrule
+\end{tabularx}
+\caption{Estrutura da entrevista contextual.}
+\end{table}
+
+%------------------------------------------------------------
+\section{Quem entrevistar}
+
+O capítulo dá três regras: entrevistar \textbf{2--3 pessoas por cada papel} relevante, somar \textbf{10--20 entrevistas} no total e procurar \textbf{diversidade na forma de trabalhar}, não em segmentos demográficos. A idade ou o curso contam pouco. Contam as maneiras diferentes de planear uma viagem.
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{@{}p{4cm}Lc@{}}
+\toprule
+\textbf{Papel} & \textbf{Descrição} & \textbf{N.º} \\
+\midrule
+Organizador(a) & Planeia pelo grupo, adianta dinheiro e cobra aos outros. & 3 \\
+Quem vai atrás & Participa no grupo, vota e paga a sua parte, mas não pesquisa. & 2 \\
+Viajante solo & Decide tudo sozinho(a), muitas vezes com mais flexibilidade de datas. & 3 \\
+Caçador(a) de promoções & Parte do preço e não do destino («para onde é barato ir?»). & 2 \\
+Erasmus / interrail & Faz viagens com várias paragens a partir de outra cidade base. & 2 \\
+Financiador(a) & Pai ou mãe que paga ou autoriza (entrevista curta). & 1--2 \\
+Agente de viagens & Domínio da metáfora: faz hoje o que o Roamly quer fazer. & 1--2 \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{Total}} & \textbf{14--16} \\
+\bottomrule
+\end{tabularx}
+\caption{Papéis a entrevistar.}
+\end{table}
+
+\paragraph{Eixos de diversidade a cobrir.}
+\begin{itemize}[nosep]
+  \item Sozinho vs.\ em grupo.
+  \item Planeado com meses de antecedência vs.\ decidido na véspera.
+  \item Voo \textit{low-cost} vs.\ autocarro ou comboio.
+  \item Estudante vs.\ jovem trabalhador.
+  \item Residente em Lisboa ou no Porto vs.\ no interior, longe de um aeroporto.
+  \item Primeira viagem vs.\ viajante experiente.
+\end{itemize}
+
+\begin{nota}[Deixar o foco orientar a seleção]
+Não se devem marcar todas as entrevistas de uma vez. O livro recomenda deixar que o foco evolua e escolher os participantes seguintes em função do que se vai aprendendo. Se, ao fim de três viajantes solo, o padrão já for claro, as entrevistas seguintes passam para outro papel. A marcação de visitas demora cerca de duas semanas, e cada participante deve saber antecipadamente o que vai acontecer.
+\end{nota}
+
+%------------------------------------------------------------
+\section{Próximos passos}
+
+\begin{enumerate}[nosep]
+  \item Validar a declaração de foco e escrevê-la no caderno de cada entrevistador.
+  \item Recrutar os três primeiros participantes: um(a) organizador(a) com viagem em planeamento, um(a) viajante solo e um(a) caçador(a) de promoções.
+  \item Pedir antecipadamente os artefactos: capturas de ecrã, folhas de cálculo, emails de reserva e, com consentimento, o grupo de WhatsApp.
+  \item Para quem planeia ao longo de semanas, iniciar o rasto (diário de capturas de ecrã) e marcar a entrevista retrospetiva.
+  \item Marcar uma entrevista com um agente de viagens.
+  \item Rever o foco e o perfil dos próximos participantes a cada três entrevistas.
+\end{enumerate}
+
+\section*{Referência}
+Beyer, H., \& Holtzblatt, K. (1999). \textit{Contextual Design: Defining Customer-Centered Systems}. San Francisco: Morgan Kaufmann. Capítulo 4, \textit{Contextual Inquiry in Practice}, pp.~67--78.
+
+\end{document}

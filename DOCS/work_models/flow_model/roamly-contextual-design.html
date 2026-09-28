@@ -1,0 +1,570 @@
+<title>Investigação Contextual Roamly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F5F7F6; --surface:#FFFFFF; --ink:#13302F; --muted:#56706D; --line:#D5DEDB;
+  --accent:#0E6E68; --accent-soft:#DDEFEC; --amber:#B86E00; --amber-soft:#FCEFD9;
+  --bolt:#C4372B; --bolt-soft:#FBE3E0; --place:#EEF1F7; --place-line:#8A97B5;
+  --display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1716; --surface:#152220; --ink:#E1ECE9; --muted:#95ABA7; --line:#2A3B38;
+    --accent:#4FC2B8; --accent-soft:#17332F; --amber:#F0A640; --amber-soft:#35270F;
+    --bolt:#FF7A6B; --bolt-soft:#3A1C19; --place:#1B2333; --place-line:#7D8CB0;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1716; --surface:#152220; --ink:#E1ECE9; --muted:#95ABA7; --line:#2A3B38;
+  --accent:#4FC2B8; --accent-soft:#17332F; --amber:#F0A640; --amber-soft:#35270F;
+  --bolt:#FF7A6B; --bolt-soft:#3A1C19; --place:#1B2333; --place-line:#7D8CB0;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);padding-inline:20px;padding-block:0 80px}
+.wrap{max-width:900px;margin:0 auto}
+header.top{padding-block:56px 32px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font:700 clamp(34px,6vw,54px)/1.05 var(--display);margin:14px 0 16px;text-wrap:balance;letter-spacing:-.01em}
+h2{font:700 30px/1.15 var(--display);margin:0 0 10px;text-wrap:balance}
+h3{font:600 20px/1.3 var(--display);margin:32px 0 8px;text-wrap:balance}
+h4{font:600 13px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:20px 0 6px}
+p,li{max-width:68ch}
+.lede{font-size:18px;color:var(--muted);max-width:62ch}
+a{color:var(--accent)}
+section{padding-block:48px 8px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.chapter{display:flex;gap:12px;align-items:baseline;margin-bottom:6px}
+.chapter .eyebrow{color:var(--amber)}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+nav.toc a{font:500 13px/1 var(--mono);text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surface);padding:8px 11px;border-radius:4px}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+.focus-card{background:var(--accent);color:var(--bg);padding:26px 28px;border-radius:6px;margin:22px 0}
+.focus-card .eyebrow{color:var(--bg);opacity:.8}
+.focus-card p{font:500 22px/1.4 var(--display);margin:10px 0 0;max-width:none}
+.note{border-left:3px solid var(--amber);background:var(--amber-soft);padding:12px 16px;margin:20px 0;font-size:15px}
+.note strong{color:var(--amber)}
+.book{font:400 12px/1.4 var(--mono);color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:16px 0}
+.cell{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.cell h4{margin-top:0}
+.cell p,.cell ul{margin:6px 0 0;font-size:15px}
+.cell ul{padding-left:18px}
+.tbl{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:620px}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--line)}
+th{font:500 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;font:500 11px/1 var(--mono);padding:4px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.tag.amber{background:var(--amber-soft);color:var(--amber)}
+.tag.bolt{background:var(--bolt-soft);color:var(--bolt)}
+.diagram{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;margin:16px 0;padding:10px}
+.diagram svg{display:block;min-width:720px;width:100%;height:auto}
+.diagram figcaption{font-size:13.5px;color:var(--muted);padding:8px 8px 4px;max-width:none}
+svg text{font-family:var(--body);fill:var(--ink)}
+svg .mono{font-family:var(--mono)}
+svg .muted{fill:var(--muted)}
+svg .acc{fill:var(--accent)}
+svg .boltt{fill:var(--bolt)}
+svg .person{fill:var(--surface);stroke:var(--accent);stroke-width:1.5}
+svg .person.me{fill:var(--accent-soft);stroke-width:2.2}
+svg .place{fill:var(--place);stroke:var(--place-line);stroke-width:1.5}
+svg .flow{stroke:var(--ink);stroke-width:1.4;fill:none}
+svg .artbox{fill:var(--amber-soft);stroke:var(--amber);stroke-width:1}
+svg .bolt{fill:var(--bolt)}
+svg .umb{fill:var(--amber-soft);stroke:var(--amber);stroke-width:1.2}
+svg .inf{fill:var(--surface);stroke:var(--muted);stroke-width:1.3;fill-opacity:.92}
+svg .zone{fill:var(--bg);stroke:var(--line);stroke-width:1.5}
+svg .dev{fill:var(--surface);stroke:var(--ink);stroke-width:1.2}
+svg .move{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:5 4;fill:none}
+svg .arrowhead{fill:var(--ink)}
+svg .arrowhead-acc{fill:var(--accent)}
+/* sequence model */
+.seq{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px 22px;margin:16px 0}
+.seq-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:14px}
+.seq-head div{font-size:15px}
+.seq-head b{font:500 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--muted)}
+.seq ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.seq li{counter-increment:s;display:grid;grid-template-columns:34px 1fr minmax(0,200px);gap:12px;padding:9px 0;border-top:1px dashed var(--line);max-width:none;font-size:15px}
+.seq li::before{content:counter(s,decimal-leading-zero);font:500 12px/1.9 var(--mono);color:var(--muted)}
+.seq .side{font-size:13px;color:var(--accent);font-style:italic}
+.seq .side.b{color:var(--bolt);font-style:normal}
+.seq li.branch{background:var(--bg)}
+@media (max-width:620px){.seq li{grid-template-columns:30px 1fr}.seq .side{grid-column:2}}
+/* artifact model */
+.artifact{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;margin:16px 0}
+@media (max-width:760px){.artifact{grid-template-columns:1fr}}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow-x:auto}
+.sheet .bar{font:500 12px/1 var(--mono);padding:10px 12px;border-bottom:1px solid var(--line);color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.sheet .bar span.on{color:var(--ink);border-bottom:2px solid var(--accent);padding-bottom:3px}
+.sheet table{min-width:460px;font:13px/1.35 var(--mono)}
+.sheet td,.sheet th{padding:7px 9px;border-right:1px solid var(--line)}
+.sheet tr.ok td{background:color-mix(in srgb,var(--accent-soft) 70%,transparent)}
+.sheet tr.tbd td{background:color-mix(in srgb,var(--amber-soft) 80%,transparent)}
+.sheet tr.x td{text-decoration:line-through;color:var(--muted)}
+.sheet .pin{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--ink);color:var(--bg);font:600 10.5px/1 var(--mono);margin-left:4px;text-decoration:none;vertical-align:1px}
+.anns{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.anns li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:14.5px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.anns li .pin{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--bg);font:600 11px/1 var(--mono)}
+.anns li.b{border-color:var(--bolt)}
+.anns li.b .pin{background:var(--bolt)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);margin:6px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid var(--line)}
+.checklist{list-style:none;padding:0;margin:12px 0;display:flex;flex-direction:column;gap:8px}
+.checklist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:15px}
+.checklist li::before{content:"";width:14px;height:14px;border:1.5px solid var(--accent);border-radius:3px;margin-top:5px}
+footer{padding-block:40px 0;font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Roamly · Contextual Design, Beyer &amp; Holtzblatt (1999) · cap. 4 e 6</div>
+  <h1>Investigação Contextual do Roamly</h1>
+  <p class="lede">Aplicação ao nosso agente de viagens com IA para jovens com orçamento limitado de duas partes do livro: o planeamento da Investigação Contextual (cap. 4, <i>Contextual Inquiry in Practice</i>) e os cinco modelos de trabalho (cap. 6, <i>Work Models</i>).</p>
+  <nav class="toc" aria-label="Secções">
+    <a href="#foco">Foco do projeto</a>
+    <a href="#tipo">Tipo de projeto</a>
+    <a href="#situacao">Situação de entrevista</a>
+    <a href="#quem">Quem entrevistar</a>
+    <a href="#modelos">5 modelos</a>
+    <a href="#implicacoes">Implicações</a>
+    <a href="#proximos">Próximos passos</a>
+  </nav>
+</header>
+
+<!-- ============ CAP. 4 ============ -->
+<section id="foco">
+  <div class="chapter"><span class="eyebrow">Cap. 4 · Setting project focus</span></div>
+  <h2>Do produto para o trabalho</h2>
+  <p>O livro avisa que os projetos costumam definir-se pela solução que vão entregar, e a nossa descrição também o faz: «um agente de viagens baseado em IA». Antes de ir para o terreno temos de reescrever isto como uma descrição do <b>trabalho</b> que o Roamly vai apoiar. Esse trabalho não é «usar uma app de viagens». É todo o processo pelo qual um jovem passa de «apetecia-me ir a algum lado» até voltar a casa com as contas acertadas.</p>
+
+  <div class="focus-card">
+    <div class="eyebrow">Declaração de foco (para escrever no caderno de cada entrevistador)</div>
+    <p>Como é que jovens com pouco dinheiro decidem para onde ir, descobrem e comparam opções, juntam as peças (transporte, dormida, atividades) dentro de um orçamento, combinam com quem vai e ajustam a viagem quando algo muda.</p>
+  </div>
+  <p class="book">O livro recomenda linguagem simples. Por isso escrevemos «juntar as peças» e não «agregação de serviços», e «combinar com quem vai» e não «coordenação multi-utilizador». Palavras simples levam o entrevistador a reparar num leque mais largo de comportamentos.</p>
+
+  <h3>Alargar o foco para além da ferramenta</h3>
+  <p>O cap. 4 propõe quatro perguntas para alargar o foco. Aplicadas ao Roamly:</p>
+  <div class="grid2">
+    <div class="cell"><h4>Que trabalho vamos apoiar?</h4><p>Inspiração, escolha de destino, definição de datas flexíveis, pesquisa de voos, autocarros e comboios, pesquisa de alojamento, atividades, cálculo do custo total, reserva, divisão de despesas, alterações e imprevistos.</p></div>
+    <div class="cell"><h4>Quem está envolvido?</h4><p>O viajante, os amigos que vão, «o/a que organiza», os pais (que financiam ou autorizam), quem já foi ao destino, criadores de conteúdo no TikTok e Instagram e o ChatGPT, que já é usado como ajudante informal.</p></div>
+    <div class="cell"><h4>Onde acontece fisicamente?</h4><p>No telemóvel, em momentos soltos (autocarro, intervalos). No portátil, em sessões longas com muitas abas. Em conversas de grupo no WhatsApp e presencialmente na faculdade ou no café.</p></div>
+    <div class="cell"><h4>Em que contexto cultural?</h4><p>Viajar barato vale como competência e motivo de orgulho. Há desconfiança de pacotes e de custos escondidos, pressão para não ficar de fora e o peso da opinião dos pais.</p></div>
+  </div>
+
+  <h3>Trabalho análogo (metáforas)</h3>
+  <p>O livro sugere estudar trabalho sem relação aparente mas com a mesma estrutura. Isso ajuda a ver aspetos escondidos do nosso domínio.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Metáfora</th><th>Porque tem a mesma estrutura</th><th>O que queremos observar</th></tr></thead>
+    <tbody>
+      <tr><td><b>Agente de viagens de balcão</b></td><td>É literalmente o papel que o Roamly quer ocupar</td><td>Que perguntas faz ao cliente, como descobre a flexibilidade real, como apresenta 2–3 alternativas. <span class="tag">entrevistar 1–2 agentes</span></td></tr>
+      <tr><td><b>Montar um PC com orçamento fixo</b></td><td>Escolher componentes compatíveis entre si sem passar um teto de preço</td><td>Como se trocam peças para caber no orçamento, e ferramentas de compatibilidade como o PCPartPicker</td></tr>
+      <tr><td><b>Organizar um jantar ou festival de grupo</b></td><td>Decisão coletiva, alguém adianta o dinheiro e depois cobra</td><td>Votações, lembretes, quem paga o quê, quem fica de fora</td></tr>
+      <tr><td><b>Compras de supermercado com orçamento</b></td><td>Lista «hoje» vs. «um dia»; substituições por marca branca</td><td>Como se decide onde cortar, e o que nunca se corta</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="tipo">
+  <div class="chapter"><span class="eyebrow">Cap. 4 · Designing the inquiry for commercial products</span></div>
+  <h2>Que tipo de projeto é o Roamly?</h2>
+  <p>O livro distingue três pontos de partida para produtos comerciais. O Roamly cruza dois, e cada um diz-nos que dados recolher.</p>
+  <div class="grid2">
+    <div class="cell">
+      <h4>Produto conhecido</h4>
+      <p>Já existem Skyscanner, Google Flights, Booking, Hostelworld, Omio e GetYourGuide, e o mercado já tem expectativas.</p>
+      <ul>
+        <li>Observar jovens a usar estes concorrentes. O Roamly tem de fazer pelo menos o mesmo, e um pouco melhor.</li>
+        <li>Procurar os <b>«delighters»</b>, necessidades que ninguém reconhece: é aí que nos diferenciamos.</li>
+        <li>Registar o que nas ferramentas atuais «atrapalha»: taxas que só aparecem no fim, datas fixas, resultados separados.</li>
+      </ul>
+    </div>
+    <div class="cell">
+      <h4>Nova tecnologia (agente de IA)</h4>
+      <p>Procurar os <b>análogos</b> da tecnologia no mundo real e estudar como funcionam.</p>
+      <ul>
+        <li>O análogo de um agente é um agente humano, ou o amigo que «trata de tudo».</li>
+        <li>Muitos jovens já pedem roteiros ao ChatGPT. Temos de ver o que fazem a seguir e onde deixam de confiar.</li>
+        <li>A característica nova é que o agente combina opções automaticamente. Precisamos de perceber como é feita hoje essa combinação manual.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note"><strong>Princípio-chave do cap. 4:</strong> «todo o trabalho já está a ser feito de alguma forma». Os jovens já planeiam viagens baratas, com abas abertas, prints, folhas de cálculo e grupos de WhatsApp. É esse trabalho atual que temos de estudar. Estudá-lo não impede a inovação.</div>
+</section>
+
+<section id="situacao">
+  <div class="chapter"><span class="eyebrow">Cap. 4 · Designing the interviewing situation</span></div>
+  <h2>Como chegar perto do trabalho</h2>
+  <p>As perguntas do livro são sempre as mesmas: como chego perto do trabalho, quão perto consigo chegar e como construo uma interpretação partilhada com o utilizador. Planear uma viagem não é uma tarefa «normal» de uma só sessão. Mistura vários tipos de tarefa descritos no capítulo.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Tipo de tarefa (livro)</th><th>Como aparece no planeamento de uma viagem</th><th>Técnica para o Roamly</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag">Normal</span></td><td>Uma sessão de pesquisa de voos e alojamento no portátil</td><td>Entrevista contextual padrão (2–3h) com quem está <i>agora</i> a planear uma viagem real. Gravar só áudio. Pedir para «guardar» a pesquisa para a nossa visita.</td></tr>
+      <tr><td><span class="tag amber">Intermitente</span></td><td>Ver um preço num intervalo, receber um alerta, uma amiga manda um link</td><td><b>Criar um rasto.</b> Durante 1–2 semanas o participante faz print e anota cada momento em que pensa na viagem. Depois fazemos o relato retrospetivo, artefacto a artefacto.</td></tr>
+      <tr><td><span class="tag amber">Extremamente longa</span></td><td>O planeamento pode durar semanas ou meses</td><td>(1) Entrevistar pessoas em fases diferentes: a sonhar, a comparar, já reservado, já regressado. (2) <b>Work walkthrough</b> de uma viagem passada, conduzido pelos artefactos: emails de reserva, histórico do WhatsApp, capturas de ecrã, extratos MB Way.</td></tr>
+      <tr><td><span class="tag bolt">Interna (decisão)</span></td><td>«Vale a pena pagar mais 30 € para um voo direto?»</td><td><b>Criar o evento.</b> Pedir ao participante que planeie uma escapadinha real de fim de semana com 200 € à nossa frente. Interromper muito e propor interpretações: «Hesitaste aqui. Estás a pesar o quê?»</td></tr>
+      <tr><td><span class="tag bolt">Não interrompível</span></td><td>Discussão do grupo no WhatsApp ou ao vivo</td><td>Não intervir durante a discussão. A seguir, rever o histórico da conversa <i>com</i> o participante e pedir-lhe que explique cada mensagem.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Estrutura de cada entrevista</h3>
+  <p class="book">Modelo do mestre e aprendiz, com os princípios de contexto, parceria, interpretação e foco (ver o fim do cap. 3).</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Fase</th><th>Duração</th><th>O que fazemos</th></tr></thead>
+    <tbody>
+      <tr><td>Entrevista convencional</td><td class="num">~15 min</td><td>Apresentação e consentimento. Perfil (idade, estudos ou trabalho, quantas viagens por ano, orçamento típico) e a opinião geral sobre as ferramentas atuais.</td></tr>
+      <tr><td>Transição</td><td class="num">~30 s</td><td>Explicar as regras: «Vais planear como fazes normalmente. Nós interrompemos para perceber.»</td></tr>
+      <tr><td>Entrevista contextual</td><td class="num">1h30–2h</td><td>Observar e perguntar. Manter tudo concreto (casos reais, não «normalmente…») e seguir os artefactos: «De onde veio este link? Quem o vai ver a seguir?»</td></tr>
+      <tr><td>Fecho</td><td class="num">~15 min</td><td>Resumir o que é importante no trabalho dela ou dele e deixar corrigir. É a última oportunidade para validar as nossas interpretações.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="quem">
+  <div class="chapter"><span class="eyebrow">Cap. 4 · Deciding who to interview</span></div>
+  <h2>Quem entrevistar</h2>
+  <p>Regras do livro: <b>2–3 pessoas por papel</b>, <b>10–20 entrevistas</b> no total, e diversidade na <i>forma de trabalhar</i>, não em segmentos demográficos. A idade ou o curso contam pouco. Contam as maneiras diferentes de planear.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Papel</th><th>Descrição</th><th class="num">N.º</th></tr></thead>
+    <tbody>
+      <tr><td><b>O/A organizador(a)</b></td><td>Planeia pelo grupo, adianta dinheiro e cobra aos outros</td><td class="num">3</td></tr>
+      <tr><td><b>O/A que vai atrás</b></td><td>Participa no grupo, vota e paga a sua parte, mas não pesquisa</td><td class="num">2</td></tr>
+      <tr><td><b>Viajante solo</b></td><td>Decide tudo sozinho(a), muitas vezes com mais flexibilidade de datas</td><td class="num">3</td></tr>
+      <tr><td><b>Caçador(a) de promoções</b></td><td>Parte do preço e não do destino («para onde é barato ir?»)</td><td class="num">2</td></tr>
+      <tr><td><b>Erasmus / interrail</b></td><td>Viagens com várias paragens a partir de outra cidade base</td><td class="num">2</td></tr>
+      <tr><td><b>Financiador(a)</b></td><td>Pai ou mãe que paga ou autoriza (entrevista curta)</td><td class="num">1–2</td></tr>
+      <tr><td><b>Agente de viagens</b></td><td>Domínio da metáfora: como faz hoje o que o Roamly quer fazer</td><td class="num">1–2</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Eixos de diversidade a cobrir</h4>
+  <div class="grid2">
+    <div class="cell"><p>Sozinho vs. em grupo · planeado com meses vs. decidido na véspera · voo low-cost vs. autocarro ou comboio</p></div>
+    <div class="cell"><p>Estudante vs. jovem trabalhador · Lisboa/Porto vs. interior, longe de um aeroporto · primeira viagem vs. muito experiente</p></div>
+  </div>
+  <div class="note"><strong>Não marcar todas as entrevistas de uma vez.</strong> O livro recomenda deixar que o foco vá mudando e escolher os próximos participantes em função disso. Se ao fim de 3 viajantes solo já virmos o mesmo padrão, as entrevistas seguintes vão para outro papel.</div>
+</section>
+
+<!-- ============ CAP. 6 ============ -->
+<section id="modelos">
+  <div class="chapter"><span class="eyebrow">Cap. 6 · Work Models</span></div>
+  <h2>Os cinco modelos de trabalho</h2>
+  <p>Depois de cada entrevista, a equipa faz uma sessão de interpretação e desenha os cinco modelos <b>do ponto de vista dessa pessoa</b>. Em todos eles, um <span class="tag bolt">⚡ relâmpago vermelho</span> marca um <i>breakdown</i>, ou seja, um problema no trabalho. Mais tarde consolidam-se os modelos de todos os participantes.</p>
+  <div class="note"><strong>Atenção:</strong> os modelos abaixo são um <b>exemplo ilustrativo</b>, construído a partir de uma entrevista-piloto hipotética com «U1: Marta, 21 anos, estudante, a organizar 4 noites em Budapeste com 3 amigas». Servem de modelo para a equipa. <b>Têm de ser substituídos pelos dados das entrevistas reais</b>, porque o livro insiste que os modelos só valem se vierem da observação.</div>
+
+  <!-- FLOW -->
+  <h3>1 · Modelo de fluxo: quem coordena com quem</h3>
+  <p>Mostra pessoas (bolhas com responsabilidades), a comunicação entre elas (setas), os artefactos trocados (caixas) e os locais de coordenação (caixas grandes). Os sistemas só entram quando funcionam como um lugar, e é o caso do grupo de WhatsApp.</p>
+  <figure class="diagram">
+    <svg viewBox="0 0 860 560" role="img" aria-label="Modelo de fluxo de U1, a organizadora da viagem">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker>
+        <symbol id="bolt" viewBox="0 0 12 18"><path d="M7 0 L0 10 H5 L3 18 L12 7 H7 L9 0 Z"/></symbol>
+      </defs>
+      <!-- arrows -->
+      <line class="flow" x1="310" y1="320" x2="228" y2="392" marker-end="url(#ah)"/>
+      <line class="flow" x1="272" y1="470" x2="372" y2="352" marker-end="url(#ah)"/>
+      <line class="flow" x1="140" y1="148" x2="140" y2="388" marker-end="url(#ah)" marker-start="url(#ah)"/>
+      <line class="flow" x1="330" y1="208" x2="232" y2="132" marker-end="url(#ah)"/>
+      <line class="flow" x1="500" y1="200" x2="610" y2="130" marker-end="url(#ah)"/>
+      <line class="flow" x1="680" y1="146" x2="560" y2="222" marker-end="url(#ah)"/>
+      <line class="flow" x1="640" y1="410" x2="540" y2="336" marker-end="url(#ah)"/>
+
+      <!-- U1 -->
+      <ellipse class="person me" cx="430" cy="272" rx="160" ry="80"/>
+      <text x="430" y="226" text-anchor="middle" font-weight="600" font-size="15">U1 · Marta, 21 · estudante</text>
+      <text x="430" y="244" text-anchor="middle" class="muted mono" font-size="11">organizadora</text>
+      <text x="310" y="268" font-size="12.5">· Propor destino e datas</text>
+      <text x="310" y="286" font-size="12.5">· Encontrar a combinação mais barata</text>
+      <text x="310" y="304" font-size="12.5">· Reservar e adiantar o dinheiro</text>
+      <text x="310" y="322" font-size="12.5">· Cobrar a parte de cada amiga</text>
+
+      <!-- Grupo -->
+      <ellipse class="person" cx="140" cy="94" rx="118" ry="54"/>
+      <text x="140" y="80" text-anchor="middle" font-weight="600" font-size="14">Amigas (grupo de 3)</text>
+      <text x="140" y="100" text-anchor="middle" font-size="12">· Dar disponibilidade</text>
+      <text x="140" y="117" text-anchor="middle" font-size="12">· Pagar a sua parte</text>
+
+      <!-- Pais -->
+      <ellipse class="person" cx="720" cy="92" rx="118" ry="54"/>
+      <text x="720" y="78" text-anchor="middle" font-weight="600" font-size="14">Pais</text>
+      <text x="720" y="98" text-anchor="middle" font-size="12">· Financiar parte da viagem</text>
+      <text x="720" y="115" text-anchor="middle" font-size="12">· Garantir que é seguro</text>
+
+      <!-- Amiga que já foi -->
+      <ellipse class="person" cx="730" cy="460" rx="112" ry="54"/>
+      <text x="730" y="446" text-anchor="middle" font-weight="600" font-size="14">Colega que já foi</text>
+      <text x="730" y="466" text-anchor="middle" font-size="12">· Dar dicas locais</text>
+      <text x="730" y="483" text-anchor="middle" font-size="12">· Validar escolhas</text>
+
+      <!-- WhatsApp place -->
+      <rect class="place" x="24" y="392" width="250" height="120" rx="3"/>
+      <text x="38" y="418" font-weight="600" font-size="14">Grupo WhatsApp</text>
+      <text x="38" y="436" font-size="12.5" font-style="italic">«Budapeste 2026»</text>
+      <text x="38" y="462" font-size="12">· Votar opções</text>
+      <text x="38" y="480" font-size="12">· Partilhar links e prints</text>
+      <text x="38" y="498" font-size="12">· Lembrar quem ainda não pagou</text>
+
+      <!-- labels: U1 -> WA -->
+      <rect class="artbox" x="148" y="322" width="140" height="22" rx="2"/>
+      <text x="218" y="337" text-anchor="middle" font-size="11.5">Links + prints de voos</text>
+      <text x="200" y="362" text-anchor="middle" font-size="11.5" font-style="italic">proposta de datas</text>
+      <!-- WA -> U1 -->
+      <text x="330" y="440" font-size="11.5" font-style="italic">votos: «pode ser», «tanto faz»</text>
+      <use href="#bolt" x="330" y="450" width="12" height="18" class="bolt"/>
+      <text x="348" y="464" font-size="11.5" class="boltt">respostas demoram dias; o preço sobe</text>
+      <!-- grupo <-> WA -->
+      <text x="150" y="250" font-size="11.5" font-style="italic">disponibilidade</text>
+      <!-- U1 -> grupo -->
+      <rect class="artbox" x="262" y="150" width="112" height="22" rx="2"/>
+      <text x="318" y="165" text-anchor="middle" font-size="11.5">Pedido MB Way</text>
+      <use href="#bolt" x="380" y="152" width="12" height="18" class="bolt"/>
+      <text x="396" y="166" font-size="11.5" class="boltt">paga 3 semanas depois</text>
+      <!-- U1 -> pais -->
+      <rect class="artbox" x="430" y="128" width="136" height="22" rx="2"/>
+      <text x="498" y="143" text-anchor="middle" font-size="11.5">Orçamento resumido</text>
+      <text x="498" y="120" text-anchor="middle" font-size="11.5" font-style="italic">pedido de apoio</text>
+      <!-- pais -> U1 -->
+      <text x="648" y="196" font-size="11.5" font-style="italic">«no máximo 300 €»</text>
+      <text x="648" y="213" font-size="11.5" font-style="italic">pede a morada do hostel</text>
+      <!-- colega -> U1 -->
+      <rect class="artbox" x="552" y="360" width="138" height="22" rx="2"/>
+      <text x="621" y="375" text-anchor="middle" font-size="11.5">Lista no Google Maps</text>
+      <text x="566" y="400" font-size="11.5" font-style="italic">dicas: bairro, metro</text>
+    </svg>
+    <figcaption>Tal como no exemplo do secretariado da fig. 6.1, U1 funciona como <b>hub</b>: muitas linhas saem da bolha dela. Os breakdowns estão na coordenação (respostas lentas, pagamentos atrasados) e não na pesquisa.</figcaption>
+  </figure>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--accent-soft);border-color:var(--accent)"></i>pessoa entrevistada</span>
+    <span><i class="sw" style="background:var(--surface);border-color:var(--accent)"></i>outra pessoa ou grupo</span>
+    <span><i class="sw" style="background:var(--amber-soft);border-color:var(--amber)"></i>artefacto</span>
+    <span><i class="sw" style="background:var(--place);border-color:var(--place-line)"></i>lugar de coordenação</span>
+    <span><i class="sw" style="background:var(--bolt)"></i>breakdown</span>
+  </div>
+  <h4>O que procurar nas entrevistas (cap. 6)</h4>
+  <ul>
+    <li><b>Coordenação:</b> para cada link ou print, de onde veio e quem o vai ver a seguir.</li>
+    <li><b>Papéis:</b> quem assume responsabilidades que ninguém lhe deu, como o «banco» do grupo.</li>
+    <li><b>Estruturas informais:</b> votações por emoji, sondagens no WhatsApp, a amiga que «sabe de hostels».</li>
+  </ul>
+
+  <!-- SEQUENCE -->
+  <h3>2 · Modelo de sequência: os passos, o gatilho e a intenção</h3>
+  <p>Regista os passos pela ordem em que aconteceram. O que o distingue de uma análise de tarefas é que declara o <b>gatilho</b> e as <b>intenções</b>. O livro insiste que as ações nunca são aleatórias: uma hesitação revela um passo de pensamento.</p>
+  <div class="seq">
+    <div class="seq-head">
+      <div><b>Gatilho</b>Fim dos exames. Uma amiga partilha no grupo um reel «Budapeste com 150 €».</div>
+      <div><b>Intenção principal</b>Fazer uma viagem com as amigas que caiba no orçamento de todas.</div>
+    </div>
+    <ol>
+      <li><span>Abre o Skyscanner em «Todo o mês», Porto → Budapeste</span><span class="side">intenção: datas são negociáveis, o preço não</span></li>
+      <li><span>Faz print de 3 combinações de datas e envia para o grupo</span><span class="side">intenção: decidir em conjunto</span></li>
+      <li class="branch"><span>Espera 2 dias por respostas; entretanto o voo mais barato sobe 22 €</span><span class="side b">⚡ a decisão do grupo é lenta e os preços mudam</span></li>
+      <li><span>Abre o Hostelworld noutra aba; filtra por preço e por «nota &gt; 8»</span><span class="side">intenção: barato mas não arriscado</span></li>
+      <li><span>Hesita entre um hostel central a 21 €/noite e um mais longe a 15 €</span><span class="side">passo de pensamento: tempo e custo do transporte até ao centro</span></li>
+      <li><span>Pesquisa no Google Maps quanto custa o metro; volta ao Hostelworld</span><span class="side b">⚡ o custo real está espalhado por 3 sítios</span></li>
+      <li><span>Copia os preços para a folha de cálculo e soma à mão</span><span class="side">intenção: ver o total por pessoa antes de propor</span></li>
+      <li><span>Vai reservar o voo e descobre que a mala de cabine custa +45 €</span><span class="side b">⚡ custos escondidos só aparecem no checkout</span></li>
+      <li><span>Recalcula; decide levar só a mochila pequena</span><span class="side">intenção secundária: não passar os 300 € dos pais</span></li>
+      <li><span>Reserva voo e hostel para as 4 com o seu cartão; manda pedidos MB Way</span><span class="side">intenção: garantir o preço antes que suba</span></li>
+    </ol>
+  </div>
+  <div class="note"><strong>Lição do livro aplicada:</strong> se o Roamly automatizar tudo, perde-se o <b>gatilho</b>, que aqui é um reel e uma época do ano. O sistema tem de ter um equivalente, como alertas do tipo «há uma escapadinha de 150 € para as datas depois dos exames». Tem também de suportar as intenções escondidas, como <i>decidir em conjunto</i> e <i>não passar o limite dos pais</i>, e não só «encontrar o mais barato».</div>
+
+  <!-- ARTIFACT -->
+  <h3>3 · Modelo de artefacto: o que as coisas revelam</h3>
+  <p>Os artefactos são o rasto do trabalho. Pede-se uma cópia do artefacto usado e interpreta-se <b>com o participante</b>: estrutura, conteúdo, anotações informais, apresentação e breakdowns. Aqui, a folha de cálculo da U1:</p>
+  <div class="artifact">
+    <div class="sheet" role="img" aria-label="Folha de cálculo Budapeste 2026 anotada">
+      <div class="bar"><span class="on">Custos</span><span>Quem pagou <a class="pin" href="#a6">6</a></span><span>Ideias</span></div>
+      <table>
+        <thead><tr><th>Item</th><th>Total</th><th>Por pessoa <a class="pin" href="#a1">1</a></th><th>Link <a class="pin" href="#a5">5</a></th></tr></thead>
+        <tbody>
+          <tr class="ok"><td>Voo OPO→BUD 12 jul</td><td class="num">232 €</td><td class="num">58 €</td><td>ryanair…</td></tr>
+          <tr class="ok"><td>Voo BUD→OPO 16 jul</td><td class="num">196 €</td><td class="num">49 €</td><td>ryanair…</td></tr>
+          <tr class="x"><td>Hostel Downtown (21 €/n) <a class="pin" href="#a2">2</a></td><td class="num">336 €</td><td class="num">84 €</td><td>hostelw…</td></tr>
+          <tr class="ok"><td>Hostel Buda Hills (15 €/n)</td><td class="num">240 €</td><td class="num">60 €</td><td>hostelw…</td></tr>
+          <tr class="tbd"><td>Metro 72h <a class="pin" href="#a3">3</a></td><td class="num">~64 €</td><td class="num">~16 €</td><td>—</td></tr>
+          <tr class="tbd"><td>Termas Széchenyi</td><td class="num">?</td><td class="num">~30 €</td><td>tiktok</td></tr>
+          <tr class="tbd"><td>Extras?? mala <a class="pin" href="#a4">4</a></td><td class="num">?</td><td class="num">?</td><td></td></tr>
+          <tr><td><b>TOTAL</b></td><td></td><td class="num"><b>~213 €</b></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ol class="anns">
+      <li id="a1"><span class="pin">1</span><span><b>Estrutura:</b> a coluna «por pessoa» é a mais consultada. O custo pensa-se sempre por pessoa e não em total.</span></li>
+      <li id="a2"><span class="pin">2</span><span><b>Anotação:</b> as opções riscadas não se apagam. Servem para justificar a escolha ao grupo («vi o central, era +24 €»).</span></li>
+      <li id="a3"><span class="pin">3</span><span><b>Apresentação:</b> verde é reservado, amarelo é a decidir. Existe uma distinção conceptual entre «decidido» e «em aberto».</span></li>
+      <li id="a4" class="b"><span class="pin">4</span><span><b>Breakdown:</b> linha de «Extras??» sem valor. A estrutura da folha não consegue prever custos que as plataformas escondem.</span></li>
+      <li id="a5"><span class="pin">5</span><span><b>Conteúdo:</b> o link é a prova para o grupo. Um deles vem do TikTok, que também conta como fonte.</span></li>
+      <li id="a6"><span class="pin">6</span><span><b>Parte:</b> um separador próprio para as dívidas. Dividir despesas faz parte do mesmo trabalho.</span></li>
+    </ol>
+  </div>
+
+  <!-- CULTURAL -->
+  <h3>4 · Modelo cultural: as pressões invisíveis</h3>
+  <p>A cultura é «invisível como a água para o peixe». O modelo mostra quem influencia o trabalho, com setas escritas <b>na voz que a pessoa sente</b>, mesmo que ninguém diga aquelas palavras. Mostra também a resistência (pushback) de volta.</p>
+  <figure class="diagram">
+    <svg viewBox="0 0 860 520" role="img" aria-label="Modelo cultural de U1">
+      <defs>
+        <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker>
+        <symbol id="bolt2" viewBox="0 0 12 18"><path d="M7 0 L0 10 H5 L3 18 L12 7 H7 L9 0 Z"/></symbol>
+      </defs>
+      <!-- umbrella culture -->
+      <path class="umb" d="M40 150 Q430 -30 820 150 Z"/>
+      <text x="430" y="78" text-anchor="middle" font-weight="600" font-size="14">Cultura jovem de viajar barato</text>
+      <text x="430" y="100" text-anchor="middle" font-size="12.5" font-style="italic">«Viajar barato é uma competência. Pagar a mais é falhar.»</text>
+      <text x="430" y="120" text-anchor="middle" font-size="12.5" font-style="italic">«Pacotes são para turistas.»</text>
+
+      <!-- influencers overlapping U1 -->
+      <circle class="inf" cx="200" cy="270" r="92"/>
+      <text x="200" y="262" text-anchor="middle" font-weight="600" font-size="14">Pais</text>
+      <text x="200" y="280" text-anchor="middle" class="muted" font-size="11.5">financiam e autorizam</text>
+
+      <circle class="inf" cx="660" cy="270" r="92"/>
+      <text x="660" y="262" text-anchor="middle" font-weight="600" font-size="14">Amigas</text>
+      <text x="660" y="280" text-anchor="middle" class="muted" font-size="11.5">o grupo</text>
+
+      <circle class="inf" cx="210" cy="440" r="70"/>
+      <text x="210" y="436" text-anchor="middle" font-weight="600" font-size="13">Low-cost</text>
+      <text x="210" y="453" text-anchor="middle" class="muted" font-size="11.5">Ryanair, Wizz</text>
+
+      <circle class="inf" cx="650" cy="440" r="70"/>
+      <text x="650" y="436" text-anchor="middle" font-weight="600" font-size="13">Plataformas</text>
+      <text x="650" y="453" text-anchor="middle" class="muted" font-size="11.5">Booking, Hostelworld</text>
+
+      <circle class="inf" cx="430" cy="470" r="52"/>
+      <text x="430" y="466" text-anchor="middle" font-weight="600" font-size="13">Criadores</text>
+      <text x="430" y="483" text-anchor="middle" class="muted" font-size="11.5">TikTok, IG</text>
+
+      <circle class="person me" cx="430" cy="300" r="108"/>
+      <text x="430" y="296" text-anchor="middle" font-weight="600" font-size="15">U1 · Marta</text>
+      <text x="430" y="315" text-anchor="middle" class="muted mono" font-size="11">organizadora</text>
+
+      <!-- influence arrows -->
+      <line class="flow" x1="250" y1="200" x2="352" y2="236" marker-end="url(#ah2)"/>
+      <text x="44" y="172" font-size="12" font-style="italic">«Não gastes o que não tens.</text>
+      <text x="44" y="188" font-size="12" font-style="italic">Manda-me onde vais dormir.»</text>
+
+      <line class="flow" x1="610" y1="200" x2="508" y2="236" marker-end="url(#ah2)"/>
+      <text x="816" y="172" text-anchor="end" font-size="12" font-style="italic">«Trata tu disso,</text>
+      <text x="816" y="188" text-anchor="end" font-size="12" font-style="italic">depois pagamos.»</text>
+      <line class="flow" x1="530" y1="330" x2="590" y2="320" marker-end="url(#ah2)"/>
+      <text x="548" y="352" font-size="11.5" font-style="italic" class="acc">pushback: «Respondam!»</text>
+
+      <line class="flow" x1="262" y1="400" x2="340" y2="360" marker-end="url(#ah2)"/>
+      <use href="#bolt2" x="24" y="366" width="12" height="18" class="bolt"/>
+      <text x="40" y="380" font-size="12" font-style="italic" class="boltt">«Mala de 10 kg? +45 €.»</text>
+
+      <line class="flow" x1="598" y1="400" x2="520" y2="360" marker-end="url(#ah2)"/>
+      <use href="#bolt2" x="688" y="366" width="12" height="18" class="bolt"/>
+      <text x="704" y="380" font-size="12" font-style="italic" class="boltt">«Só restam 2 quartos!»</text>
+
+      <text x="430" y="512" text-anchor="middle" font-size="12" font-style="italic">«Tens de ir a este sítio escondido.»</text>
+    </svg>
+    <figcaption>A U1 está entre a pressão para gastar pouco (pais, cultura) e a pressão para não ficar de fora (amigas, criadores). As plataformas são vividas como adversárias: urgência falsa e taxas escondidas. <b>Um agente de IA que pareça «mais uma plataforma a vender» vai herdar esta desconfiança.</b></figcaption>
+  </figure>
+
+  <!-- PHYSICAL -->
+  <h3>5 · Modelo físico: onde o trabalho acontece</h3>
+  <p>É uma caricatura do ambiente e não uma planta. Só entra o que afeta o trabalho: locais, dispositivos, movimento e artefactos.</p>
+  <figure class="diagram">
+    <svg viewBox="0 0 860 400" role="img" aria-label="Modelo físico de U1">
+      <defs>
+        <marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead-acc"/></marker>
+        <symbol id="bolt3" viewBox="0 0 12 18"><path d="M7 0 L0 10 H5 L3 18 L12 7 H7 L9 0 Z"/></symbol>
+      </defs>
+      <!-- zones -->
+      <rect class="zone" x="20" y="30" width="270" height="250" rx="4"/>
+      <text x="36" y="56" font-weight="600" font-size="14">Quarto (casa)</text>
+      <text x="36" y="74" class="muted" font-size="11.5">sessões longas, à noite</text>
+      <rect class="dev" x="44" y="96" width="150" height="92" rx="3"/>
+      <text x="119" y="126" text-anchor="middle" font-size="12.5" font-weight="600">Portátil</text>
+      <text x="119" y="145" text-anchor="middle" font-size="11.5">14 abas abertas</text>
+      <text x="119" y="162" text-anchor="middle" font-size="11.5">+ folha de cálculo</text>
+      <text x="44" y="216" font-size="11.5">· cartão bancário ao lado</text>
+      <text x="44" y="234" font-size="11.5">· lugar da «decisão final»</text>
+
+      <rect class="zone" x="330" y="30" width="230" height="250" rx="4"/>
+      <text x="346" y="56" font-weight="600" font-size="14">Em movimento</text>
+      <text x="346" y="74" class="muted" font-size="11.5">autocarro, filas, intervalos</text>
+      <rect class="dev" x="400" y="92" width="72" height="120" rx="10"/>
+      <text x="436" y="140" text-anchor="middle" font-size="12" font-weight="600">Telemóvel</text>
+      <text x="436" y="158" text-anchor="middle" font-size="10.5">WhatsApp</text>
+      <text x="436" y="172" text-anchor="middle" font-size="10.5">Instagram</text>
+      <text x="436" y="186" text-anchor="middle" font-size="10.5">MB Way</text>
+      <text x="346" y="238" font-size="11.5">· inspiração e respostas rápidas</text>
+      <text x="346" y="256" font-size="11.5">· prints guardados na galeria</text>
+
+      <rect class="zone" x="600" y="30" width="240" height="250" rx="4"/>
+      <text x="616" y="56" font-weight="600" font-size="14">Faculdade / café</text>
+      <text x="616" y="74" class="muted" font-size="11.5">o grupo em presença</text>
+      <circle cx="680" cy="140" r="16" class="person"/>
+      <circle cx="720" cy="120" r="16" class="person"/>
+      <circle cx="760" cy="140" r="16" class="person"/>
+      <circle cx="720" cy="170" r="16" class="person me"/>
+      <text x="616" y="222" font-size="11.5">· um telemóvel passa de mão em</text>
+      <text x="616" y="238" font-size="11.5">  mão para mostrar opções</text>
+      <text x="616" y="256" font-size="11.5">· decide-se «ao vivo» o destino</text>
+
+      <!-- movement -->
+      <path class="move" d="M200 140 C 280 140, 320 150, 396 150" marker-end="url(#ah3)" marker-start="url(#ah3)"/>
+      <path class="move" d="M476 150 C 540 150, 600 150, 660 150" marker-end="url(#ah3)" marker-start="url(#ah3)"/>
+
+      <use href="#bolt3" x="248" y="98" width="12" height="18" class="bolt"/>
+      <text x="264" y="112" font-size="11.5" class="boltt">troca de dispositivo = perde o estado</text>
+
+      <!-- airport -->
+      <rect class="place" x="20" y="310" width="820" height="70" rx="4"/>
+      <text x="36" y="336" font-weight="600" font-size="13.5">Aeroportos de partida</text>
+      <text x="36" y="356" font-size="12">O voo mais barato sai de Lisboa: +3h de autocarro e +12 € de U1 (Porto). O custo e o tempo da deslocação ao aeroporto não aparecem em nenhuma pesquisa.</text>
+      <use href="#bolt3" x="806" y="326" width="12" height="18" class="bolt"/>
+    </svg>
+    <figcaption>O trabalho está <b>repartido entre dispositivos e locais</b>. A descoberta acontece no telemóvel, a comparação e a reserva no portátil, a decisão no grupo. Cada passagem de um para outro é um ponto de rutura.</figcaption>
+  </figure>
+</section>
+
+<section id="implicacoes">
+  <div class="chapter"><span class="eyebrow">Cap. 6 · The five faces of work</span></div>
+  <h2>O que os modelos dizem ao design do Roamly</h2>
+  <p>Os cinco modelos encaixam uns nos outros. A pessoa desempenha papéis (fluxo), executa tarefas (sequência) com artefactos, dentro de uma cultura e de um espaço físico. Lidos em conjunto, sugerem hipóteses de design a validar nas entrevistas reais:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Modelo</th><th>Evidência (piloto ilustrativo)</th><th>Hipótese para o Roamly</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag">Fluxo</span></td><td>A organizadora é um hub. O grupo decide devagar e paga tarde.</td><td>Planeamento <b>partilhado</b>: link para o grupo votar, prazo de decisão com preço «congelado» ou com alerta, e divisão de custos integrada.</td></tr>
+      <tr><td><span class="tag">Sequência</span></td><td>O gatilho é um reel ou o fim dos exames. As datas são flexíveis e o preço não.</td><td>Entrada por <b>orçamento e janela de datas</b> em vez de destino. Alertas proativos como gatilho. Suportar a intenção «não passar o limite».</td></tr>
+      <tr><td><span class="tag">Sequência</span></td><td>A hesitação entre hostel central e barato depende do custo do transporte.</td><td>Mostrar o <b>custo real total</b>, com transporte local e ida ao aeroporto, e o compromisso «+6 €/noite = −40 min por dia».</td></tr>
+      <tr><td><span class="tag amber">Artefacto</span></td><td>Coluna «por pessoa», opções riscadas guardadas, verde e amarelo.</td><td>Itinerário com total <b>por pessoa</b> em destaque, alternativas descartadas visíveis e estados «decidido / em aberto».</td></tr>
+      <tr><td><span class="tag amber">Artefacto</span></td><td>«Extras??», porque os custos escondidos rebentam o orçamento.</td><td>Preço <b>transparente e decomposto</b> (mala, taxas, transfer) desde o início, como a folha do cientista do livro que mostra todos os passos do cálculo.</td></tr>
+      <tr><td><span class="tag bolt">Cultural</span></td><td>Orgulho em viajar barato. Desconfiança de plataformas e de pacotes.</td><td>O agente deve <b>explicar porquê</b> e deixar a pessoa sentir que foi ela a encontrar o negócio. Nada de urgência falsa. Deve dar ao utilizador o papel de viajante esperto, não de turista.</td></tr>
+      <tr><td><span class="tag bolt">Cultural</span></td><td>Os pais pedem limite e localização.</td><td>Um <b>resumo partilhável</b> (orçamento, morada, datas) para quem financia.</td></tr>
+      <tr><td><span class="tag">Físico</span></td><td>Descoberta no telemóvel, decisão no portátil, grupo ao vivo.</td><td><b>Mobile-first</b> com estado sincronizado entre dispositivos e um modo de «mostrar ao grupo».</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="proximos">
+  <h2>Próximos passos para o grupo</h2>
+  <ul class="checklist">
+    <li>Validar a declaração de foco e escrevê-la no caderno de cada entrevistador.</li>
+    <li>Recrutar as 3 primeiras pessoas: 1 organizador(a) com viagem em planeamento, 1 viajante solo e 1 caçador(a) de promoções.</li>
+    <li>Pedir antecipadamente os artefactos: prints, folhas de cálculo, emails de reserva e o grupo de WhatsApp (com consentimento).</li>
+    <li>Para quem planeia ao longo de semanas, iniciar o «rasto» (diário de prints) e marcar a entrevista retrospetiva.</li>
+    <li>Marcar 1 entrevista com um agente de viagens (domínio da metáfora).</li>
+    <li>Até 48h depois de cada entrevista: sessão de interpretação (cap. 7) e desenho dos 5 modelos seguindo os exemplos acima.</li>
+    <li>Rever o foco e o perfil dos próximos participantes a cada 3 entrevistas.</li>
+    <li>Com 10–15 entrevistas feitas, consolidar os modelos (cap. 8) e substituir as hipóteses desta página.</li>
+  </ul>
+</section>
+
+<footer>
+  Baseado em Beyer, H. &amp; Holtzblatt, K. (1999). <i>Contextual Design: Defining Customer-Centered Systems</i>. Morgan Kaufmann, cap. 4 (pp. 67–78) e cap. 6 (pp. 89–122). Os modelos de trabalho desta página são ilustrativos e não resultam de entrevistas reais.
+</footer>
+</div>
