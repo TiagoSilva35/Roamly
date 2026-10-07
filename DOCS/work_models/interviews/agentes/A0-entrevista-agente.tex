@@ -1,0 +1,174 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{tabularx,longtable,booktabs,array,enumitem}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\definecolor{roamly}{HTML}{0E6E68}
+\definecolor{alerta}{HTML}{B3261E}
+\definecolor{formal}{HTML}{2E7D32}
+\hypersetup{colorlinks=true,linkcolor=roamly,urlcolor=roamly}
+\newtcolorbox{aviso}[1][]{colback=alerta!6,colframe=alerta,arc=2pt,boxrule=0.8pt,fonttitle=\bfseries,title=#1}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.3}
+\setlist{nosep,leftmargin=*}
+\newcommand{\bolt}{\textcolor{alerta}{[BD]}}
+\newcommand{\ent}[1]{\textit{Entrevistador:} #1}
+
+\title{\textbf{Roamly}\\[2pt]\large Entrevista a agente de viagens: A0\\\normalsize Registo da entrevista (caso fictício)}
+\author{}\date{}
+\begin{document}
+\maketitle
+
+\begin{aviso}[Caso 1: Profissional de uma agência de viagens] 
+Tema: \textbf{preocupações com a IA e impacto no negócio}. 
+Anónimo: sem nomes de pessoas, empresas, plataformas ou 
+cidades. O código \texttt{A0} é reservado a este caso.
+\end{aviso}
+
+%==========================================================
+\section{Perfil e situação da entrevista}
+\begin{tabularx}{\textwidth}{@{}p{4.3cm}L@{}}
+\toprule
+Código & A0 \\
+Papel & Agente de viagens de balcão \\
+Perfil & 12 anos de experiência na mesma agência de viagens. \\
+Tipo de tarefa & Normal, no posto de trabalho: manhã de trabalho \textbf{observada} no balcão, 
+mais \textbf{relatos retrospetivos} de casos concretos \\
+Local e duração & Na agência, 11\,h15--12\,h; \(\approx\)35\,min de observação ativa \\
+Registo & Transcrição do conteúdo considerado necessário (com consentimento); sem fotos do balcão \\
+\bottomrule
+\end{tabularx}
+
+%==========================================================
+\section{Siglas}
+{\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}L@{}}
+\toprule
+\textbf{Sigla} & \textbf{Significado} \\ \midrule
+\multicolumn{2}{@{}l}{\textit{Identificadores}} \\
+A0 & Código do agente entrevistado (caso fictício) \\
+AE01--AE08 & Registos da entrevista ao agente (observações e relatos) \\
+A0-01--A0-15 & Notas da sessão de interpretação do caso A0 \\ \midrule
+\multicolumn{2}{@{}l}{\textit{Tipos de registo da entrevista}} \\
+O & Observado pelo entrevistador \\
+R & Relato de caso concreto contado durante a observação \\
+F/OP & Fala geral ou opinião, sem caso concreto (fora dos modelos) \\ \midrule
+\multicolumn{2}{@{}l}{\textit{Tipos de nota de interpretação}} \\
+OBS & Observação \\
+INS & \textit{Insight} \\
+CUL & Influência cultural \\
+Q & Pergunta por esclarecer \\
+BD & \textit{Breakdown}: falha ou atrito no trabalho \\
+OP & Opinião geral \\ \midrule
+\multicolumn{2}{@{}l}{\textit{Outras}} \\
+\bolt{} & Marca de \textit{breakdown} nos registos AE \\
+IA & Inteligência artificial \\
+\bottomrule
+\end{tabularx}}
+
+%==========================================================
+\section{Conversa convencional (\(\approx\)10\,min)}
+Tipo F/OP: contextualiza mas \textbf{não entra nos modelos} sem caso concreto.
+
+\begin{tabularx}{\textwidth}{@{}p{1.6cm}L@{}}
+\toprule
+\textit{Entrev.} & «Quais as principais funções que desempenha?» \\
+A0 & «Aconselho, reservo, e resolvo quando corre mal.» \\
+\textit{Entrev.} & «Como vê a IA no seu trabalho?» \\
+A0 & «\textcolor{formal}{Por um lado, tenho medo de que os clientes deixem de precisar de nós, por outro
+o que vejo é que deixa as pessoas ainda mais confusas.}» (\textbf{OP}) \\
+\textit{Entrev.} & «O que mudou no negócio nos últimos anos?» \\
+A0 & «\textcolor{formal}{Os clientes chegam informados e com ideias definidas, 
+a maioria mal informados e sem tentarem entender se de facto é possível fazer mesmo aquilo.
+Acabamos por parecer «desmancha-prazeres» por tentar explicar que a logística não tem grande sentido.}» (\textbf{OP}) \\
+\bottomrule
+\end{tabularx}
+
+\paragraph{Transição.} «Vou ficar aqui a seguir o seu trabalho esta manhã e a perguntar o que não perceber. Se aparecer um cliente, continue como faz normalmente.»
+
+%==========================================================
+\section{Entrevista contextual: o que foi observado e contado}
+Observação ativa no balcão: 11\,h25--12\,h. \textbf{AE} = registo da entrevista ao agente; \textbf{O} = observado; \textbf{R} = relato de caso concreto contado durante a observação; \textbf{F/OP} = geral (fora dos modelos).
+
+{\small
+\begin{longtable}{@{}p{1.1cm}p{0.7cm}p{13.4cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Tipo} & \textbf{Registo} \\ \midrule \endhead
+AE01 & O & 11\,h25. Abre o sistema com algumas conversas pendentes e a caixa de correio 
+partilhada. Um papel autocolante no monitor 
+com «ligar a cliente X». \\
+
+AE02 & O & Lê um pedido novo no correio: «vi opções de alojamento parecidas,
+por menos 10 ou 20 euros por noite». Suspira: «É isto, lá vamos nós.» \bolt{} 
+pressão sobre o preço. \\
+
+AE03 & O & Entra um casal, com um roteiro impresso: algumas ideias, voos
+e sítios onde gostariam de ficar. Querem «algo deste género». 
+A0 \emph{pergunta o orçamento, as datas flexíveis e «o que não abdicam»}. \\
+
+AE04 & O & Ao ler o roteiro, A0 mostra que duas cidades ficam a 6\,h de comboio e 
+que um monumento fecha no dia previsto. O casal troca olhares desagradado. \\
+
+
+AE05 & O & Começa a proposta: copia dados do portal para o modelo da agência 
+(documento com logótipo); diz que a envia por email «o mais rápido possível». \\
+
+AE06 & O & O casal agradece e diz que vai «pensar e comparar online». \\
+
+AE07 & R & \textit{Caso:} um cliente recusou pagar a taxa de serviço
+«porque o site não cobra». A0 acabou por perder o cliente. \bolt{} \\
+
+AE08 & O & Mostra o caderno de fornecedores: «hotel X: não fiar na foto; pedir 
+quarto nos pisos de cima». «Isto não está em lado nenhum.» \\
+
+\bottomrule
+\end{longtable}}
+
+%==========================================================
+\section{Fecho: resumo validado com A0}
+\begin{itemize}
+  \item «O seu valor é aconselhar, responsabilizar-se e resolver quando corre mal.» 
+  A0 acrescenta: «e conhecer os fornecedores.»
+  \item «Gasta muito tempo a procurar e copiar dados entre sistemas.» A0: 
+  «sim, grande parte da manhã.»
+  \item «O ChatGPT preocupa-a quando parece certa e não é.» A0 corrige: «e quando o 
+  supervisor pensa que ele (ChatGPT) me substitui, mas não gosta quando o relatório
+  sai confuso.»
+\end{itemize}
+
+%==========================================================
+\section{Notas da sessão de interpretação}
+\begin{aviso}
+  Notas sobre o software usado foram assumidas e outras geradas pela nossa imaginação
+  uma vez que nos pediram para não divulgar o seu funcionamento.
+\end{aviso}
+Tipos: \textbf{OBS} observação; \textbf{INS} insight; \textbf{CUL} influência cultural; \textbf{Q} pergunta por esclarecer; \textbf{BD} breakdown; \textbf{OP} opinião geral.
+
+{\small
+\begin{longtable}{@{}p{1.5cm}p{1.1cm}p{11.8cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Tipo} & \textbf{Nota} \\ \midrule \endhead
+A0-01 & OBS & Trabalha com vários sítios em paralelo: sistema com conversas pendentes, correio partilhado e papel autocolante no monitor (AE01). \\
+A0-02 & CUL & Os clientes comparam preços online e usam isso como pressão (AE02, AE07). \\
+A0-03 & BD & Cliente recusa a taxa de serviço porque «o site não cobra»; A0 perde o cliente (AE07). \\
+A0-04 & OBS & Os clientes chegam com roteiros impressos e ideias definidas (AE03). \\
+A0-05 & BD & O roteiro do cliente tinha logística inviável; A0 tem de o desfazer e o casal fica desagradado. Liga-se à opinião «desmancha-prazeres» da conversa (AE04). \\
+A0-06 & INS & A0 faz perguntas de descoberta («o que não abdicam?») a que o roteiro do cliente não respondia (AE03). \\
+A0-07 & OBS & A proposta é copiada à mão do portal para o modelo da agência (AE05). \\
+A0-08 & INS & Os clientes usam a agência para se aconselhar e depois comparam sozinhos online (AE06). \\
+A0-09 & CUL & O supervisor vê o ChatGPT como substituto de A0; A0 vê-o como um risco que lhe cai em cima (fecho). \\
+A0-10 & OBS & Conhecimento tácito sobre fornecedores guardado num caderno pessoal (AE08). \\
+A0-11 & CUL & Identidade: «aconselho, reservo, resolvo» e «conhecer os fornecedores»; teme ser reduzido(a) a intermediário (conversa, fecho). \\
+A0-12 & OP & «Tenho medo de que os clientes deixem de precisar de nós» (sem caso concreto; fica como contexto cultural). \\
+A0-13 & OP & «A IA deixa as pessoas ainda mais confusas» (sem caso concreto observado; fica como contexto). \\
+A0-14 & Q & Como saberia o cliente que a proposta foi revista por uma pessoa? Perguntar a mais agentes. \\
+A0-15 & Q & Quanto da receita vem de comissões versus taxas de serviço? Pedir em entrevista futura (não observado). \\
+\bottomrule
+\end{longtable}}
+
+\end{document}

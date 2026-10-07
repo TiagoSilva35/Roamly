@@ -1,0 +1,629 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{pdflscape}
+\usepackage{hyperref}
+
+\definecolor{roamly}{HTML}{0E6E68}
+\definecolor{nota}{HTML}{B86E00}
+\definecolor{alerta}{HTML}{B3261E}
+\hypersetup{colorlinks=true,linkcolor=roamly,urlcolor=roamly}
+
+\newtcolorbox{foco}[1][]{colback=roamly!8,colframe=roamly,arc=2pt,boxrule=0.8pt,
+  fonttitle=\bfseries,title=#1}
+\newtcolorbox{nota}[1][]{colback=nota!8,colframe=nota,arc=2pt,boxrule=0.8pt,
+  fonttitle=\bfseries,title=#1}
+\newtcolorbox{aviso}[1][]{colback=alerta!6,colframe=alerta,arc=2pt,boxrule=0.8pt,
+  fonttitle=\bfseries,title=#1}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.3}
+\setlist{nosep,leftmargin=*}
+
+% relâmpago = breakdown
+\newcommand{\bolt}{\tikz[baseline=-0.6ex]\fill[alerta] (0.07,0.17)--(-0.05,-0.02)--(0.02,-0.02)--(-0.07,-0.19)--(0.12,0.03)--(0.04,0.03)--cycle;}
+\newcommand{\who}[1]{\textsc{#1}}
+
+\title{\textbf{Roamly}\\[4pt]\large Os cinco modelos de trabalho: guia da equipa\\
+\normalsize Aplicação do Capítulo 6 de \textit{Contextual Design} (Beyer \& Holtzblatt, 1999),\\
+com histórias de trabalho para distribuir e acompanhar tarefas}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%============================================================
+\section{Para que serve este documento}
+
+Este guia diz à equipa \textbf{o que é cada um dos cinco modelos de trabalho, o que recolher para o desenhar, como o desenhar e quando está pronto}. Depois transforma isso num conjunto de histórias de trabalho que podem ser repartidas por pessoas e acompanhadas semana a semana. As histórias de produto e os requisitos ficam para mais tarde, quando houver modelos reais que os sustentem.
+
+Parte do princípio de que já temos o Capítulo~4 aplicado ao Roamly (foco, tipos de entrevista, papéis a entrevistar) e que existe uma página com modelos \emph{ilustrativos} construídos sobre uma entrevista-piloto hipotética (a «Marta»). Esses modelos servem de exemplo de notação e \textbf{não podem ser usados como dados}. O livro é claro nisto: um modelo só vale se vier do que o entrevistador viu, ou de um relato retrospetivo de um acontecimento concreto.
+
+\begin{nota}[Duas fontes de dados para os modelos]
+\begin{itemize}
+  \item \textbf{Entrevistas contextuais a jovens viajantes} (os papéis do Capítulo~4): são a base do modelo de trabalho que o Roamly vai apoiar.
+  \item \textbf{Entrevistas a profissionais de agências de viagens} (a metáfora «agente de balcão»): já foram feitas, sobre as preocupações com a IA e o impacto no negócio. Dão-nos os cinco modelos \emph{do agente}, com destaque para o modelo cultural e o de fluxo. Ver a Secção~\ref{sec:agentes}.
+\end{itemize}
+\end{nota}
+
+%============================================================
+\section{Os cinco modelos numa página}
+
+Segundo o Capítulo~6, cada modelo olha para o trabalho de um ângulo e esconde o resto, por isso \emph{são precisos os cinco}. Em conjunto cobrem as conversas de design de quase todos os projetos. A pessoa desempenha papéis (fluxo), cumpre tarefas (sequência) com artefactos, dentro de uma cultura e de um espaço físico.
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{2.1cm}p{3.6cm}LL@{}}
+\toprule
+\textbf{Modelo} & \textbf{Pergunta a que responde} & \textbf{Elementos principais} & \textbf{Para o Roamly, serve para\ldots} \\
+\midrule
+Fluxo & Quem faz o quê, e com quem coordena? & Pessoas e grupos (com responsabilidades), setas de comunicação, artefactos, lugares de coordenação, breakdowns & Perceber o papel do grupo, dos pais e do «organizador»; que coordenação o agente pode automatizar \\
+Sequência & Que passos dá, o que os desencadeia e porquê? & Intenção, gatilho, passos por ordem, ramos e ciclos, breakdowns & Perceber como se passa da vontade de viajar à reserva; que gatilhos substituir; que intenções escondidas respeitar \\
+Artefacto & O que é que as coisas que usa revelam? & Cópia do artefacto anotada: partes, estrutura, anotações, apresentação, uso, breakdowns & Ver o que a folha de cálculo, a lista de links ou a proposta de viagem já «fazem» e o produto tem de igualar \\
+Cultural & Que pressões e valores condicionam o trabalho? & Influenciadores (bolhas), grau de influência (sobreposição), setas escritas na voz de quem as sente, pushback, breakdowns graves & Compreender confiança, orgulho em viajar barato, receio de pacotes e, no caso dos agentes, o receio da IA \\
+Físico & Onde acontece e como o espaço ajuda ou atrapalha? & Locais, estruturas, movimento, ferramentas, artefactos e a sua posição, breakdowns & Decidir telemóvel \emph{vs.}\ portátil, passagens entre dispositivos e o contexto de uso \\
+\bottomrule
+\end{tabularx}
+\caption{Visão geral dos cinco modelos.}
+\end{table}
+
+\paragraph{Convenções comuns a todos os modelos.}
+\begin{itemize}
+  \item O \textbf{relâmpago} \bolt{} marca um \emph{breakdown}: um problema no trabalho. É o símbolo universal do livro e aparece em todos os cinco modelos.
+  \item Cada modelo é construído do ponto de vista de \textbf{uma só pessoa} (identificada como \texttt{U1}, \texttt{U2}\ldots). Os modelos de várias pessoas só se juntam mais tarde, na consolidação (Capítulo~8).
+  \item Só entra no modelo o que o entrevistador \textbf{viu} ou ouviu como \textbf{relato de um caso concreto}. Frases gerais do tipo «normalmente fazemos assim» não vão para o modelo. Se o participante insistir no processo «oficial», regista-se \textbf{a verde}, para distinguir do que foi observado.
+  \item Os modelos \textbf{não resumem}: representam tudo o que o entrevistador descobriu. Decidir o que é relevante para o design vem depois.
+  \item As setas e anotações usam \textbf{a linguagem do participante}, e não termos técnicos nossos.
+  \item Não se mostram dados demográficos nos modelos. Idade, curso, anos de profissão, viagens por ano e semelhantes vão para um \textbf{perfil} separado do participante (uma linha por pessoa).
+\end{itemize}
+
+%============================================================
+\section{Como se produzem os modelos (o processo)}
+
+\begin{enumerate}
+  \item \textbf{Entrevista contextual}, seguindo a estrutura do Capítulo~4 (conversa inicial, transição, observação, fecho). O entrevistador recolhe artefactos (cópias, capturas de ecrã anonimizadas) e anota o que vê.
+  \item \textbf{Sessão de interpretação, até 48\,h depois da entrevista.} É aqui que os modelos nascem. O entrevistador conta o que aconteceu, \emph{pela ordem em que aconteceu}, sem resumir. A equipa interrompe, pergunta e propõe interpretações enquanto os modelos são desenhados \emph{em tempo real}, à vista de todos.
+  \item \textbf{Limpeza e digitalização} dos modelos (até 3 dias depois), com o mesmo ID de participante e as notas da sessão.
+  \item \textbf{Revisão cruzada}: outra pessoa confere cada modelo com a lista de verificação da Secção~\ref{sec:qualidade}.
+  \item \textbf{Consolidação} (assim que houver 6--8 participantes do mesmo papel): juntar todos os fluxos, sequências, artefactos, culturais e físicos.
+\end{enumerate}
+
+\begin{nota}[Desenhar durante a sessão e não antes nem depois]
+O livro avisa que os modelos desenhados em casa, antes da sessão, foram os menos detalhados que viu, e que um modelo desenhado por uma só pessoa fora da sessão perde pormenores que o grupo apanharia. Por isso o desenho é feito \emph{em direto}, em papel grande ou num quadro digital partilhado, e só é «limpo» depois.
+\end{nota}
+
+\subsection{Papéis na sessão de interpretação}
+
+Subequipas de \textbf{4 a 6 pessoas} (mínimo 2 em projetos pequenos), \textbf{com pessoas diferentes de cada vez} para a equipa não formar «cliques». Todos têm um papel.
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{3.3cm}L@{}}
+\toprule
+\textbf{Papel} & \textbf{O que faz} \\
+\midrule
+Entrevistador(a) & Conta a entrevista pela ordem, sem resumir. É a equipa que o(a) «entrevista». \textbf{Desenha o modelo físico}, por ser quem lá esteve. \\
+Modelador(a) A & Desenha o \textbf{fluxo} e o \textbf{cultural} à medida que ouve, sem parar a sessão para pedir confirmação. Faz perguntas guiadas pelo modelo (``para onde vai esta mensagem?''). \\
+Modelador(a) B & Desenha as \textbf{sequências}. Anota intenções e gatilhos depois de a sequência estar escrita. \\
+Gestor(a) de artefactos & Põe cada artefacto à vista, anota a estrutura, o uso e os breakdowns durante a conversa (modelo de \textbf{artefacto}). \\
+Escriba (\textit{recorder}) & Regista \textbf{notas numeradas} (uma linha por nota, com o ID do participante e um número de ordem: \texttt{U4-18}). Cada observação, insight, influência cultural, pergunta, ideia de design e breakdown vira uma nota. \\
+Participantes & Ouvem, fazem perguntas, propõem interpretações. Ideias de design vão para as notas, marcadas com \texttt{DI}. \\
+\bottomrule
+\end{tabularx}
+\caption{Papéis na sessão de interpretação (Capítulo~7).}
+\end{table}
+
+\subsection{Nomes e organização dos ficheiros}\label{sec:nomes}
+
+\begin{itemize}
+  \item Uma pasta, página ou quadro por participante, com o código \texttt{U\#} (por exemplo, no repositório \texttt{DOCS/work\_models/individual/U\#/}, ou um quadro por participante na plataforma).
+  \item Ficheiros: \texttt{U\#-fluxo}, \texttt{U\#-sequencia-1}, \texttt{U\#-sequencia-2}, \texttt{U\#-artefacto-nome}, \texttt{U\#-cultural}, \texttt{U\#-fisico}, \texttt{U\#-perfil}, \texttt{U\#-notas}.
+  \item Foto do desenho original \emph{e} versão limpa digital. Se algum dia houver dúvida, a foto manda.
+  \item Todo o ficheiro com dados pessoais (nomes, rostos, números de reserva) deve ser \textbf{anonimizado} antes de entrar no repositório. O consentimento do participante fica guardado à parte, fora do repositório.
+\end{itemize}
+
+%============================================================
+\section{Guia por modelo}
+
+Em cada modelo seguem-se: o que é, a notação, o que recolher na entrevista, perguntas concretas para o Roamly, como desenhar, o que verificar e os erros mais comuns.
+
+%------------------------------------------------------------
+\subsection{Modelo de fluxo (\emph{flow model})}
+
+\paragraph{O que é.} Mostra como o trabalho se reparte entre pessoas e como elas se coordenam. «Nenhum trabalho real acontece isolado»: tudo o que se recebe, passa ou pergunta a outra pessoa é fluxo.
+
+\paragraph{Notação.}
+\begin{itemize}
+  \item \textbf{Bolha} por pessoa ou grupo, anotada com as suas \textbf{responsabilidades}. A bolha do entrevistado leva o código (\texttt{U1}) e a função; as outras levam só a função.
+  \item \textbf{Grupo} quando o participante trata todos os seus membros da mesma maneira («mandei ao grupo de amigas»).
+  \item \textbf{Seta} = comunicação ou passagem de artefacto, em que o texto da linha diz o que é (pedido, dúvida, aviso). Artefactos vão numa \textbf{caixa pequena} sobre a seta; comunicação informal escreve-se \emph{sem caixa}.
+  \item \textbf{Caixa grande} = um lugar onde as pessoas se coordenam (um grupo de WhatsApp, um balcão, uma folha partilhada), com as suas responsabilidades.
+  \item Sistemas informáticos \textbf{não entram}, a não ser que funcionem como um lugar ou como uma «pessoa automática» essencial à coordenação. O grupo de WhatsApp é o caso típico.
+  \item \bolt{} onde a comunicação falha: respostas que não chegam, pedidos que se esquecem.
+\end{itemize}
+
+\paragraph{O que recolher.}
+\begin{itemize}
+  \item \textbf{Coordenação:} por cada link, captura de ecrã ou documento, de onde veio, quem o criou, quem o vai ver a seguir.
+  \item \textbf{Estratégia e papéis:} como a pessoa descreve o seu papel; que tarefas andam juntas e porquê.
+  \item \textbf{Estruturas informais:} votações por emoji, sondagens, «a amiga que sabe de hostels». Mostram onde o processo formal não chega.
+  \item \textbf{Responsabilidades que ninguém atribuiu}, como ser o «banco» do grupo.
+\end{itemize}
+
+\paragraph{Perguntas para o Roamly.}
+\begin{itemize}
+  \item \textit{Viajante:} «Quem mais viu isto antes de decidires? Como lhes enviaste? Quanto tempo demoraram a responder? O que fizeste enquanto esperavas?»
+  \item \textit{Viajante:} «Quem pagou o quê, e como pediste o dinheiro aos outros?»
+  \item \textit{Agente de viagens:} «Com quem falou para fechar este pedido (companhia, operador, hotel, cliente)? Por que canal? O que ficou pendente?»
+\end{itemize}
+
+\paragraph{Como desenhar.} (1) Bolha do entrevistado no centro. (2) Acrescentar bolhas à medida que o entrevistador as menciona. (3) Desenhar uma seta por cada contacto, \emph{mesmo os pequenos}. (4) Pôr os artefactos nas setas. (5) Pôr as responsabilidades em cada bolha. (6) Marcar breakdowns. (7) Perguntar: «para onde vai isto a seguir?» sempre que uma seta ficar sem destino.
+
+\paragraph{Padrão a reconhecer.} Se muitas setas saem de uma só bolha, a pessoa é um \textbf{hub} (como a secretária da Fig.~6.1 do livro). Se as setas se concentram numa tarefa, é trabalho \textbf{criativo} (Fig.~6.2).
+
+\paragraph{Erros comuns.} Desenhar o organograma oficial em vez da comunicação real; pôr aplicações como bolhas (Skyscanner, Booking); esquecer a comunicação informal; deixar setas sem rótulo.
+
+%------------------------------------------------------------
+\subsection{Modelo de sequência (\emph{sequence model})}
+
+\paragraph{O que é.} Os passos pelos quais uma tarefa se desenrola no tempo, com o \textbf{gatilho} que a desencadeia e a \textbf{intenção} que a motiva. «Os atos nunca são aleatórios»: aquilo que parece sem sentido tem um propósito que ainda não vimos.
+
+\paragraph{Notação.}
+\begin{itemize}
+  \item \textbf{Intenção} no topo (principal) e, ao lado dos passos, as \textbf{intenções secundárias} que explicam porque se faz assim.
+  \item \textbf{Gatilho:} o que fez a pessoa começar (um reel, o fim dos exames, um alerta, um pedido de cliente).
+  \item \textbf{Passos} por ordem, ligados por setas, com \textbf{ramos} onde houve decisão e \textbf{ciclos} onde se repetiu.
+  \item \bolt{} nos passos que causam problemas. \textbf{Hesitações e erros} são pistas: parar e perguntar «o que estás a pensar agora?».
+\end{itemize}
+
+\paragraph{Nível de detalhe.} Depende do foco. Para o Roamly, que ainda está a definir o mercado, começa-se com passos de nível médio (``comparou três hostels'', ``somou na folha de cálculo''). \textbf{Aprofunda-se} nas fases de procura, comparação e cálculo do preço total, que são onde o agente vai intervir. Em caso de dúvida, \textbf{mais detalhe é mais seguro do que menos}.
+
+\paragraph{O que recolher.}
+\begin{itemize}
+  \item Uma sequência por tarefa observada (procurar voo, escolher alojamento, calcular o total, pedir o dinheiro às amigas, remarcar).
+  \item O gatilho de \emph{cada} sequência, incluindo os discretos (o preço mudou) e os temporais (``a seguir às aulas'').
+  \item Decisões: o que a pessoa comparou, o que descartou, o que a fez mudar de ideias.
+\end{itemize}
+
+\paragraph{Perguntas para o Roamly.}
+\begin{itemize}
+  \item «O que te fez abrir isto agora?» (gatilho)
+  \item «Pararam aí uns segundos. O que estavas a pesar?» (hesitação)
+  \item «Para que serve este passo? O que acontece se o saltares?» (intenção)
+  \item «O que fizeste da última vez que o preço subiu?» (caso concreto)
+\end{itemize}
+
+\paragraph{Como desenhar.} Escrever primeiro os passos pela ordem em que o entrevistador os conta. \emph{Depois}, com a sequência à vista, identificar gatilho, intenções e breakdowns. As intenções costumam perceber-se só quando se relê a sequência.
+
+\paragraph{Erros comuns.} Descrever «o que se deve fazer» em vez do que aconteceu; usar passos genéricos («pesquisa opções»); esquecer o gatilho; tentar mostrar o padrão de várias vezes (isso só se faz na consolidação).
+
+%------------------------------------------------------------
+\subsection{Modelo de artefacto (\emph{artifact model})}
+
+\paragraph{O que é.} Uma \textbf{cópia do artefacto real}, anotada. Os artefactos são o rasto concreto do trabalho: mostram o que a pessoa pensa e como organiza o pensamento. Na folha de cálculo do livro, o sítio onde está a coluna «por pessoa» diz o que é importante.
+
+\paragraph{Notação (sobre a própria cópia).}
+\begin{itemize}
+  \item \textbf{Partes e estrutura:} linhas e etiquetas a separar as partes; como estão arrumadas.
+  \item \textbf{Informação} que o artefacto transporta.
+  \item \textbf{Anotações informais:} riscado, destaques, cores, notas à margem. «Uma mina de ouro.»
+  \item \textbf{Apresentação:} cor, forma, espaço em branco, ênfase.
+  \item \textbf{Uso:} quando se cria, quando se consulta, quem o vê.
+  \item \textbf{Intenção} escrita junto à parte que a serve; \bolt{} onde o artefacto atrapalha (falta informação, não encaixa no trabalho, é pesado de usar).
+\end{itemize}
+
+\paragraph{O que recolher.} Pedir uma \textbf{cópia} de cada artefacto realmente usado: folha de cálculo de custos, lista de sítios no Google Maps, capturas de ecrã guardadas, notas do telemóvel, o itinerário que seguiu, o histórico do grupo (com consentimento). No caso dos agentes: orçamento ou proposta enviados ao cliente, ficha de cliente, email de confirmação, um ecrã do sistema de reservas.
+
+\paragraph{Perguntas para o Roamly.}
+\begin{itemize}
+  \item «Porque está esta coluna aqui e esta ali? Porque riscaste esta linha em vez de a apagares?»
+  \item «Quem vai ver isto e quando? O que acontecia se isto não existisse?»
+  \item «Esta cor quer dizer alguma coisa?»
+\end{itemize}
+
+\paragraph{Como desenhar.} Fotocopiar ou fazer captura de ecrã; colar numa folha grande; anotar \emph{com o participante, ou logo a seguir, a partir das suas explicações}. Um artefacto sem interpretação não é um modelo.
+
+\paragraph{Erros comuns.} Pedir o «modelo ideal» em vez do usado; juntar só o artefacto vazio; interpretar sozinhos sem confirmar; guardar artefactos com dados pessoais por anonimizar.
+
+%------------------------------------------------------------
+\subsection{Modelo cultural (\emph{cultural model})}
+
+\paragraph{O que é.} Torna visíveis as pressões invisíveis: políticas, valores, poder, identidade, emoções. Muitos produtos falham porque contrariam a cultura de quem os usaria, e não por estarem mal feitos.
+
+\paragraph{Notação.}
+\begin{itemize}
+  \item \textbf{Bolhas grandes} para quem influencia o trabalho: pessoas, grupos, entidades externas (clientes, concorrentes, plataformas, reguladores) ou a «cultura» geral.
+  \item \textbf{Sobreposição} das bolhas = quanto o trabalho é afetado. Uma bolha que cobre tudo é uma influência pervasiva.
+  \item \textbf{Setas} de influência, escritas na \textbf{voz de quem as sente}, mesmo que ninguém diga essas palavras («Ou tens preços melhores ou perdes-me»). Também o \textbf{pushback} (a resposta no sentido contrário).
+  \item \bolt{} só em influências \emph{especialmente} prejudiciais. Toda a influência limita algum trabalho; nem todas são um problema.
+  \item Não é um organograma: mostra o poder tal como é \textbf{sentido}.
+\end{itemize}
+
+\paragraph{O que escutar.} Tom (do sítio e da conversa), políticas e de onde vêm, organizações ou pessoas que aparecem sempre como ajuda ou obstáculo, identidade («somos consultores, não vendedores»), emoções (orgulho, medo, desconfiança, receio de ser substituído), regras do setor.
+
+\paragraph{Perguntas para o Roamly.}
+\begin{itemize}
+  \item \textit{Viajante:} «O que diriam os teus pais se gastasses 100\,€ a mais? E as tuas amigas se ficasses de fora?»
+  \item \textit{Agente:} «Como é que os clientes falam de si hoje? Alguém disse que a IA vai substituir o seu trabalho? Como reagiu?»
+  \item «Quem é que torna este trabalho mais fácil? E mais difícil? Diz-me um caso.»
+\end{itemize}
+
+\paragraph{Como desenhar.} Pôr a pessoa no centro; juntar as bolhas de quem a influencia; desenhar as setas e escrevê-las em primeira pessoa, na voz de quem as sente; marcar o pushback; só no fim assinalar os breakdowns graves.
+
+\paragraph{Erros comuns.} Copiar o organograma; escrever setas neutras («pressão», «regras»); usar o modelo para guardar opiniões gerais sem exemplo concreto (ver Secção~\ref{sec:agentes}).
+
+%------------------------------------------------------------
+\subsection{Modelo físico (\emph{physical model})}
+
+\paragraph{O que é.} Uma \textbf{caricatura} do ambiente de trabalho, e não uma planta. Só entra o que afeta o trabalho: locais, dispositivos, onde estão as coisas, como a pessoa se move e como reorganiza o espaço.
+
+\paragraph{Notação.}
+\begin{itemize}
+  \item \textbf{Locais:} onde o trabalho acontece e o que cada um é (principal ou secundário, privado ou aberto, incómodo ou conveniente).
+  \item \textbf{Estruturas e movimento:} paredes, distâncias, trajetos; o que leva a pessoa a mudar de sítio.
+  \item \textbf{Ferramentas e artefactos} e a sua \textbf{posição} («o cartão ao lado do portátil»). A posição diz o que é usado em conjunto.
+  \item \textbf{Ligações:} quem está ligado a quem (rede), apenas para perceber a comunicação possível.
+  \item \bolt{} onde o ambiente atrapalha (tudo longe, ecrã pequeno, ruído, estado perdido ao mudar de aparelho).
+\end{itemize}
+
+\paragraph{O que recolher.} O \textbf{entrevistador desenha este modelo}, por ter estado lá. Para o Roamly: em que dispositivo e local acontece cada fase (inspiração, comparação, reserva, decisão em grupo); como se passa de um para outro; o que se perde nessa passagem. Para o agente: balcão, secretárias, ecrãs, telefone, papéis impressos, o caminho entre o cliente e o sistema de reservas.
+
+\paragraph{Perguntas para o Roamly.}
+\begin{itemize}
+  \item «Onde estavas? Quantos ecrãs tinhas à frente? O que tens à mão quando fazes isto?»
+  \item «Passaste isto do telemóvel para o portátil? Como? O que perdeste?»
+\end{itemize}
+
+\paragraph{Erros comuns.} Fazer uma planta à escala; listar todo o equipamento; incluir detalhes decorativos sem relação com o foco; não registar o que se faz para contornar o espaço.
+
+%============================================================
+\section{Fazer os modelos noutra plataforma}
+\label{sec:plataforma}
+
+O guia é independente da ferramenta. Qualquer plataforma serve (quadro digital, ferramenta de diagramas, folha de apresentações) se permitir o seguinte:
+
+\begin{itemize}
+  \item \textbf{Edição em simultâneo}, para a equipa desenhar \emph{em direto} durante a sessão de interpretação.
+  \item \textbf{Inserir imagens} (artefactos anonimizados, fotos de desenhos) e anotá-las por cima.
+  \item \textbf{Um quadro, página ou ficheiro por modelo e por participante}, com o nome \texttt{U\#-modelo} (Secção~\ref{sec:nomes}).
+  \item \textbf{Exportar} para imagem ou PDF, para anexar ao relatório e arquivar.
+  \item \textbf{Comentários}, para a revisão cruzada.
+\end{itemize}
+
+\paragraph{Legenda de formas e cores} (para reproduzir igual em qualquer ferramenta; fixar uma legenda no canto de cada quadro):
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}L@{}}
+\toprule
+\textbf{Elemento} & \textbf{Como desenhar} \\
+\midrule
+Pessoa ou grupo (fluxo) & Elipse ou círculo, com as responsabilidades escritas dentro. Entrevistado a cheio ou com contorno grosso e o código \texttt{U\#}. \\
+Comunicação (fluxo) & Seta com o rótulo escrito na linha. \\
+Artefacto (fluxo) & Retângulo pequeno sobre a seta. \\
+Lugar de coordenação & Retângulo grande de cantos arredondados, com responsabilidades. \\
+Passo (sequência) & Retângulo; setas a indicar a ordem; losango ou ramificação para decisões. \\
+Intenção e gatilho & Caixas de cor própria no topo (intenção) e no início (gatilho) da sequência. \\
+Influenciador (cultural) & Círculo grande; sobreposição indica grau de influência; setas com a frase na voz de quem a sente. \\
+Locais (físico) & Contornos livres, desenho tipo caricatura; ícones simples para ferramentas e artefactos. \\
+Breakdown & Relâmpago vermelho, em todos os modelos. \\
+Processo oficial ou não observado & Verde. \\
+\bottomrule
+\end{tabularx}
+\caption{Legenda de formas e cores, independente da plataforma.}
+\end{table}
+
+\paragraph{Antes de escolher.} Fazer um teste com a entrevista a um agente de viagens já realizada: desenhar os cinco modelos na plataforma durante uma sessão real. Se a equipa conseguir desenhar sem parar a conversa para mexer na ferramenta, serve.
+
+%============================================================
+\section{Caso-base fictício (U0) para treinar os modelos}
+\label{sec:u0}
+
+Para que todos desenhem os modelos a partir da \textbf{mesma base}, esta secção traz um utilizador \textbf{inventado e anónimo}, o \textbf{U0}: estudante universitário, com pouco rendimento e sem emprego a tempo inteiro, a planear uma escapadinha com amigos. Serve para treinar a notação e alinhar critérios \emph{antes} das entrevistas reais.
+
+\begin{aviso}[Isto não é um dado de investigação]
+O U0 e o relato abaixo são fictícios, e os valores são inventados (plausíveis, mas sem relação com preços reais). Nunca entram na consolidação. O código \texttt{U0} fica reservado para este caso; as entrevistas reais começam em \texttt{U1}. Não há nomes de pessoas, de cidades de origem nem de instituições: os amigos são «Amigo A» e «Amigo B» e a família é «mãe».
+\end{aviso}
+
+\subsection{Perfil (fora dos modelos)}
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{4.2cm}L@{}}
+\toprule
+Código & U0 \\
+Idade, situação & 20 anos, 2.º ano de licenciatura; vive num apartamento partilhado, numa cidade sem aeroporto, a cerca de 2\,h do aeroporto mais próximo. \\
+Rendimento mensal & Mesada dos pais (\(\approx\)150\,€) e explicações pontuais (\(\approx\)120\,€, irregulares). Sem emprego a tempo inteiro. \\
+Poupança para viajar & \(\approx\)380\,€. \\
+Experiência & Duas viagens low-cost nos últimos dois anos. \\
+Meios de pagamento & Cartão de débito e MB Way. Sem cartão de crédito. \\
+Dispositivos & Telemóvel Android; portátil usado, de bateria fraca (está sempre ligado à tomada). \\
+Viagem em causa & Escapadinha de 4 noites a Cracóvia, com 2 amigos. Limite pessoal: \textbf{300\,€ por pessoa, tudo incluído}. \\
+\bottomrule
+\end{tabularx}
+\caption{Perfil do U0 (fictício).}
+\end{table}
+
+\subsection{Relato retrospetivo (a «entrevista» simulada)}
+
+O relato está \textbf{por ordem cronológica}, como o entrevistador o contaria à equipa. Cada linha tem um ID (\texttt{E01}\ldots) para que os modelos possam citar a origem de cada elemento. A coluna \textbf{Tipo} diz que dados são:
+\textbf{O} = observado; \textbf{R} = relato de um caso concreto (entra nos modelos); \textbf{F} = afirmação geral ou processo «oficial» (\textcolor{green!50!black}{\textbf{a verde}}, \emph{não} entra nos modelos).
+
+{\small
+\begin{longtable}{@{}p{0.9cm}p{0.7cm}p{13.6cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Tipo} & \textbf{O que aconteceu} \\ \midrule \endhead
+E01 & R & Numa segunda-feira à noite, no sofá, com o telemóvel, U0 vê um vídeo de uma rede social: «Cracóvia por 150\,€». Guarda-o. Cria um grupo de mensagens com o Amigo~A e o Amigo~B e envia o vídeo com «bora?». \\
+E02 & R & O Amigo~A responde logo, entusiasmado. O Amigo~B responde: «depende do preço; só posso sair numa sexta à noite» (tem turnos de trabalho ao fim de semana). \\
+E03 & F & U0 diz: «normalmente comparo uns três sites e escolho o mais barato». É uma frase geral, sem caso concreto. \\
+E04 & O & Terça-feira, 22\,h, no quarto, com o portátil ligado à tomada e o telemóvel ao lado. Abre o comparador de voos: origem «aeroporto mais próximo» (a sua cidade não tem aeroporto), destino Cracóvia, datas «mês inteiro». \\
+E05 & O & Abre em abas separadas: site da companhia low-cost, mapa, site de alojamento e uma folha de cálculo antiga (a da última viagem). Chega a 6 abas abertas. \\
+E06 & O & Encontra três combinações de datas. Hesita \(\approx\)20\,s no voo mais barato: parte às 6\,h50. Pergunta-se a si própria como chegaria ao aeroporto às 5\,h: não há transporte público a essa hora. Pesquisa comboio + metro (\(\approx\)13\,€ por sentido) e autocarro (8\,€, mas mais 1\,h). Descarta o voo das 6\,h50 e escolhe um das 11\,h30. \\
+E07 & O & Tira captura de ecrã às três combinações e envia ao grupo: «qual preferem?». \\
+E08 & O & No site de alojamento, filtra por preço e «nota superior a 8». Hesita entre um dormitório a 14\,€/noite e um quarto privado para 3 a 24\,€ por pessoa e noite. Pergunta ao grupo; o Amigo~A responde «dormitório não». Escolhe o quarto privado. \\
+E09 & O & Abre o mapa, mede a distância do alojamento ao centro (25\,min a pé) e guarda o sítio numa lista que criou para a viagem. \\
+E10 & O & Duplica a folha de cálculo da viagem anterior e renomeia-a. Copia à mão os preços das várias abas e soma. Total estimado: \textbf{303\,€ por pessoa}, acima do limite de 300\,€. \\
+E11 & O & Vai reservar o voo e, no pagamento, aparece a bagagem de porão (+34\,€). Diz: «isto ninguém diz». Decide levar só a mochila pequena e não paga a bagagem. \\
+E12 & R & Dois dias depois, sem resposta do grupo, volta ao comparador e o voo subiu 19\,€. Envia: «gente, subiu». \\
+E13 & O & O Amigo~B só confirma que pode a partir de uma sexta-feira concreta. U0 refaz a pesquisa para essas datas. Com o voo mais caro (+19\,€), o total passa a \textbf{322\,€}. \\
+E14 & O & No intervalo entre aulas, no corredor, pergunta a um assistente de IA no telemóvel: «roteiro de 4 dias em Cracóvia, barato». Copia 4 itens para a aplicação de notas. Hesita: «não sei se isto é verdade, vou ver no mapa». Confirma 2 no mapa e descarta 1. \\
+E15 & O & Abre o vídeo guardado na rede social e acrescenta à lista do mapa um sítio de comida de rua recomendado pelo criador de conteúdo. \\
+E16 & O & Corta da folha a visita a uma mina de sal (28\,€): «isto é para turistas». Risca a linha. O total desce para \textbf{294\,€}. \\
+E17 & R & No domingo anterior, telefonou à mãe, que disse: «não gastes o que não tens; manda-me onde vais dormir». U0 enviou-lhe a ligação do alojamento por mensagem. \\
+E18 & O & No site de alojamento aparece «só restam 2 quartos!». Fecha o separador e abre outro site para comparar: «isto é para me pressionar». \\
+E19 & O & Reserva o voo para os \textbf{três} com o seu cartão de débito (adianta o dinheiro). O alojamento fica para pagar no local, apenas com uma pequena caução. \\
+E20 & O & Envia um pedido de pagamento por MB Way a cada amigo. O Amigo~A paga em minutos. O Amigo~B responde: «só no fim do mês». \\
+E21 & O & Atualiza a folha de cálculo: itens reservados a verde, por decidir a amarelo; acrescenta uma coluna «quem pagou». \\
+E22 & O & Partilha a ligação da folha no grupo. Ninguém a abre. O Amigo~A pede: «manda print». U0 tira uma captura de ecrã e envia. \\
+E23 & R & Na semana seguinte, no café ao lado da faculdade, o grupo decide as atividades \emph{ao vivo}, passando um telemóvel de mão em mão. Ninguém escreve nada. Depois, U0 regista na aplicação de notas o que ficou combinado. \\
+E24 & R & Dois dias antes da viagem, tira capturas de ecrã do bilhete e da reserva e guarda-as na galeria: «não confio em abrir o email no aeroporto». \\
+E25 & O & Ao fechar, diz: «uma colega pagou 360\,€ por quase o mesmo. Eu consegui por 294 com quarto privado». Mostra orgulho. \\
+\bottomrule
+\end{longtable}}
+
+\subsection{Artefactos do caso U0}
+
+\paragraph{Artefacto 1: a folha de cálculo (estado final).}
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{5.6cm}p{2.3cm}p{2.6cm}L@{}}
+\toprule
+\textbf{Item} & \textbf{Por pessoa} & \textbf{Estado (cor)} & \textbf{Nota / quem pagou} \\ \midrule
+Voo ida e volta & 98\,€ & reservado (verde) & U0 pagou pelos 3 \\
+Alojamento, quarto privado, 4 noites & 96\,€ & por pagar (amarelo) & pagar no local \\
+Comboio e metro até ao aeroporto, ida e volta & 26\,€ & por decidir (amarelo) & \\
+Bilhete de transportes (72\,h) & 14\,€ & por decidir (amarelo) & \\
+Comida (estimativa) & 60\,€ & \texttt{???} (amarelo) & sem valor certo \\
+\textit{Mina de sal} & \textit{(28\,€)} & riscado & «para turistas» \\
+\textit{Dormitório} & \textit{(56\,€)} & riscado & «dormitório não» \\
+\textbf{Total} & \textbf{294\,€} & & limite: 300\,€ \\
+\bottomrule
+\end{tabularx}
+\caption{Folha de cálculo de U0 (fictícia). As linhas riscadas ficam visíveis.}
+\end{table}
+
+\paragraph{Artefacto 2: extrato do grupo de mensagens.}
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{3cm}L@{}}
+\toprule
+U0 & «bora?» (com o vídeo) \\
+Amigo A & «siiim» \\
+Amigo B & «depende do preço, só saio numa sexta à noite» \\
+U0 & (3 capturas de ecrã) «qual preferem?» \\
+Amigo A & «tanto faz, o que for mais barato» \\
+U0 & «gente, subiu» \\
+Amigo B & «vê para a sexta 25, só aí consigo» \\
+U0 & (pedido de pagamento de 98\,€) \\
+Amigo B & «só no fim do mês» \\
+Amigo A & «manda print» (da folha) \\
+\bottomrule
+\end{tabularx}
+\caption{Grupo de mensagens (fictício, abreviado).}
+\end{table}
+
+\paragraph{Artefacto 3: a lista de sítios no mapa e as notas do telemóvel.} Lista «Cracóvia»: alojamento, comida de rua (do criador de conteúdo), 2 sítios confirmados da sugestão da IA. Notas: «o que combinámos» (atividades decididas no café).
+
+\subsection{Como usar o caso-base}
+
+\begin{enumerate}
+  \item \textbf{Cada pessoa lê o relato} e desenha \emph{sozinha}, em 45\,min, os cinco modelos do U0 (pelo menos duas sequências).
+  \item \textbf{Comparar} os modelos em pares e depois em grupo, anotando as diferenças.
+  \item \textbf{Acordar uma versão de referência} por modelo e guardá-la na plataforma como «U0 (fictício)». É a baseline da equipa.
+  \item \textbf{Rever a notação} deste guia sempre que a discussão revelar uma dúvida que a notação não resolve.
+\end{enumerate}
+
+\subsection{Chave de correção: o que deve aparecer em cada modelo}
+
+Serve para a equipa \textbf{comparar} os seus desenhos. Não é a única solução possível: o que importa é que cada elemento esteja presente e justificado pelo evento indicado.
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{2.1cm}L@{}}
+\toprule
+\textbf{Modelo} & \textbf{Elementos esperados (com origem)} \\
+\midrule
+Fluxo &
+Bolhas: U0 (hub), Amigo A, Amigo B (ou «grupo de amigos»), mãe, criador de conteúdo, assistente de IA (só se for tratado como «pessoa automática»; discutir). Lugares: grupo de mensagens (E01, E07, E22), folha de cálculo (E10, E21), café da faculdade (E23). Artefactos nas setas: vídeo (E01), capturas de ecrã das datas (E07), pedido de pagamento (E20), ligação do alojamento à mãe (E17), captura da folha (E22). Responsabilidades de U0: pesquisar, adiantar o dinheiro, cobrar. Breakdowns \bolt: respostas lentas (E12), pagamento tardio do Amigo~B (E20), ninguém abre a folha (E22). A frase E03 \textbf{não} entra. \\
+Sequência &
+Pelo menos três: (1) \emph{escolher datas e voo} (gatilho E01; intenção «viajar dentro do orçamento»; hesitação E06; breakdown da hora do voo); (2) \emph{escolher alojamento e calcular o total} (E08--E11, E16; intenção secundária «ver o total por pessoa»; breakdown dos custos escondidos em E11); (3) \emph{reservar e cobrar} (E19--E22; intenção «garantir o preço antes de subir»; breakdown E20). Sequência extra possível: usar a IA (E14). \\
+Artefacto &
+A folha (Artefacto~1): estrutura por pessoa, cores para estados (verde, amarelo), linhas riscadas como justificação, linha «\texttt{???}» sem valor como breakdown, coluna «quem pagou» acrescentada (E21). Opcional: o grupo de mensagens. Intenções escritas junto de cada parte. \\
+Cultural &
+Influenciadores: mãe («não gastes o que não tens», E17), amigos («tanto faz, o mais barato», «dormitório não»), plataformas de reserva («só restam 2 quartos», E18; sentidas como adversárias), criadores de conteúdo («sítio escondido», E15), cultura de viajar barato («para turistas», E16; orgulho, E25), calendário académico e turnos do Amigo~B (limitam as datas, E02, E13), assistente de IA (confiança limitada, E14). Pushback: U0 duvida e confirma (E14, E18). Relâmpago só em casos graves (plataformas e custos escondidos). \\
+Físico &
+Locais: sofá (inspiração, telemóvel, E01), quarto (portátil na tomada, cartão ao lado, E04--E13), corredor da faculdade (telemóvel, E14), café (grupo ao vivo, telemóvel de mão em mão, E23). Distâncias e movimento: aeroporto a cerca de 2\,h sem transporte de madrugada (E06). Passagem telemóvel $\leftrightarrow$ portátil: capturas de ecrã como ponte. Breakdowns \bolt: aeroporto distante, bateria fraca do portátil, estado perdido ao mudar de dispositivo. \\
+\bottomrule
+\end{tabularx}
+\caption{Chave de correção do caso U0.}
+\end{table}
+
+\begin{nota}[Armadilhas deste caso]
+(1) A frase E03 é geral: não vai para nenhum modelo. (2) A IA pode ou não ser uma bolha do fluxo: discutam e registem a decisão. (3) Os custos escondidos (E11) e a hora do voo (E06) são breakdowns \emph{diferentes}: um é de informação, o outro de contexto físico. (4) A lista de ideias do mapa e as notas do telemóvel só são modelo de artefacto se forem interpretadas; sem interpretação, ficam como contexto.
+\end{nota}
+
+%============================================================
+\section{As entrevistas a agências de viagens}
+\label{sec:agentes}
+
+Estas entrevistas tratam sobretudo de \textbf{preocupações com a IA e do impacto no negócio}. É material precioso para o modelo \textbf{cultural} e para o \textbf{fluxo}, mas tem dois riscos que o livro ajuda a evitar.
+
+\begin{aviso}[Cuidado: opiniões não são dados de trabalho]
+O livro manda ligar o modelo a acontecimentos concretos, e não a declarações gerais. Frases como «a IA vai acabar com as agências» são \emph{culturais} (revelam medo e identidade), mas não descrevem trabalho. Para cada preocupação, procura-se o \textbf{caso concreto} que a sustenta («na semana passada um cliente chegou com um roteiro do ChatGPT e\ldots»). Sem caso, a preocupação fica nas notas como \emph{insight} e não vai para as sequências.
+\end{aviso}
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{2.2cm}L@{}}
+\toprule
+\textbf{Modelo} & \textbf{O que procurar nas entrevistas a agentes} \\
+\midrule
+Cultural & Os influenciadores do agente: clientes, plataformas online (Booking, companhias), fornecedores, chefia ou dono, concorrência, associações do setor, regulação e, agora, «a IA» como influenciador. Escrever as setas na voz de cada um. O medo de ser substituído, o orgulho no aconselhamento, a sensação de ser «só um intermediário». \\
+Fluxo & Quem o agente contacta para fechar um pedido, e o que passa por cada canal. Onde há trabalho manual de coordenação que o Roamly poderia automatizar. Onde o contacto humano é essencial e não deve desaparecer. \\
+Sequência & Como constrói uma proposta, como descobre a flexibilidade real do cliente, como apresenta 2--3 alternativas. Onde já usa ferramentas de IA, se usa. \\
+Artefacto & Propostas, orçamentos e mensagens enviadas ao cliente; fichas de cliente. O que contêm que um roteiro automático não traz. \\
+Físico & Balcão e posto de trabalho; ecrãs usados em simultâneo; presença de clientes. \\
+\bottomrule
+\end{tabularx}
+\caption{Como usar as entrevistas a agências em cada modelo.}
+\end{table}
+
+Para cada entrevista, a plataforma escolhida deve guardar no mínimo: perfil, resumo do relato, notas numeradas da sessão de interpretação e os cinco modelos (Secção~\ref{sec:plataforma}).
+
+%============================================================
+\section{Lista de verificação de qualidade}
+\label{sec:qualidade}
+
+Cada modelo só passa a «pronto» quando a pessoa que o revê responder \textbf{sim} a tudo o que se aplica.
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{2.2cm}L@{}}
+\toprule
+\textbf{Todos} & ID do participante e data. Ponto de vista de uma só pessoa. Só factos observados ou casos concretos (o resto a verde ou nas notas). Breakdowns marcados com \bolt. Sem dados pessoais. Foto do original guardada. \\
+Fluxo & Todas as setas têm rótulo e destino. As bolhas têm responsabilidades. Aplicações só aparecem se funcionarem como lugar. Comunicação informal incluída. \\
+Sequência & Tem intenção principal, gatilho e passos em ordem. Decisões como ramos. Hesitações explicadas. Intenções secundárias identificadas. \\
+Artefacto & É uma cópia de um artefacto \emph{usado}, com anotações. Estrutura, uso e breakdowns anotados e confirmados com o participante. \\
+Cultural & As setas estão na voz do participante. Há pushback onde existe. Não é um organograma. Relâmpagos só em casos graves. \\
+Físico & É uma caricatura focada no projeto. Mostra onde estão as ferramentas e artefactos e como a pessoa se move. Entrevistador desenhou ou validou. \\
+\bottomrule
+\end{tabularx}
+\caption{Critérios de «pronto» por modelo.}
+\end{table}
+
+%============================================================
+\section{Como repartir o trabalho}
+
+\subsection{Regras}
+
+\begin{itemize}
+  \item \textbf{Cada modelo tem um dono}, que define a notação final, mantém um exemplo-modelo e revê todos os modelos desse tipo, e um \textbf{suplente}. Assim o conhecimento não fica numa só pessoa.
+  \item \textbf{Cada entrevista tem um entrevistador} e a sessão de interpretação é feita por uma subequipa de 4 a 6 (ou 2 a 3, se formos poucos), \textbf{rodando as pessoas} em cada sessão.
+  \item Nenhum entrevistador desenha sozinho todos os modelos da sua entrevista; só o \textbf{físico} é obrigatório que seja ele.
+\end{itemize}
+
+\subsection{Proposta de atribuição}
+
+Os nomes ficam por preencher; a coluna «Quem» é para a equipa decidir.
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{3.2cm}L p{2.2cm} p{2.2cm}@{}}
+\toprule
+\textbf{Responsabilidade} & \textbf{Âmbito} & \textbf{Dono} & \textbf{Suplente} \\
+\midrule
+Dono do fluxo & Notação, exemplo e revisão de todos os fluxos & & \\
+Dono da sequência & Idem, e das intenções e gatilhos & & \\
+Dono do artefacto & Idem, e do arquivo anonimizado de artefactos & & \\
+Dono do cultural & Idem, e das «vozes» das setas & & \\
+Dono do físico & Idem & & \\
+Guardião(ã) do processo & Calendário de entrevistas e sessões, rotação de papéis, consentimentos, repositório & & \\
+\bottomrule
+\end{tabularx}
+\caption{Responsáveis por modelo e por processo (a preencher).}
+\end{table}
+
+\subsection{Ritmo sugerido}
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{2.2cm}L@{}}
+\toprule
+\textbf{Semana} & \textbf{Objetivo} \\
+\midrule
+1 & Acordar notação e donos de modelo. Treinar com a entrevista de um agente de viagens já realizada. Preparar modelos em branco e ficheiros-molde. \\
+2 & Interpretar as entrevistas a agentes; produzir os 5 modelos de cada. Recrutar os 3 primeiros viajantes (organizador, solo, caçador de promoções). \\
+3--5 & Entrevistas a viajantes e sessões de interpretação em ritmo de 2 por semana. Revisão cruzada de cada modelo. \\
+6 & Rever foco e perfil dos próximos participantes (a cada 3 entrevistas). Começar a consolidar o que já existir. \\
+7+ & Consolidar por tipo de modelo e rever o que ficou por responder. \\
+\bottomrule
+\end{tabularx}
+\caption{Calendário-base. Ajustar à disponibilidade da equipa.}
+\end{table}
+
+%============================================================
+\begin{landscape}
+\section{Histórias de trabalho}
+
+Esta secção lista o que a \emph{equipa} tem de fazer para produzir os modelos. É o que se reparte e acompanha.
+
+\paragraph{Legenda.} \textbf{Esf.} = esforço (S $\le$ 0,5 dia; M $\approx$ 1 dia; L $\ge$ 2 dias). \textbf{Dep.} = dependências. \textbf{Estado} = \texttt{por fazer / em curso / em revisão / feito}. \textbf{Resp.} fica em branco para a equipa preencher. O mesmo conteúdo está em \texttt{roamly-backlog.csv}, pronto a importar para Trello, Jira ou uma folha de cálculo.
+
+%------------------------------------------------------------
+{\small
+\begin{longtable}{@{}p{1.2cm}p{7.0cm}p{9.2cm}p{1.2cm}p{0.9cm}p{1.8cm}@{}}
+\toprule
+\textbf{ID} & \textbf{História} & \textbf{Critérios de aceitação} & \textbf{Dep.} & \textbf{Esf.} & \textbf{Resp.} \\
+\midrule
+\endhead
+\multicolumn{6}{l}{\textbf{Épico 0: Preparação}}\\
+WM-01 & Como \emph{equipa}, quero acordar a notação dos cinco modelos, para que todos desenhem da mesma maneira. & Uma página-resumo da notação (legenda comum, relâmpago, verde para o oficial); exemplo de cada modelo aprovado por todos; este guia aceite. & --- & M & \\
+WM-02 & Como \emph{guardião do processo}, quero uma estrutura de pastas e ficheiros-molde, para guardar os modelos sempre da mesma forma. & Pasta \texttt{individual/U\#/}; molde de notas de entrevista na plataforma escolhida; convenção de nomes; regra de anonimização escrita. & WM-01 & S & \\
+WM-03 & Como \emph{guardião do processo}, quero o consentimento de cada participante guardado fora do repositório, para cumprir o RGPD. & Modelo de consentimento; registo de quem consentiu gravação, fotos e artefactos; nenhum dado pessoal no repositório. & --- & S & \\
+\midrule
+\multicolumn{6}{l}{\textbf{Épico 1: Entrevistas a agentes de viagens (já realizadas)}}\\
+WM-04 & Como \emph{entrevistador}, quero passar as notas de cada entrevista a agente para o molde, para que a equipa as possa interpretar. & Perfil (uma linha); relato cronológico; artefactos anexados e anonimizados; frases literais marcadas. & WM-02 & M & \\
+WM-05 & Como \emph{subequipa}, quero uma sessão de interpretação por entrevista a agente, para extrair notas numeradas. & Sessão com os papéis do Capítulo~7; notas \texttt{U\#-n} com observações, insights, influências culturais, perguntas, \texttt{DI}; separar opinião geral de caso concreto. & WM-04 & M & \\
+\midrule
+\multicolumn{6}{l}{\textbf{Épico 2: Entrevistas a viajantes}}\\
+WM-06 & Como \emph{guardião do processo}, quero recrutar os três primeiros participantes (organizador, solo, caçador de promoções), para começar a recolha. & 3 participantes confirmados; artefactos pedidos com antecedência; rastro (diário de capturas) iniciado onde aplicável. & WM-03 & M & \\
+WM-07 & Como \emph{entrevistador}, quero conduzir a entrevista contextual segundo a estrutura do Capítulo~4, para obter casos concretos. & Gravação de áudio; cópias de artefactos; esboço do modelo físico logo após; perfil preenchido. & WM-06 & L & \\
+WM-08 & Como \emph{subequipa}, quero interpretar cada entrevista até 48\,h depois, para não perder pormenores. & Sessão feita no prazo, com papéis rodados; notas numeradas e fotos dos modelos desenhados. & WM-07 & M & \\
+\midrule
+\multicolumn{6}{l}{\textbf{Épico 3: Produção dos modelos individuais (repetido por participante)}}\\
+WM-09 & Como \emph{dono do fluxo}, quero o modelo de fluxo de cada participante, para ver quem coordena com quem. & Cumpre a lista de verificação do fluxo; versão limpa digital + foto do original. & WM-05/08 & M & \\
+WM-10 & Como \emph{dono da sequência}, quero as sequências das tarefas observadas, para ver passos, gatilhos e intenções. & Pelo menos uma sequência por tarefa principal; intenção, gatilho e breakdowns identificados. & WM-05/08 & L & \\
+WM-11 & Como \emph{dono do artefacto}, quero os artefactos interpretados, para perceber estrutura e uso. & Cópias anonimizadas e anotadas, com interpretação confirmada pelo participante. & WM-05/08 & M & \\
+WM-12 & Como \emph{dono do cultural}, quero o modelo cultural de cada participante, para ver as pressões invisíveis. & Setas na voz do participante; pushback; relâmpagos só em casos graves; cada influência ligada a uma nota. & WM-05/08 & M & \\
+WM-13 & Como \emph{entrevistador}, quero desenhar o modelo físico da minha entrevista, para registar o contexto. & Caricatura focada no projeto; dispositivos, locais, movimento e breakdowns. & WM-07 & S & \\
+\midrule
+\multicolumn{6}{l}{\textbf{Épico 4: Qualidade}}\\
+WM-14 & Como \emph{revisor}, quero rever cada modelo com a lista de verificação, para garantir qualidade antes de consolidar. & Lista preenchida e anexa; correções feitas; estado «feito» só depois da revisão. & WM-09 a 13 & S & \\
+\midrule
+\multicolumn{6}{l}{\textbf{Épico 5: Consolidação}}\\
+WM-15 & Como \emph{equipa}, quero consolidar cada tipo de modelo (Capítulo~8) quando houver 6--8 participantes do mesmo papel, para ver o padrão comum. & Um fluxo, um cultural, um físico e sequências consolidados; variações registadas. & WM-14 & L & \\
+\bottomrule
+\end{longtable}
+}
+
+\end{landscape}
+
+%============================================================
+\section*{Referência}
+Beyer, H., \& Holtzblatt, K. (1999). \textit{Contextual Design: Defining Customer-Centered Systems}. San Francisco: Morgan Kaufmann. Capítulo 6, \textit{Work Models}, pp.~89--123; Capítulo 7, \textit{The Interpretation Session}, pp.~125--.
+
+\end{document}
