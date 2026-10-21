@@ -3,38 +3,41 @@
 
 \subsection{O projeto \projeto}
 
-O \projeto{} é um agente de viagens baseado em inteligência artificial, pensado sobretudo para jovens com orçamentos limitados. As plataformas atuais estão fragmentadas: obrigam o utilizador a escolher primeiro um destino e a pesquisar à parte voos, alojamento e atividades. O \projeto{} quer combinar estas opções automaticamente, a partir do orçamento, das datas, dos interesses e da flexibilidade de cada pessoa, e propor um itinerário personalizado e acessível.
+O \projeto{} é um agente de viagens baseado em inteligência artificial, 
+pensado, numa primeira fase, para jovens com orçamentos limitados
+mas posteriormente para qualquer utilizador que queira simplificar o processo de planeamento de viagens. 
+Ainda pretendemos avaliar o potencial do \projeto{} em atender às novas necessidades de agências de viagens já 
+inseridas no mercado. As plataformas atuais 
+estão fragmentadas: obrigam o utilizador a escolher primeiro um destino e a 
+pesquisar à parte voos, alojamento e atividades. Pretendemos combinar 
+estas opções automaticamente, a partir do orçamento, das datas, dos interesses 
+e da flexibilidade de cada pessoa, e propor um itinerário personalizado e 
+acessível.
 
-Antes de decidir o que construir, é preciso perceber como esse trabalho já é feito hoje. Os jovens já planeiam viagens baratas, com abas abertas, folhas de cálculo, capturas de ecrã e grupos de mensagens. Os agentes de viagens já fazem, ao balcão, parte do que o \projeto{} quer automatizar. Esta entrega estuda esse trabalho atual.
+Antes de decidir o que construir, é preciso perceber como esse trabalho já é
+feito hoje. Os jovens já planeiam viagens baratas, com abas abertas, folhas
+de cálculo, capturas de ecrã e grupos de mensagens. Os agentes de viagens já
+fazem, ao balcão, parte do que o \projeto{} quer automatizar, e são ao mesmo tempo
+potenciais clientes: interessa perceber que necessidades novas têm e onde uma ferramenta
+como o \projeto{} os poderia apoiar. Esta entrega estuda o trabalho atual destes dois
+grupos: o jovem que planeia a viagem e o agente que a planeia por profissão.
 
 \subsection{Objetivos da entrega}
 
-Seguindo o plano da UC, a Entrega~1 tem por objetivo:
-\begin{enumerate}
-  \item conduzir pelo menos duas sessões de investigação contextual com utilizadores representativos e registar as notas de campo;
-  \item interpretar essas sessões e produzir os modelos de trabalho segundo a notação de Beyer e Holtzblatt, consolidando-os;
-  \item organizar os dados num diagrama de afinidade;
-  \item exprimir uma primeira resposta de design num protótipo de baixa fidelidade ou \textit{storyboard};
-  \item avaliar essa resposta com uma avaliação heurística (as dez heurísticas de Nielsen) e um percurso cognitivo, conduzidos por um elemento que não a construiu;
-  \item refletir sobre as diferenças entre as duas avaliações e documentar o uso de IA generativa.
-\end{enumerate}
-
-\subsection{Correspondência com o enunciado}
-
-A Tabela~\ref{tab:mapa-entrega} indica onde cada elemento pedido no enunciado está neste relatório e quem é o responsável.
+A Tabela~\ref{tab:mapa-entrega} resume os elementos pedidos no enunciado da Entrega~1 e onde estão neste relatório.
 
 \begin{table}[!htbp]
 \centering\small
-\begin{tabularx}{\textwidth}{@{}p{0.6cm}Lp{4.2cm}p{2.4cm}@{}}
+\begin{tabularx}{\textwidth}{@{}p{0.6cm}Lp{5.2cm}@{}}
 \toprule
-\textbf{N.º} & \textbf{Elemento pedido no enunciado} & \textbf{Onde está} & \textbf{Responsável} \\
+\textbf{N.º} & \textbf{Elemento pedido no enunciado} & \textbf{Onde está}\\
 \midrule
-1 & Notas de campo e conjunto consolidado de modelos de trabalho (fluxo, sequência e pelo menos um de artefacto, cultural ou físico) & Secções~\ref{sec:recolha}, \ref{sec:modelos} e~\ref{sec:consolidacao}; Apêndices~\ref{anx:notas} e~\ref{anx:modelos} & Equipa (fluxo e cultural: Tiago) \\
-2 & Diagrama de afinidade que consolida as sessões & Secção~\ref{sec:afinidade} & \textit{a definir} \\
-3 & Protótipo de baixa fidelidade ou \textit{storyboard} & Secção~\ref{sec:prototipo} & \textit{a definir} \\
-4 & Avaliação heurística e percurso cognitivo, por quem não construiu o protótipo & Secção~\ref{sec:avaliacao} & \textit{a definir} \\
-5 & Reflexão de uma página: onde e porquê as duas avaliações discordaram & Secção~\ref{sec:reflexao} & Equipa \\
-6 & Apêndice de uso de IA, com um exemplo do que a IA errou & Apêndice~\ref{anx:ia} & Equipa \\
+1 & Notas de campo e conjunto consolidado de modelos de trabalho (fluxo, sequência e pelo menos um de artefacto, cultural ou físico) & Secções~\ref{sec:recolha}, \ref{sec:modelos} e~\ref{sec:consolidacao}; Apêndice~\ref{anx:notas}\\
+2 & Diagrama de afinidade que consolida as sessões & Secção~\ref{sec:afinidade}  \\
+3 & Protótipo de baixa fidelidade ou \textit{storyboard} & Secção~\ref{sec:prototipo} \\
+4 & Avaliação heurística e percurso cognitivo, por quem não construiu o protótipo & Secção~\ref{sec:avaliacao} \\
+5 & Reflexão de uma página: onde e porquê as duas avaliações discordaram & Secção~\ref{sec:reflexao}\\
+6 & Apêndice de uso de IA, com um exemplo do que a IA errou & Apêndice~\ref{anx:ia}\\
 \bottomrule
 \end{tabularx}
 \caption{Correspondência entre o enunciado da Entrega~1 e este relatório.}
@@ -43,4 +46,11 @@ A Tabela~\ref{tab:mapa-entrega} indica onde cada elemento pedido no enunciado es
 
 \subsection{Estrutura do documento}
 
-A Secção~\ref{sec:planeamento} descreve o planeamento da investigação contextual. A Secção~\ref{sec:recolha} apresenta as sessões realizadas e a forma como foram registadas. A Secção~\ref{sec:modelos} apresenta os modelos de trabalho individuais e a Secção~\ref{sec:consolidacao} a sua consolidação. As Secções~\ref{sec:afinidade} a~\ref{sec:avaliacao} tratam do diagrama de afinidade, do protótipo e da sua avaliação. A Secção~\ref{sec:reflexao} contém a reflexão crítica e a Secção~\ref{sec:conclusao} fecha com as conclusões e os próximos passos. Os anexos reúnem as notas de campo completas, os modelos em tamanho integral, o apêndice de uso de IA, a organização da equipa e as hipóteses de produto que os dados sustentam.
+A Secção~\ref{sec:planeamento} descreve o planeamento da investigação contextual. 
+A Secção~\ref{sec:recolha} apresenta as sessões realizadas e a forma como foram registadas. 
+A Secção~\ref{sec:modelos} apresenta os modelos de trabalho individuais e a Secção~\ref{sec:consolidacao} 
+a sua consolidação. As Secções~\ref{sec:afinidade} a~\ref{sec:avaliacao} tratam do diagrama de afinidade, 
+do protótipo e da sua avaliação. A Secção~\ref{sec:reflexao} contém a reflexão crítica e a 
+Secção~\ref{sec:conclusao} fecha com as conclusões e os próximos passos. Os anexos reúnem as notas de campo 
+completas, os modelos em tamanho integral, o apêndice de uso de IA, a organização da equipa e as hipóteses de 
+produto que os dados sustentam.

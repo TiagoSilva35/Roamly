@@ -1,17 +1,32 @@
 %==========================================================
 \section{Planeamento da investigação contextual}\label{sec:planeamento}
 
-O planeamento seguiu o Capítulo~4 de \textit{Contextual Design}~\cite{beyer1998}, que propõe quatro passos: definir o foco, desenhar a investigação segundo o tipo de projeto, escolher a situação de entrevista adequada a cada tipo de tarefa e decidir quem entrevistar.
+O planeamento seguiu o Capítulo~4 de \textit{Contextual Design}~\cite{beyer1998}: definir o foco,
+desenhar a investigação segundo o tipo de projeto e decidir quem entrevistar.
 
 \subsection{Foco do projeto}
 
-Os projetos tendem a definir-se pela solução que vão entregar, neste caso «um agente de viagens baseado em IA». Para saber quem entrevistar e o que observar, essa descrição tem de passar a descrever o \textbf{trabalho} que o sistema vai apoiar. Esse trabalho não é «usar uma aplicação de viagens». É todo o processo por que passa um jovem desde a vontade de viajar até voltar a casa com as contas acertadas.
+Os projetos tendem a definir-se pela solução que vão entregar, neste caso «um agente de viagens baseado em IA». 
+Para saber quem entrevistar e o que observar, essa definição tem de passar a descrever o trabalho que 
+o sistema vai apoiar. Esse trabalho não é «usar uma aplicação de viagens». É todo o processo por que passa um 
+jovem desde a vontade de viajar até voltar a casa com as contas acertadas.
 
 \begin{foco}[Declaração de foco]
-Como é que jovens com pouco dinheiro decidem para onde ir, descobrem e comparam opções, juntam as peças (transporte, dormida, atividades) dentro de um orçamento, combinam com quem vai e ajustam a viagem quando algo muda.
+Como é que jovens com pouco dinheiro decidem para onde ir, descobrem e comparam opções, juntam as 
+peças (transporte, dormida, atividades) dentro de um orçamento, combinam com quem vai e ajustam a viagem 
+quando algo muda.
 \end{foco}
 
-A declaração usa linguagem simples de propósito: «juntar as peças» e não «agregação de serviços». Palavras simples levam o entrevistador a reparar num leque mais largo de comportamentos. A Tabela~\ref{tab:alargar} alarga o foco para lá da ferramenta.
+A declaração usa linguagem simples de propósito: «juntar as peças» e não «agregação de serviços». 
+Como descrito em \textit{Contextual Design}~\cite{beyer1998}, palavras simples levam o entrevistador a reparar 
+num maior leque de comportamentos. 
+A Tabela~\ref{tab:alargar} alarga o foco para lá da ferramenta.
+
+A declaração fala de jovens com pouco dinheiro porque é esse o público da primeira fase do \projeto. 
+O mesmo trabalho (decidir, comparar, juntar as peças, combinar e ajustar) é feito por qualquer viajante, 
+pelo que as conclusões sobre a sua estrutura servem de base para o alargamento posterior a outros utilizadores. 
+As agências de viagens entram no foco por outra via, descrita a seguir: como trabalho análogo e como potenciais 
+clientes.
 
 \begin{table}[!htbp]
 \centering\small
@@ -29,66 +44,49 @@ Em que contexto cultural? & Viajar barato vale como competência e motivo de org
 \label{tab:alargar}
 \end{table}
 
-\paragraph{Trabalho análogo.} O livro sugere estudar atividades com a mesma estrutura noutros domínios. A mais próxima é o \textbf{agente de viagens de balcão}, que faz hoje o papel que o \projeto{} quer ocupar. Isso justificou entrevistar um agente (A0). Outras metáforas registadas para entrevistas futuras: montar um PC com orçamento fixo, organizar um jantar de grupo em que alguém adianta o dinheiro e fazer compras de supermercado com orçamento.
+\paragraph{Trabalho análogo:}O livro sugere estudar atividades com a mesma estrutura noutros domínios. 
+A mais próxima é o \textbf{agente de viagens de balcão}, que faz hoje o papel que o \projeto{} quer ocupar.
+No nosso caso, o agente é mais do que uma metáfora: as agências são também potenciais clientes, e queremos avaliar
+que necessidades novas têm e onde o \projeto{} as poderia apoiar. Por estas duas razões entrevistámos um agente (A0),
+com o tema das preocupações com a IA e do impacto no negócio.
 
 \subsection{Tipo de projeto}
 
-O \projeto{} cruza dois dos pontos de partida descritos no livro:
+O \projeto{} cruza dois dos pontos de partida:
 \begin{itemize}
   \item \textbf{Produto conhecido.} Já existem comparadores de voos, sites de alojamento e de atividades, e o mercado já tem expectativas. É preciso observar jovens a usar estas ferramentas, registar o que atrapalha (taxas que só aparecem no fim, datas fixas, resultados separados por serviço) e procurar necessidades que ninguém reconheceu.
   \item \textbf{Nova tecnologia (agente de IA).} O análogo de um agente de IA é um agente humano, ou o amigo que «trata de tudo». Muitos jovens já pedem roteiros a assistentes de IA, e interessa ver o que fazem a seguir e onde deixam de confiar.
 \end{itemize}
 
-\begin{nota}[Princípio orientador]
-«Todo o trabalho já está a ser feito de alguma forma.» É esse trabalho atual que estudamos, e estudá-lo não impede a inovação.
-\end{nota}
+\subsection{Quem entrevistámos}
 
-\subsection{Situação de entrevista}
-
-Planear uma viagem não é uma tarefa única e contínua. Mistura vários tipos de tarefa, e cada um exige uma técnica diferente (Tabela~\ref{tab:tarefas}).
-
-\begin{table}[!htbp]
-\centering\small
-\begin{tabularx}{\textwidth}{@{}p{2.4cm}p{4.2cm}L@{}}
-\toprule
-\textbf{Tipo de tarefa} & \textbf{No planeamento de uma viagem} & \textbf{Técnica} \\
-\midrule
-Normal & Uma sessão de pesquisa no portátil. & Entrevista contextual com quem está a planear uma viagem real. \\
-Intermitente & Ver um preço num intervalo, receber um link de um amigo. & Criar um rasto (capturas e notas durante 1--2 semanas) e fazer um relato retrospetivo. \\
-Extremamente longa & O planeamento pode durar semanas. & \textit{Work walkthrough} de uma viagem já planeada, guiado pelos artefactos. \\
-Interna (decisão) & «Vale a pena pagar mais 30\,€ por um voo direto?» & Criar o evento: pedir que planeie à nossa frente e interromper para propor interpretações. \\
-Não interrompível & Discussão do grupo ao vivo ou por mensagens. & Não intervir; rever depois o histórico com o participante. \\
-\bottomrule
-\end{tabularx}
-\caption{Tipos de tarefa e técnicas de entrevista.}
-\label{tab:tarefas}
-\end{table}
-
-Cada entrevista segue o modelo mestre--aprendiz em quatro fases: \textbf{conversa convencional} (perfil e opinião geral, que não entra nos modelos sem caso concreto), \textbf{transição} (explicar as regras), \textbf{entrevista contextual} (observar, perguntar, manter tudo concreto) e \textbf{fecho} (resumir e deixar o participante corrigir).
-
-\subsection{Quem entrevistar}
-
-O livro recomenda 2--3 pessoas por papel e diversidade na forma de trabalhar, mais do que em segmentos demográficos. A Tabela~\ref{tab:papeis} mostra o plano e o que foi cumprido nesta entrega.
+O livro dimensiona a investigação para projetos profissionais, com 10 a 20 entrevistas e 
+várias pessoas por papel. No nosso contexto seria difícil cumprir estes requisitos por restrições de tempo e logísticas
+, e o 
+enunciado pede pelo menos duas sessões. Escolhemos fazer \textbf{duas entrevistas a pessoas reais}, 
+uma de cada lado do problema, em vez de inventar utilizadores ou de construir personas a partir do 
+que achamos que os jovens fazem (Tabela~\ref{tab:papeis}).
 
 \begin{table}[!htbp]
 \centering\small
-\begin{tabularx}{\textwidth}{@{}p{3.6cm}Lcc@{}}
+\begin{tabularx}{\textwidth}{@{}p{1.2cm}p{5.4cm}L@{}}
 \toprule
-\textbf{Papel} & \textbf{Descrição} & \textbf{Previsto} & \textbf{Feito} \\
+\textbf{Código} & \textbf{Quem} & \textbf{Porquê} \\
 \midrule
-Organizador(a) & Planeia pelo grupo, adianta o dinheiro e cobra aos outros. & 3 & 1 (U0) \\
-Quem vai atrás & Participa no grupo, vota e paga a sua parte, mas não pesquisa. & 2 & -- \\
-Viajante solo & Decide tudo sozinho(a), com mais flexibilidade de datas. & 3 & -- \\
-Caçador(a) de promoções & Parte do preço e não do destino. & 2 & (traços em U0) \\
-Erasmus / interrail & Viagens com várias paragens a partir de outra cidade. & 2 & -- \\
-Financiador(a) & Pai ou mãe que paga ou autoriza. & 1--2 & -- \\
-Agente de viagens & Domínio da metáfora: faz hoje o que o \projeto{} quer fazer. & 1--2 & 1 (A0) \\
-\midrule
-\multicolumn{2}{@{}l}{\textbf{Total}} & \textbf{14--16} & \textbf{2} \\
+U0 & Estudante de 20 anos que organizou uma viagem de grupo com limite de 300\,€ por pessoa & É o público da primeira fase: planeia pelo grupo, adianta o dinheiro e caça promoções. \\
+A0 & Agente de viagens de balcão, com 12 anos na mesma agência & Faz hoje o trabalho que o \projeto{} quer apoiar e representa as agências como potenciais clientes. \\
 \bottomrule
 \end{tabularx}
-\caption{Papéis a entrevistar: plano e execução.}
+\caption{Pessoas entrevistadas.}
 \label{tab:papeis}
 \end{table}
 
-As duas sessões realizadas cumprem o mínimo do enunciado e cobrem os dois lados do problema: quem planeia a viagem (U0) e quem faz hoje esse trabalho profissionalmente (A0). Os restantes papéis ficam para as próximas iterações.
+\paragraph{Porque é que valeu a pena entrevistar pessoas reais.} O livro só aceita como dados o que o entrevistador viu ou ouviu como caso concreto; um utilizador inventado reflete apenas as suposições da equipa. As duas entrevistas trouxeram vários aspetos que não tínhamos previsto e que dificilmente teríamos inventado:
+\begin{itemize}
+  \item o voo mais barato era inútil porque obrigava a chegar ao aeroporto de madrugada, sem transporte \reg{UE04};
+  \item o organizador acaba por ser o «banco» do grupo, adiantando o dinheiro e cobrando depois \reg{UE15, UE16};
+  \item o grupo não abre a folha partilhada e pede uma captura de ecrã \reg{UE17};
+  \item o agente perde clientes para sites sem taxa de serviço \reg{AE07} e passa parte da manhã a copiar dados entre sistemas \reg{AE05};
+  \item na agência, o supervisor acha que o ChatGPT pode fazer parte do trabalho do agente, como redigir os relatórios, mas não gosta do resultado quando o relatório sai confuso (fecho de A0).
+\end{itemize}
+Estes pontos são a base dos modelos e das implicações para o design (Secção~\ref{sec:implicacoes}). Com duas entrevistas, os padrões encontrados são indícios e não conclusões gerais; as entrevistas seguintes servirão para os confirmar ou corrigir.
