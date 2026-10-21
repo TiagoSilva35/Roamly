@@ -1,0 +1,44 @@
+%==========================================================
+\section{Modelos em página inteira}\label{anx:modelos}
+
+Versões em tamanho integral dos modelos das Secções~\ref{sec:modelos} e~\ref{sec:consolidacao}, rodadas para ocupar a página. Os ficheiros-fonte \texttt{.drawio} estão no repositório, em \texttt{work\_models/}, nas subpastas \texttt{individuais/} e \texttt{consolidado/} de cada tipo de modelo.
+
+% \modelopagina{ficheiro}{legenda}{rótulo}
+\newcommand{\modelopagina}[3]{%
+  \begin{figure}[p]
+  \centering
+  \includegraphics[angle=90,width=\textwidth,height=0.88\textheight,keepaspectratio]{#1}
+  \caption{#2}\label{#3}
+  \end{figure}}
+
+\begin{table}[!htbp]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}Lc@{}}
+\toprule
+\textbf{Tipo} & \textbf{Modelo} & \textbf{Figura} \\
+\midrule
+\multirow{3}{*}{Fluxo} & A0: agente de balcão & \ref{fig:pg-fluxo-a0} \\
+ & U0: viajante organizador(a) & \ref{fig:pg-fluxo-u0} \\
+ & Consolidado & \ref{fig:pg-fluxo-cons} \\
+\midrule
+\multirow{3}{*}{Cultural} & A0: agente de balcão & \ref{fig:pg-cult-a0} \\
+ & U0: viajante organizador(a) & \ref{fig:pg-cult-u0} \\
+ & Consolidado & \ref{fig:pg-cult-cons} \\
+\midrule
+Sequência, artefacto, físico & \textit{a acrescentar} & -- \\
+\bottomrule
+\end{tabularx}
+\caption{Modelos incluídos neste apêndice.}
+\label{tab:modelos-pagina}
+\end{table}
+
+\pendente{Gonçalo e Zé Pedro}{Acrescentar a esta tabela e abaixo, com \texttt{\textbackslash modelopagina\{ficheiro\}\{legenda\}\{rótulo\}}, os modelos de sequência, artefacto e físico (individuais e consolidados).}
+
+\modelopagina{flow_models/individuais/A0flux.drawio.pdf}{Modelo de fluxo de A0 (página inteira).}{fig:pg-fluxo-a0}
+\modelopagina{flow_models/individuais/FluxU0.drawio.pdf}{Modelo de fluxo de U0 (página inteira).}{fig:pg-fluxo-u0}
+\modelopagina{flow_models/consolidado/FluxoConsolidado.drawio.pdf}{Modelo de fluxo consolidado (página inteira).}{fig:pg-fluxo-cons}
+\modelopagina{cultural_models/individuais/CulturalA0.drawio.pdf}{Modelo cultural de A0 (página inteira).}{fig:pg-cult-a0}
+\modelopagina{cultural_models/individuais/CulturalU0.drawio.pdf}{Modelo cultural de U0 (página inteira).}{fig:pg-cult-u0}
+\modelopagina{cultural_models/consolidado/CulturalConsolidado.drawio.pdf}{Modelo cultural consolidado (página inteira).}{fig:pg-cult-cons}
+
+\clearpage
