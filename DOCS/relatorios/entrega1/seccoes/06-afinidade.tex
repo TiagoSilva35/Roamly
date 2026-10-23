@@ -1,0 +1,164 @@
+%==========================================================
+\section{Diagrama de afinidade}\label{sec:afinidade}
+
+% ===========================================================
+% Affinity diagram Roamly: fragmento para \input{} no relatorio.
+% Pacotes necessarios no preambulo do relatorio:
+%   \usepackage[utf8]{inputenc}  \usepackage[T1]{fontenc}
+%   \usepackage[portuguese]{babel}  \usepackage{xcolor}  \usepackage{enumitem}
+%   \usepackage[most]{tcolorbox}  \usepackage{textcomp}
+% Gerado automaticamente a partir dos dados do diagrama. 52 notas, 12 grupos, 5 temas.
+% ===========================================================
+
+\definecolor{affTheme}{HTML}{2D5A99}
+\definecolor{affGroup}{HTML}{CDE6D1}
+\definecolor{affGroupInk}{HTML}{153820}
+\definecolor{affNote}{HTML}{FFEC9E}
+\definecolor{affNoteInk}{HTML}{2A2410}
+\definecolor{affSrcInk}{HTML}{6B5F2A}
+\definecolor{affA}{HTML}{A8461A}
+\definecolor{affU}{HTML}{1F7A74}
+
+\newcommand{\affSrc}[1]{{\ttfamily\footnotesize #1}}
+
+\newcommand{\affBadge}[1]{
+  \tikz[baseline=(b.base)]\node[circle,inner sep=1.2pt,minimum size=11pt,text=white,font=\sffamily\scriptsize\bfseries,
+    fill=aff#1] (b) {#1};}
+
+\newcommand{\affTheme}[2]{
+  \par\vspace{1.2em}
+  \begin{tcolorbox}[colback=affTheme,colframe=affTheme,coltext=white,arc=2pt,boxrule=0pt,
+      left=8pt,right=8pt,top=6pt,bottom=6pt,before skip=4pt,after skip=6pt]
+    {\sffamily\bfseries\large #1}\par\smallskip
+    {\small #2}
+  \end{tcolorbox}}
+
+\newenvironment{affGroup}[2]{%
+  \begin{tcolorbox}[enhanced,colback=affGroup!35,colframe=affGroup,coltext=affGroupInk,
+      arc=2pt,boxrule=0.6pt,left=7pt,right=7pt,top=5pt,bottom=5pt,
+      before skip=5pt,after skip=5pt,
+      title={\sffamily\bfseries\normalsize #1\hfill{\normalfont\footnotesize #2}},
+      coltitle=affGroupInk,colbacktitle=affGroup,fonttitle=\sffamily]
+}{\end{tcolorbox}}
+
+\newcommand{\affNote}[4]{%
+  \begin{tcolorbox}[colback=affNote,colframe=affNote!70!black,coltext=affNoteInk,arc=0.5pt,boxrule=0.3pt,
+      left=6pt,right=6pt,top=3pt,bottom=3pt,before skip=3pt,after skip=3pt,breakable=false,
+      shadow={0.3mm}{-0.3mm}{0mm}{black!15}]
+    \affBadge{#1}\ \small #2\par
+    {\ttfamily\footnotesize\color{affSrcInk}#3}%
+    \if\relax\detokenize{#4}\relax\else\par{\footnotesize\itshape\color{affSrcInk}#4}\fi
+  \end{tcolorbox}}
+
+\begin{center}
+  \small
+  \affBadge{A} agente (A0)\quad \affBadge{U} viajante (U0)\quad
+  \affSrc{AE/UE} registo da entrevista\quad \affSrc{A0-xx/U0-xx} nota de interpretação
+\end{center}
+
+\affTheme{Falta de transparência e confiança nos preços}{O preço mostrado raramente é o que se paga, e o ambiente empurra para decidir depressa.}
+
+\begin{affGroup}{O preço que vejo não é o preço que pago}{só U0 \textbullet{} storyboard: painel 4}
+  \affNote{U}{O preço que aparece nunca é o preço final.}{conversa U0}{}
+  \affNote{U}{No pagamento do voo surge a bagagem de porão (+34 \texteuro{}): \guillemotleft{}isto ninguém diz\guillemotright{}.}{UE07 · U0-08}{}
+  \affNote{U}{O voo mais barato obriga-me a chegar ao aeroporto às 5h; chegar lá custa $\approx$13 \texteuro{} por sentido de comboio e metro.}{UE04 · U0-06}{}
+  \affNote{U}{O transporte até ao aeroporto fica fora da minha folha de cálculo.}{Art U0}{}
+  \affNote{U}{O custo real está espalhado entre o comparador, o transporte e a folha de cálculo.}{U0-07}{}
+\end{affGroup}
+
+\begin{affGroup}{Sinto pressão para decidir depressa}{A0 + U0 \textbullet{} storyboard: painéis 4 e 5}
+  \affNote{U}{Aparece \guillemotleft{}só restam 2 quartos!\guillemotright{}: fecho o separador e comparo noutro site porque \guillemotleft{}isto é para me pressionar\guillemotright{}.}{UE14 · U0-10}{}
+  \affNote{U}{O voo sobe 19 \texteuro{} enquanto espero pela resposta do grupo.}{UE08 · U0-09}{}
+  \affNote{A}{Os clientes mostram alojamentos parecidos por menos 10 ou 20 \texteuro{} por noite e sinto a pressão sobre o preço.}{AE02 · A0-02}{}
+  \affNote{A}{Digo ao casal que envio a proposta por email \guillemotleft{}o mais rápido possível\guillemotright{}.}{AE05}{}
+\end{affGroup}
+
+\affTheme{O cliente compara online e o preço decide}{A agência compete com sites que não cobram taxa; quem viaja com pouco dinheiro faz da poupança um motivo de orgulho.}
+
+\begin{affGroup}{Recusam a taxa porque o site não cobra}{A0 + U0 \textbullet{} storyboard: painel 2}
+  \affNote{A}{Um cliente recusa pagar a taxa de serviço \guillemotleft{}porque o site não cobra\guillemotright{} e perco o cliente.}{AE07 · A0-03}{}
+  \affNote{A}{O casal agradece e diz que vai \guillemotleft{}pensar e comparar online\guillemotright{}.}{AE06}{}
+  \affNote{A}{Os clientes usam a agência para se aconselhar e depois comparam sozinhos online.}{A0-08}{}
+  \affNote{U}{Para cada parte da viagem comparo em imensos sites e escolho o mais barato.}{conversa U0}{}
+\end{affGroup}
+
+\begin{affGroup}{Poupar é motivo de orgulho}{só U0 \textbullet{} fora do storyboard}
+  \affNote{U}{Uma colega pagou 360 \texteuro{} por quase o mesmo; eu consegui 294 \texteuro{} com quarto privado.}{UE19 · U0-11}{}
+  \affNote{U}{Corto a visita à mina de sal (28 \texteuro{}) porque \guillemotleft{}isto é para turistas\guillemotright{}.}{UE12 · U0-11}{}
+  \affNote{U}{O limite da viagem é 300 \texteuro{} por pessoa, tudo incluído.}{perfil U0}{}
+\end{affGroup}
+
+\begin{affGroup}{O valor da agência está em conhecer os fornecedores}{só A0 \textbullet{} storyboard: painel 2}
+  \affNote{A}{O meu caderno diz o que \guillemotleft{}não está em lado nenhum\guillemotright{}: \guillemotleft{}hotel X: não fiar na foto; pedir quarto nos pisos de cima\guillemotright{}.}{AE08}{}
+  \affNote{A}{Este conhecimento sobre fornecedores só existe no meu caderno pessoal.}{A0-10 · Art A0}{}
+  \affNote{A}{Defino-me por aconselhar, reservar, resolver quando corre mal e conhecer os fornecedores.}{A0-11 · fecho A0}{}
+  \affNote{A}{Tenho medo de que os clientes deixem de precisar de nós.}{A0-12 · conversa A0}{Opinião sem caso concreto; serve de contexto.}
+\end{affGroup}
+
+\affTheme{Trabalho manual de copiar e juntar dados}{Os dois perfis passam tempo a levar números de um sítio para outro e a refazer totais à mão.}
+
+\begin{affGroup}{Copio à mão entre sistemas}{A0 + U0 \textbullet{} storyboard: painel 2}
+  \affNote{A}{Copio os dados do portal para o modelo da agência, o documento com logótipo.}{AE05 · A0-07}{}
+  \affNote{A}{Passo grande parte da manhã a procurar e copiar dados entre sistemas.}{fecho A0}{}
+  \affNote{A}{Trabalho com várias aplicações em paralelo: sistema, correio partilhado e um autocolante \guillemotleft{}ligar a cliente X\guillemotright{}.}{AE01 · A0-01}{}
+  \affNote{U}{Copio à mão os preços de cada site para a folha de cálculo.}{UE06}{}
+  \affNote{U}{Refaço o total à mão quando o preço muda (303 $\rightarrow$ 322 $\rightarrow$ 294 \texteuro{}).}{Art U0 · UE06 · UE09 · UE12}{}
+  \affNote{U}{Parto da folha da viagem anterior porque \guillemotleft{}já tem as colunas que uso\guillemotright{}.}{UE06 · U0-04}{}
+\end{affGroup}
+
+\affTheme{Decidir em grupo e dividir o dinheiro}{Quem organiza a viagem coordena respostas lentas, partilha propostas que ninguém abre e adianta o dinheiro de todos.}
+
+\begin{affGroup}{O grupo responde devagar e o preço sobe}{só U0 \textbullet{} storyboard: painel 5}
+  \affNote{U}{Dois dias sem resposta do grupo: o voo subiu 19 \texteuro{} e envio \guillemotleft{}malta, subiu\guillemotright{}.}{UE08}{}
+  \affNote{U}{O Amigo B só confirma a partir de uma sexta concreta; refaço a pesquisa e o total passa a 322 \texteuro{}.}{UE09}{}
+  \affNote{U}{O Amigo B condiciona as datas: \guillemotleft{}era mais fácil perto do fim de semana\guillemotright{}.}{UE02 · U0-03}{}
+  \affNote{U}{O Amigo A rejeita o dormitório (\guillemotleft{}dormitório não\guillemotright{}) e fico com o quarto privado.}{UE05}{}
+\end{affGroup}
+
+\begin{affGroup}{A proposta não chega aos amigos}{só U0 \textbullet{} storyboard: painel 5}
+  \affNote{U}{Partilho a ligação da folha e ninguém a abre; o Amigo A pede \guillemotleft{}manda print\guillemotright{}.}{UE17 · U0-18}{}
+  \affNote{U}{No café decidimos as atividades ao vivo, com um só telemóvel passado de mão em mão.}{UE18 · U0-19}{}
+  \affNote{U}{Ninguém escreve no café; registo sozinho/a, depois, \guillemotleft{}o que combinámos\guillemotright{}.}{UE18}{}
+  \affNote{U}{Risco linhas na folha para justificar ao grupo o que cortei.}{UE12 · U0-17}{}
+\end{affGroup}
+
+\begin{affGroup}{Adianto o dinheiro e cobro depois}{só U0 \textbullet{} storyboard: painel 5}
+  \affNote{U}{Pago o voo dos três com o meu cartão de débito.}{UE15}{}
+  \affNote{U}{Peço 98 \texteuro{} por MB Way a cada amigo: o Amigo A paga em minutos, o Amigo B só \guillemotleft{}no fim do mês\guillemotright{}.}{UE16 · U0-16}{}
+  \affNote{U}{O que mais custa é ter de adiantar eu o dinheiro.}{fecho U0}{}
+  \affNote{U}{A minha mãe diz \guillemotleft{}não gastes o que não tens\guillemotright{} e quer saber onde vou dormir.}{UE13 · U0-12}{}
+\end{affGroup}
+
+\affTheme{Ideias, roteiros e IA}{As ideias chegam de roteiros impressos, vídeos e ChatGPT, e todos dizem que é preciso verificá-las.}
+
+\begin{affGroup}{Chegam com ideias fechadas e nem sempre viáveis}{só A0 \textbullet{} fora do storyboard}
+  \affNote{A}{Entra um casal com um roteiro impresso e quer \guillemotleft{}algo deste género\guillemotright{}.}{AE03 · A0-04}{}
+  \affNote{A}{O roteiro tem duas cidades a 6 h de comboio e um monumento fechado no dia previsto; o casal fica desagradado.}{AE04 · A0-05}{}
+  \affNote{A}{Pergunto orçamento, datas flexíveis e \guillemotleft{}o que não abdicam\guillemotright{}, que o roteiro não diz.}{AE03 · A0-06}{}
+  \affNote{A}{Pareço \guillemotleft{}desmancha-prazeres\guillemotright{} quando explico que a logística não faz sentido.}{conversa A0 · A0-05}{}
+\end{affGroup}
+
+\begin{affGroup}{As ideias nascem em vídeos e no grupo}{só U0 \textbullet{} fora do storyboard}
+  \affNote{U}{O gatilho foi um vídeo \guillemotleft{}Cracóvia por 150 \texteuro{}\guillemotright{} numa rede social.}{UE01 · U0-01}{}
+  \affNote{U}{Crio logo um grupo de mensagens e envio o vídeo com \guillemotleft{}bora?\guillemotright{}.}{UE01 · U0-02}{}
+  \affNote{U}{Acrescento ao mapa a comida de rua recomendada pelo criador de conteúdo.}{UE11 · U0-13}{}
+  \affNote{U}{Pesquiso por orçamento e datas, não por destino: \guillemotleft{}mês inteiro\guillemotright{}.}{UE03 · U0-05}{}
+\end{affGroup}
+
+\begin{affGroup}{A IA dá ideias, mas não se confia nela}{A0 + U0 \textbullet{} fora do storyboard}
+  \affNote{U}{Peço ao ChatGPT um roteiro barato e copio 4 itens: \guillemotleft{}não sei se isto é verdade\guillemotright{}.}{UE10}{}
+  \affNote{U}{Verifico no mapa: confirmo 2 itens e descarto 1.}{UE10 · U0-14}{}
+  \affNote{U}{\guillemotleft{}Não confio nos preços dele.\guillemotright{}}{fecho U0 · U0-15}{Só em parte sustentada: UE10 mostra desconfiança no roteiro, não nos preços.}
+  \affNote{A}{Preocupo-me quando o ChatGPT parece certo e não é.}{fecho A0}{}
+  \affNote{A}{O supervisor acha que o ChatGPT pode fazer parte do meu trabalho, mas não gosta quando o relatório sai confuso.}{A0-09 · fecho A0}{}
+  \affNote{A}{A IA deixa as pessoas ainda mais confusas.}{A0-13 · conversa A0}{Opinião sem caso concreto; serve de contexto.}
+\end{affGroup}
+
+
+\subsection*{Perguntas por esclarecer}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item Como saberia o cliente que a proposta foi revista por uma pessoa? Perguntar a mais agentes. \affSrc{A0-14}
+  \item Quanto da receita vem de comissões e quanto de taxas de serviço? Pedir numa entrevista futura. \affSrc{A0-15}
+  \item Porque é que o grupo responde devagar: medo de se comprometer, falta de dinheiro ou desinteresse? \affSrc{U0-20}
+  \item Como chega U0 ao aeroporto no dia da viagem? Seguir numa entrevista futura. \affSrc{U0-21}
+\end{itemize}

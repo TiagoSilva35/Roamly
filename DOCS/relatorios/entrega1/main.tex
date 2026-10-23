@@ -1,0 +1,109 @@
+%==========================================================
+% Roamly · Entrega 1: Elicitação
+% Compilar a partir desta pasta:  latexmk -pdf main.tex
+%==========================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+\usepackage{tabularx,longtable,booktabs,array,multirow}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{caption}
+\usepackage[nottoc]{tocbibind}
+\usepackage[titletoc,title]{appendix}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\tcbuselibrary{breakable, skins}
+
+%---------------------------------------------------------- dados do documento
+\newcommand{\projeto}{Roamly - Wander\&Travel}
+\newcommand{\entrega}{Entrega 1: Elicitação}
+\newcommand{\uc}{Requisitos e Especificações (MEI)} % TODO: deixar só a UC da equipa
+\newcommand{\anoletivo}{2026/2027}
+\newcommand{\equipa}{%
+  Tiago Silva \quad n.º \texttt{2022216215}\\
+  Gonçalo Ferreira \quad n.º \texttt{}\\
+  Zé Pedro \quad n.º \texttt{}\\
+  João Coelho \quad n.º \texttt{}
+}
+
+%---------------------------------------------------------- caminhos
+\graphicspath{{../../work_models/}}
+\newcommand{\wm}{../../work_models}
+
+%---------------------------------------------------------- estilo
+\definecolor{roamly}{HTML}{0E6E68}
+\definecolor{nota}{HTML}{B86E00}
+\definecolor{alerta}{HTML}{B3261E}
+\definecolor{pendente}{HTML}{6B7280}
+\hypersetup{colorlinks=true,linkcolor=roamly,urlcolor=roamly,citecolor=roamly,
+  pdftitle={Roamly - Entrega 1: Elicitação}}
+
+\newtcolorbox{foco}[1][]{colback=roamly!8,colframe=roamly,arc=2pt,boxrule=0.8pt,fonttitle=\bfseries,title=#1}
+\newtcolorbox{nota}[1][]{colback=nota!8,colframe=nota,arc=2pt,boxrule=0.8pt,fonttitle=\bfseries,title=#1}
+% Caixa para partes ainda por escrever: \pendente{Responsável}{O que falta}
+\newtcolorbox{pendentebox}[1]{colback=pendente!6,colframe=pendente,arc=2pt,boxrule=0.6pt,
+  fonttitle=\bfseries\small,title={A preencher · responsável: #1},fontupper=\small}
+\newcommand{\pendente}[2]{\begin{pendentebox}{#1}#2\end{pendentebox}}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.3}
+\setlist{nosep,leftmargin=*}
+\captionsetup{font=small,labelfont=bf}
+
+% relâmpago = breakdown
+\newcommand{\bolt}{\tikz[baseline=-0.6ex]\fill[alerta] (0.07,0.17)--(-0.05,-0.02)--(0.02,-0.02)--(-0.07,-0.19)--(0.12,0.03)--(0.04,0.03)--cycle;}
+% referência a um registo de entrevista
+\newcommand{\reg}[1]{{\footnotesize\textcolor{pendente}{(#1)}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\projeto}
+\fancyhead[R]{\small\entrega}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%==========================================================
+
+\begin{document}
+
+\input{seccoes/00-capa}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+\input{seccoes/01-introducao}
+\input{seccoes/02-planeamento}
+\input{seccoes/03-recolha}
+\input{seccoes/04-modelos}
+\input{seccoes/05-consolidacao}
+\input{seccoes/06-afinidade}
+\input{seccoes/07-prototipo}
+\input{seccoes/08-avaliacao}
+\input{seccoes/09-reflexao}
+\input{seccoes/10-conclusao}
+
+\input{seccoes/referencias}
+
+\clearpage
+\begin{appendices}
+\input{anexos/A-notas-campo}
+\input{anexos/C-uso-ia}
+\input{anexos/D-organizacao}
+\input{anexos/E-hipoteses}
+\end{appendices}
+
+\end{document}
