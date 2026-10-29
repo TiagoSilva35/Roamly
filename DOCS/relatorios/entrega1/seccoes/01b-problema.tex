@@ -1,0 +1,122 @@
+%==========================================================
+\section{Declaração do problema}\label{sec:problema}
+
+Esta secção descreve o problema independentemente de qualquer solução técnica, seguindo o formato dos seis 
+W do enunciado (\textit{Which, Where, Who, Why, How, What}). Foi escrita a partir da ideia inicial do \projeto{} 
+e corrigida com os dados das entrevistas A0 e U0. Os códigos entre parênteses remetem para os registos das entrevistas (Secção~\ref{sec:recolha}).
+
+%----------------------------------------------------------
+\subsection{Que problema tem de ser resolvido?}
+
+Quem viaja com pouco dinheiro tem de juntar à mão as peças de uma viagem (transporte, alojamento e atividades) que estão 
+espalhadas por sites diferentes, sem nunca ver o custo real total. Do 
+lado das agências, o agente monta propostas copiando dados entre sistemas e perde clientes para sites que não cobram taxa.
+
+\paragraph{Dentro do âmbito.}
+\begin{itemize}
+  \item Planear uma viagem de lazer \textbf{antes da partida}: inspiração, escolha do destino a partir do orçamento e das datas, comparação de transporte, alojamento e atividades.
+  \item Conhecer o \textbf{custo real por pessoa}, incluindo extras (bagagem) e a deslocação até ao aeroporto \reg{UE04, UE07}.
+  \item \textbf{Decidir em grupo}: partilhar a proposta, recolher opiniões e acompanhar quem já pagou a sua parte \reg{UE08, UE16, UE17}.
+  \item Do lado da agência: \textbf{preparar a proposta} a partir dos dados dos fornecedores e do conhecimento do agente \reg{AE05, AE08}.
+\end{itemize}
+
+\paragraph{Fora do âmbito.}
+\begin{itemize}
+  \item O apoio \textbf{durante} a viagem (navegação, emergências, alterações em cima da hora). Fica para uma fase posterior.
+  \item \textbf{Substituir o agente.} Na versão para agências, o objetivo é apoiar o trabalho de preparação, não o aconselhamento.
+\end{itemize}
+
+%----------------------------------------------------------
+\subsection{Onde está o problema?}
+
+\paragraph{Domínio.} Planeamento de viagens de lazer, por jovens com orçamento limitado e, numa segunda frente, por 
+agências de viagens de balcão.
+
+\paragraph{Contexto físico.} O jovem não tem um posto fixo: descobre ideias no telemóvel, em momentos soltos; compara e 
+monta as contas no portátil, com muitas abas abertas; decide com os amigos presencialmente, à volta de um só 
+telemóvel \reg{UE01, UE06, UE18}. Quem vive numa cidade sem aeroporto depende de transporte até outra cidade, o que restringe os 
+voos possíveis \reg{UE03, UE04}. O agente trabalha atrás do balcão, com várias aplicações abertas no mesmo ecrã e um caderno pessoal de 
+fornecedores ao lado \reg{AE01, AE08}.
+
+\paragraph{Contexto cultural e organizacional.} Para os jovens, viajar barato é um motivo de orgulho \reg{UE12, UE19}. 
+Desconfiam das plataformas (escassez fingida, custos que só aparecem no pagamento) e dos assistentes de IA \reg{UE07, UE10, UE14}. 
+Os pais financiam parte da viagem e querem saber onde os filhos dormem \reg{UE13}. Nas agências, o agente define-se por aconselhar 
+e conhecer os fornecedores, sente a concorrência dos sites sem taxa e vê a IA com desconfiança, enquanto o supervisor espera que 
+ela assuma parte do trabalho \reg{AE07; fecho A0}.
+
+%----------------------------------------------------------
+\subsection{De quem é o problema?}
+
+A Tabela~\ref{tab:stakeholders} lista os \textit{stakeholders}, o seu envolvimento, os seus interesses 
+e o impacto que têm no projeto. Só dois foram entrevistados; os restantes foram identificados a partir das entrevistas 
+e dos modelos de fluxo e cultural.
+
+\begin{table}[!htbp]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{2.9cm}p{3.3cm}Lp{1.2cm}@{}}
+\toprule
+\textbf{\textit{Stakeholder}} & \textbf{Envolvimento} & \textbf{Interesses} & \textbf{Impacto} \\
+\midrule
+Jovem que organiza a viagem (U0) & Utilizador principal; entrevistado & Caber no limite (300\,€ por pessoa); ver o custo real; não adiantar o dinheiro de todos; decidir antes de o preço subir. & Alto \\
+Companheiros de viagem & Utilizadores secundários: opinam, votam e pagam a sua parte & Esforço mínimo; ver a proposta sem abrir uma folha de cálculo («manda print», UE17). & Médio \\
+Família & Financia parte da viagem e vigia os gastos & Limite de gastos; saber onde o filho dorme. & Baixo \\
+Agente de viagens (A0) & Potencial utilizador da versão para agências; entrevistado & Copiar menos dados entre sistemas; manter o papel de quem aconselha; não ser substituído pela IA. & Alto \\
+Supervisor da agência & Decide a compra da versão para agências & Que a IA faça parte do trabalho, com resultados fiáveis. & Alto \\
+Fornecedores (companhias aéreas, alojamento, transportes, atividades) & Fontes dos preços e da disponibilidade & Vender; controlar como os seus preços são mostrados. & Alto \\
+Plataformas de reserva e comparadores & Concorrentes e possíveis fontes de dados & Manter o tráfego e as comissões. & Alto \\
+Assistentes de IA genéricos (ChatGPT) & Alternativa que os utilizadores já usam & --- & Médio \\
+Criadores de conteúdo & Dão a ideia inicial da viagem \reg{UE01} & Visibilidade dos destinos e sítios que recomendam. & Baixo \\
+Reguladores (proteção de dados, defesa do consumidor) & Impõem regras sobre dados pessoais e apresentação de preços & Preço total transparente; proteção dos dados do grupo. & Médio \\
+Equipa do projeto & Desenvolve o \projeto{} & Validar a ideia dentro do tempo restrito da cadeira & --- \\
+\bottomrule
+\end{tabularx}
+\caption{\textit{Stakeholders} do \projeto.}
+\label{tab:stakeholders}
+\end{table}
+
+%----------------------------------------------------------
+\subsection{Porque é que precisa de ser resolvido?}
+
+\paragraph{Para o jovem viajante.}
+\begin{itemize}
+  \item \textbf{Saber o custo real antes de decidir.} O total de U0 mudou três vezes (303\,€, 322\,€, 294\,€) e a bagagem acrescentou 34\,€ só no pagamento \reg{UE06, UE07, UE09, UE12}.
+  \item \textbf{Perder menos tempo a copiar e a refazer contas.} Os preços são copiados à mão de cada site para uma folha de cálculo \reg{UE06}.
+  \item \textbf{Decidir em grupo antes de o preço subir.} Dois dias sem resposta custaram 19\,€ por pessoa no voo \reg{UE08}.
+  \item \textbf{Não ter de ser o «banco» do grupo.} U0 pagou o voo dos três e um dos amigos só devolveu o dinheiro no fim do mês \reg{UE15, UE16}.
+\end{itemize}
+
+\paragraph{Para a agência.}
+\begin{itemize}
+  \item \textbf{Reduzir o tempo de preparação.} O agente passa grande parte da manhã a procurar e copiar dados entre sistemas \reg{AE05; fecho A0}.
+  \item \textbf{Mostrar o que vale a taxa de serviço}, para não perder clientes para sites que não a cobram \reg{AE06, AE07}.
+  \item \textbf{Não perder o conhecimento sobre fornecedores}, que hoje só existe no caderno pessoal do agente \reg{AE08}.
+\end{itemize}
+
+%----------------------------------------------------------
+\subsection{Como pode um sistema de software ajudar?}
+
+Os cenários seguintes são possíveis soluções, a validar. Cada um responde a uma expectativa que os participantes mostraram.
+
+\begin{itemize}
+  \item \textbf{Pesquisa a partir do orçamento e das datas}, não do destino. U0 já pesquisa assim, com «mês inteiro» no comparador \reg{UE03}.
+  \item \textbf{Itinerário com o custo total por pessoa}, com extras e deslocação até ao aeroporto, e que se atualiza quando algo muda.
+  \item \textbf{Proposta partilhada} que os amigos veem sem abrir uma folha de cálculo, com votação e registo de quem já pagou.
+  \item \textbf{Sugestões com origem visível.} U0 verifica no mapa tudo o que a IA sugere \reg{UE10}; o sistema tem de mostrar de onde vem cada preço e sugestão.
+  \item \textbf{Versão para agências} que monta a proposta a partir dos dados dos fornecedores e das notas do agente, e que o agente revê e assina antes de enviar. A0 teme uma IA que «parece certa e não é».
+\end{itemize}
+
+\paragraph{Viabilidade.} Mostrar preços depende de acesso a dados de fornecedores e agregadores. «Congelar» um preço enquanto o grupo decide exige acordos com fornecedores podendo não ser viável numa fase inicial
+; um alerta de subida de preço é uma alternativa realista.
+
+%----------------------------------------------------------
+\subsection{O que nos pode impedir de o resolver?}
+
+\begin{itemize}
+  \item \textbf{Acesso aos dados.} As APIs de preços têm custos e limites, os preços mudam depressa e a recolha automática de sites pode violar os termos de uso.
+  \item \textbf{Extras escondidos.} Se os fornecedores não expõem bagagem e taxas, o sistema também não consegue garantir o custo real, que é precisamente o problema principal.
+  \item \textbf{Confiança na IA.} As duas populações desconfiam da IA \reg{UE10; fecho A0}. Um único itinerário errado pode afastar o utilizador.
+  \item \textbf{Resistência das agências.} A IA é vista como ameaça ao papel do agente.
+\end{itemize}
+
+\paragraph{Mitigação.} Entrevistar mais papéis (quem vai atrás no grupo, viajantes solo, mais agentes) e fazer um 
+levantamento das ferramentas existentes (comparadores, planeadores de viagem com IA, aplicações de divisão de despesas) antes de fixar os requisitos.

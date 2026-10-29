@@ -1,0 +1,166 @@
+%==========================================================
+\section{Personas}\label{sec:personas}
+
+As personas foram construídas a partir das duas entrevistas contextuais e dos modelos que delas resultaram, e não a partir do que a equipa acha que os utilizadores fazem. Há uma persona para cada lado do problema: a \textbf{organizadora do grupo}, construída a partir de U0, e o \textbf{agente de balcão}, construído a partir de A0. Cada campo remete para os registos que o sustentam. O que não foi observado nem contado está marcado como \textit{suposição}.
+
+Os nomes e as fotografias são fictícios, para proteger o anonimato dos participantes.
+
+%----------------------------------------------------------
+% Caixa de persona: \begin{persona}{Nome}{Arquétipo} ... \end{persona}
+\newtcolorbox{persona}[2]{colback=roamly!4,colframe=roamly,arc=2pt,boxrule=0.8pt,
+  fonttitle=\bfseries,title={#1 \hfill\normalfont\small #2},breakable=false}
+\newcommand{\campo}[1]{\textbf{#1}}
+\newcommand{\suposicao}{\textit{\textcolor{pendente}{(suposição)}}}
+
+%----------------------------------------------------------
+\subsection{Inês: a organizadora do grupo}\label{sec:persona-ines}
+
+\begin{persona}{Inês Carvalho, 20 anos}{Arquétipo: organizadora do grupo · caçadora de promoções}
+\begin{minipage}[t]{0.26\textwidth}
+\vspace{0pt}
+\includegraphics[width=\linewidth]{figuras/ines.png}\\[2pt]
+{\footnotesize Imagem gerada por IA;}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.7\textwidth}
+\vspace{0pt}\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}L@{}}
+\campo{Ocupação} & Estudante do 2.º ano de licenciatura \reg{perfil U0} \\
+\campo{Local} & Cidade sem aeroporto;\reg{perfil U0, UE03} \\
+\campo{Dinheiro} & Mesada ($\approx$250\,€) e explicações ($\approx$120\,€); $\approx$380\,€ poupados para viajar; cartão de débito e MB Way, sem crédito \reg{perfil U0} \\
+\campo{Literacia digital} & Alta. Usa comparadores com datas flexíveis, reaproveita folhas de cálculo, pede roteiros ao ChatGPT e usa MB Way e GetYourGuide \reg{UE03, UE06, UE10, UE16, UE18} \\
+\campo{Dispositivos} & Telemóvel e portátil \reg{UE01, UE06} \\
+\end{tabularx}
+\end{minipage}
+
+\medskip
+\begin{tcolorbox}[colback=white,colframe=roamly!40,boxrule=0.4pt,arc=1pt,left=6pt,right=6pt,top=3pt,bottom=3pt]
+\small\itshape «Os sites estão sempre a tentar enganar-me. A viagem barata é a que eu monto e verifico peça a peça, e sou eu que ponho o grupo a andar.»
+\end{tcolorbox}
+\end{persona}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{3.2cm}L@{}}
+\toprule
+\textbf{Objetivos com o Roamly} &
+\begin{itemize}[topsep=0pt]
+  \item Ver o \textbf{custo real por pessoa}, com extras e deslocação ao aeroporto, antes de decidir \reg{UE04, UE07}.
+  \item Partir do \textbf{orçamento e das datas}, não do destino \reg{UE03}.
+  \item Pôr o grupo a decidir \textbf{antes de o preço subir} \reg{UE08}.
+  \item Saber quem já pagou sem ter de andar a cobrar \reg{UE16}.
+\end{itemize} \\
+\midrule
+\textbf{Motivações} &
+\begin{itemize}[topsep=0pt]
+  \item Viajar é o que mais gosta de fazer, e poupa para isso \reg{conversa U0}.
+  \item Orgulho em gastar menos do que os outros \reg{UE19}.
+  \item Não ser manipulada por quem vende \reg{UE14}.
+  \item Que os amigos fiquem contentes: as escolhas são de preço, «mas sempre a pensar nos amigos» \reg{fecho U0}.
+\end{itemize} \\
+\midrule
+\textbf{Como mede o sucesso} &
+\begin{itemize}[topsep=0pt]
+  \item O total fica dentro dos 300\,€ por pessoa, tudo incluído \reg{perfil U0}.
+  \item Pagou menos do que outros pela mesma viagem (294\,€ contra os 360\,€ de uma colega) \reg{UE19}.
+  \item Nenhuma surpresa no momento de pagar \reg{UE07}.
+\end{itemize} \\
+\midrule
+\textbf{Atritos atuais} &
+\begin{itemize}[topsep=0pt]
+  \item Copia à mão os preços de cada site para uma folha de cálculo; o total muda três vezes (303\,€, 322\,€, 294\,€) \reg{UE06, UE09, UE12}.
+  \item A bagagem (+34\,€) só aparece no pagamento \reg{UE07}.
+  \item O voo mais barato obriga a chegar ao aeroporto de madrugada, sem transporte \reg{UE04}.
+  \item O grupo demora dois dias a responder e o voo sobe 19\,€ \reg{UE08}.
+  \item Ninguém abre a folha partilhada: «manda print» \reg{UE17}.
+  \item Tem de verificar no mapa tudo o que o ChatGPT sugere \reg{UE10}.
+\end{itemize} \\
+\midrule
+\textbf{Ansiedades e \textit{dealbreakers}} &
+\begin{itemize}[topsep=0pt]
+  \item Adiantar o dinheiro de todos e esperar até ao fim do mês para o reaver \reg{UE15, UE16, fecho U0}.
+  \item «Não gastes o que não tens»: a pressão da família sobre os gastos \reg{UE13}.
+  \item \textbf{\textit{Dealbreaker}:} pressão de compra. Perante «só restam 2 quartos!», fecha o separador e vai a outro site \reg{UE14}.
+  \item \textbf{\textit{Dealbreaker}:} preços ou sugestões sem origem que possa confirmar \reg{UE10, fecho U0}.
+  \item \textbf{\textit{Dealbreaker}:} pagar pelo serviço, quando poupar é o objetivo \suposicao.
+\end{itemize} \\
+\bottomrule
+\end{tabularx}
+\caption{Persona Inês: objetivos, motivações, atritos e ansiedades.}
+\label{tab:persona-ines}
+\end{table}
+
+%----------------------------------------------------------
+\subsection{Rui: o agente de balcão}\label{sec:persona-rui}
+
+\begin{persona}{Rui Mendes}{Arquétipo: agente de viagens de balcão · conselheiro}
+\begin{minipage}[t]{0.26\textwidth}
+\vspace{0pt}
+\includegraphics[width=\linewidth]{figuras/rui.png}\\[2pt]
+{\footnotesize Imagem gerada por IA;}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.7\textwidth}
+\vspace{0pt}\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}L@{}}
+\campo{Ocupação} & Agente de viagens de balcão há 12 anos, na mesma agência \reg{perfil A0} \\
+\campo{Local} & Agência de rua, atrás do balcão; os clientes vêm até ele \reg{AE03} \\
+\campo{Idade} & Cerca de 40 anos \suposicao \\
+\campo{Literacia digital} & Média. Trabalha todos os dias com várias aplicações em paralelo (sistema de conversas, correio partilhado, portal, modelo da agência), mas guarda o que mais importa em papel: autocolante no monitor e caderno de fornecedores \reg{AE01, AE05, AE08} \\
+\campo{Responde a} & Um supervisor que espera que o ChatGPT faça parte do trabalho \reg{fecho A0} \\
+\end{tabularx}
+\end{minipage}
+
+\medskip
+\begin{tcolorbox}[colback=white,colframe=roamly!40,boxrule=0.4pt,arc=1pt,left=6pt,right=6pt,top=3pt,bottom=3pt]
+\small\itshape «O meu valor está no que eu sei e os sites não mostram. Mas o cliente só vê a taxa e vai comparar online.»
+\end{tcolorbox}
+\end{persona}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{3.2cm}L@{}}
+\toprule
+\textbf{Objetivos com o Roamly} &
+\begin{itemize}[topsep=0pt]
+  \item Montar a proposta \textbf{sem copiar dados à mão} entre sistemas \reg{AE05, fecho A0}.
+  \item Mostrar ao cliente \textbf{o que vale a taxa} de serviço \reg{AE07}.
+  \item Ter à mão, ao preparar a proposta, o que sabe sobre cada fornecedor \reg{AE08}.
+  \item Rever e assinar tudo antes de enviar \suposicao{} \reg{A0-14}.
+\end{itemize} \\
+\midrule
+\textbf{Motivações} &
+\begin{itemize}[topsep=0pt]
+  \item Ser quem aconselha, se responsabiliza e resolve quando corre mal \reg{fecho A0}.
+  \item Ser reconhecido por conhecer os fornecedores \reg{fecho A0, AE08}.
+  \item Poupar tempo: a preparação ocupa «grande parte da manhã» \reg{fecho A0}.
+  \item Não perder clientes para a concorrência online \reg{AE06, AE07}.
+\end{itemize} \\
+\midrule
+\textbf{Como mede o sucesso} &
+\begin{itemize}[topsep=0pt]
+  \item A proposta sai «o mais rápido possível» \reg{AE05}.
+  \item O cliente aceita a proposta e paga a taxa, em vez de ir «pensar e comparar online» \reg{AE06, AE07}.
+  \item A viagem corre bem, ou ele resolve o que corre mal \reg{fecho A0}.
+\end{itemize} \\
+\midrule
+\textbf{Atritos atuais} &
+\begin{itemize}[topsep=0pt]
+  \item Copia à mão os dados do portal para o modelo da agência \reg{AE05}.
+  \item Trabalha com várias aplicações ao mesmo tempo e lembretes em papel \reg{AE01}.
+  \item Os clientes trazem roteiros inviáveis (cidades a 6\,h de comboio, monumento fechado); ao desfazê-los, passa por «desmancha-prazeres» \reg{AE04, conversa A0}.
+  \item Os clientes usam preços online como pressão: «menos 10 ou 20 euros por noite» \reg{AE02}.
+  \item O que sabe sobre fornecedores só está no seu caderno \reg{AE08}.
+\end{itemize} \\
+\midrule
+\textbf{Ansiedades e \textit{dealbreakers}} &
+\begin{itemize}[topsep=0pt]
+  \item Que os clientes deixem de precisar da agência \reg{conversa A0}.
+  \item Que o supervisor ache que o ChatGPT o substitui \reg{fecho A0}.
+  \item \textbf{\textit{Dealbreaker}:} uma IA que «parece certa e não é», porque o erro cai sobre ele \reg{fecho A0}.
+  \item \textbf{\textit{Dealbreaker}:} uma ferramenta que o reduza a intermediário \reg{A0-11}.
+\end{itemize} \\
+\bottomrule
+\end{tabularx}
+\caption{Persona Rui: objetivos, motivações, atritos e ansiedades.}
+\label{tab:persona-rui}
+\end{table}
+
