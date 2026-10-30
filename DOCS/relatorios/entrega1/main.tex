@@ -30,14 +30,18 @@
 %---------------------------------------------------------- dados do documento
 \newcommand{\projeto}{Roamly - Wander\&Travel}
 \newcommand{\entrega}{Entrega 1: Elicitação}
-\newcommand{\uc}{Requisitos e Especificações (MEI)}
-\newcommand{\anoletivo}{2026/2027}
+\newcommand{\uc}{Requisitos e Especificações 2026}
+\newcommand{\versao}{1.0}
+\newcommand{\local}{Coimbra}
+% mês e ano da compilação, em português (ex.: «outubro de 2026»)
+\newcommand{\mesano}{\ifcase\month\or janeiro\or fevereiro\or março\or abril\or maio\or junho\or julho\or agosto\or setembro\or outubro\or novembro\or dezembro\fi\ de \the\year}
 \newcommand{\equipa}{%
-  Tiago Silva \quad n.º \texttt{2022216215}\\
-  Gonçalo Ferreira \quad n.º \texttt{2022210563}\\
-  José Santos \quad n.º \texttt{2022227876}\\
-  João Coelho \quad n.º \texttt{2021275030}
-}
+  \begin{tabular}{lll}
+  Tiago Silva      & n.º 2022216215 & \texttt{tds@student.uc.pt} \\
+  Gonçalo Ferreira & n.º 2022210563 & \texttt{uc2022210563@student.uc.pt} \\
+  José Santos      & n.º 2022227876 & \texttt{uc2022227876@student.uc.pt} \\
+  João Coelho      & n.º 2021275030 & \texttt{uc2021275030@student.uc.pt}
+  \end{tabular}}
 
 %---------------------------------------------------------- caminhos
 \graphicspath{{../../work_models/}}
@@ -106,7 +110,6 @@
 \input{anexos/A-notas-campo}
 \input{anexos/C-uso-ia}
 \input{anexos/D-organizacao}
-\input{anexos/E-hipoteses}
 \end{appendices}
 
 \end{document}
