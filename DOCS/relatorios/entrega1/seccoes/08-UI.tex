@@ -1,12 +1,13 @@
 %==========================================================
 \section{Interface de utilizador}\label{sec:interface}
 
-Para a nossa interface, nós temos dois claros focos: o jovem cliente e o agente.
-Nós supomos que o jovem cliente utiliza a versão base do nosso sistema Roamly, enquanto o agente utiliza a versão premium.
-Para cada ponto de foco, temos 3 janelas que apresentam as funcionalidades principais do sistema.
-Para fazer login, assumimos que uma janela para esse efeito aparecerá após a aplicação ser iniciada.
-Para utilizadores com a versão base, login não é necessário.
-Para fazer logout, basta clicar no nome do utilizador (que nas janelas do agente é "Agente C") para que um menu apareça, onde se possa fazer logout.
+Na nossa interface, existem 7 áreas: \textbf{Pesquisa}, \textbf{Caderno}, \textbf{Proposta}, \textbf{Roteiro}, \textbf{Grupo}, \textbf{Pagamento} e \textbf{Os Meus Clientes}.
+Esta 7ª área só está disponível para utilizadores que possuam a versão \textit{Agência}, ou seja, um agente de viagens, pois permite ver toda a informação relativa às propostas de viagem de cada cliente.
+Além disto, este tipo de utilizadores também poderá adicionar ao \textbf{Caderno} opções de fornecedores exclusivos offline, com notas do agente sobre cada um.
+Para saber se um utilizador está a usar a versão \textit{Agência} ou não, existe uma página de \textbf{Login} antes destes wireframes.
+
+Nesta secção, daremos foco apenas às áreas \textbf{Caderno} e \textbf{Grupo}, pois são as áreas mais fulcrais e de maior valor do nosso sistema.
+As funcionalidades a que o agente tem acesso não estão visíveis pois, neste caso, o utilizador é um jovem estudante.
 
 \subsection{Wireframes}
 
@@ -15,36 +16,81 @@ Para fazer logout, basta clicar no nome do utilizador (que nas janelas do agente
   % Pair 1
   \begin{subfigure}{0.45\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figuras/jovem1.png}
-    \caption{Caderno de ofertas do Jovem}
+    \includegraphics[width=\linewidth]{wireframes/area2voos.png}
+    \caption{Voos}
   \end{subfigure}\hfill
   \begin{subfigure}{0.45\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figuras/agente1.png}
-    \caption{Pedidos dos clientes do Agente}
+    \includegraphics[width=\linewidth]{wireframes/area2alojamentos.png}
+    \caption{Alojamentos}
+  \end{subfigure}\hfill
+  \caption{Caderno de ofertas}
+  \label{fig:area2}
+\end{figure}
+\begin{figure}[!ht]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{wireframes/area5organizador.png}
+    \caption{Organizador}
   \end{subfigure}\hfill
   \begin{subfigure}{0.45\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figuras/jovem2.png}
-    \caption{Proposta de viagem do Jovem}
+    \includegraphics[width=\linewidth]{wireframes/area5membro.png}
+    \caption{Membro}
   \end{subfigure}\hfill
-  \begin{subfigure}{0.45\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figuras/agente2.png}
-    \caption{Proposta de viagem de um cliente do Agente}
-  \end{subfigure}\hfill
-  \begin{subfigure}{0.45\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figuras/jovem3.png}
-    \caption{Pagamento do Jovem e dos seus colegas}
-  \end{subfigure}\hfill
-  \begin{subfigure}{0.45\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figuras/agente3.png}
-    \caption{Biblioteca de fornecedores do Agente}
-  \end{subfigure}\hfill
-  \caption{6 janelas da nossa interface de utilizador. À esquerda, para o Jovem. À direite, para o Agente}
-  \label{fig:three_pairs}
+  \caption{Decisão de Grupo}
+  \label{fig:area5}
 \end{figure}
 
+\subsubsection{Caderno de ofertas}
+
+Nesta página, encontram-se todas as ofertas que o utilizador selecionou na janela de \textbf{Pesquisa}.
+Aqui, o organizador pode comparar as várias ofertas que encontrou e selecionar aquelas que achou melhores.
+A descrição da opção, o preço e os avisos são escritos automaticamente pela IA, que faz web-crawling dos links das ofertas para obter essa informação.
+No entanto, caso o organizador queira ter a certeza de que a informação que lhe está a ser fornecida está correta, ele pode clicar em \textit{Ver no site} para a verificar.
+Adicionalmente, à direita, está um resumo da proposta até ao momento, também feito pela IA.
+Por fim, assim que o organizador esteja satisfeito com as suas escolhas, pode ver a proposta total da viagem, clicando no botão \textit{Ver proposta de viagem}.
+
+\subsubsection{Decisão de grupo}
+
+Nesta página, o organizador e membros do grupo tomam as decisões finais para a viagem.
+Cada um dá a sua opinião em relação a cada item da proposta, selecionando \textit{Concordo/Prefiro outra}.
+Depois, cada elemento indica a sua disponibilidade para a viagem.
+Caso esteja disponível, o utilizador seleciona a data que o organizador propôs.
+Caso contrário, seleciona a data em que se encontra disponível para realizar a viagem.
+
+Assim que todos os elementos, \textit{fixarem} as suas opiniões, se todos os elementos concordarem com os itens e data da viagem, o organizador pode começar a reservar os itens nos seus sites e cada elemento passa para a janela seguinte, \textbf{Pagamento}, para dar o dinheiro ao organizador.
+Caso contrário, o organizador volta atrás para alterar os itens e/ou datas onde houve divergência.
+
+À semelhança na janela \textbf{Caderno}, à direita, continua a haver uma IA que vai avisando ácerca de alterações de preços da viagem, enquanto uma decisão não é tomada.
+Além disso, o organizador tem a capacidade: de definir um prazo para o grupo se decidir; de registar o que ficar combinado pelo grupo; e de partilhar a proposta com quem vai à viagem.
+Para os membros, na sua aba direita, aparece esta informação dada pelo organizador e pela IA.
+
 \subsection{Avaliação de usabilidade de Nielsen}
+A figura \ref{tab:NielCad} mostra a avaliação de usabilidade de Nielsen para as páginas do \textbf{Caderno de ofertas} e da \textbf{Decisão de grupo}.
+\begin{table}[!htbp]
+  \centering
+  \caption{Avaliação de usabilidade de Nielsen}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Avaliação} & \textbf{Caderno de ofertas} & \textbf{Decisão de grupo} \\ \hline
+    1) Visibility of system status & Pass & Pass \\ \hline
+    2) Match between system and the real world & Pass & Pass \\ \hline
+    3) User control and freedom & Pass & Pass \\ \hline
+    4) Consistency and standards & Pass & Pass\\ \hline
+    5) Error prevention & Pass & Pass \\ \hline
+    6) Recognition rather than recall & Pass & Pass \\ \hline
+    7) Flexibility and efficiency of use & Fail & Fail \\ \hline
+    8) Aesthetic and minimalist design & Pass & Pass \\ \hline
+    9) Help users recognize, diagnose, & \multirow{2}{*}{Pass} & \multirow{2}{*}{Pass} \\
+    and recover from errors & &\\ \hline
+    10) Help and documentation & Fail & Fail \\ \hline
+    \textbf{Total} & \textbf{8/10} & \textbf{8/10} \\ \hline
+  \end{tabular}
+  \label{tab:NielCad}
+\end{table}
+
+  
+
+    
