@@ -9,6 +9,122 @@ Para saber se um utilizador está a usar a versão \textit{Agência} ou não, ex
 Nesta secção, daremos foco apenas às áreas \textbf{Caderno} e \textbf{Grupo}, pois são as áreas mais fulcrais e de maior valor do nosso sistema.
 As funcionalidades a que o agente tem acesso não estão visíveis pois, neste caso, o utilizador é um jovem estudante.
 
+
+%==========================================================
+\subsection{User Environment Design}\label{sec:ued}
+
+O \textit{User Environment Design} (UED) descreve a estrutura do sistema tal como o
+utilizador a vive: as áreas de foco, que são os «lugares» do sistema onde se faz uma
+atividade coerente, as funções disponíveis em cada uma e as ligações por onde se passa
+de uma para outra. Funciona como a planta de uma casa: mostra as divisões e as portas,
+mas não a decoração~\cite{beyer1998}.
+
+\subsubsection{Como foi construído}
+
+As áreas de foco nasceram dos grupos do diagrama de afinidade
+(Secção~\ref{sec:afinidade}). Criámos uma área nova sempre que o
+utilizador passa a fazer outro tipo de trabalho, com outras preocupações. Pesquisar
+opções, somar o custo, montar os dias e decidir com o grupo são trabalhos diferentes e
+por isso ficaram em áreas separadas. Cada área indica, em letra pequena, os grupos da
+afinidade de onde vem. Os quinze grupos estão todos representados em pelo menos uma área.
+
+\paragraph{Um só UED para os dois papéis.} O enunciado permite um UED por papel ou um
+só UED que assinale as diferenças, quando estas são pequenas. Ao desenhar as áreas do
+agente percebemos que eram as mesmas do organizador, uma vez que, o agente também parte de uma ideia
+(o roteiro ou o email do cliente), compara opções, monta uma proposta e espera que o
+cliente decida. A diferença é trabalhar para um cliente em vez de um grupo. Optámos por
+um só UED, em que [A] marca as funções e a área que só existem na versão para agências.
+
+\paragraph{O Roamly como intermediário.} O Roamly faz a ponte entre o viajante e os
+fornecedores, sem ocupar o lugar destes. No UED, esta opção traduz-se em restrições e
+numa área externa. O Roamly não faz reservas nem recebe pagamentos. A IA só trabalha
+com texto e ligações. Reservar e pagar fica a cargo do site ou do portal do fornecedor,
+representado como área externa (E), do lado de fora do sistema.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{UED/UED-Viajante.pdf}
+\caption{User Environment Design do Roamly (viajante e agente de viagens).}
+\label{fig:ued}
+\end{figure}
+
+\paragraph{Áreas e interface.} Cada área de foco corresponde a uma janela da interface. A
+Tabela~\ref{tab:ued-areas} mostra essa correspondência e os \textit{breakdowns} da
+Tabela~14 a que cada área responde.
+
+\begin{table}[!htbp]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}p{2.6cm}L@{}}
+\toprule
+\textbf{Área de foco} & \textbf{Janela} & \textbf{\textit{Breakdowns} a que responde} \\
+\midrule
+1. Explorar ideias & Pesquisa & SM.11, AM.26 \\
+2. Comparar opções & Caderno & FM.1, FM.3, SM.12, SM.16, PM.30, CM.31, CM.34 \\
+3. Orçamento da viagem & Proposta & FM.7, SM.14, SM.15, AM.23, AM.24, PM.28 \\
+4. Roteiro & Roteiro & FM.4, SM.13, SM.18, AM.27 \\
+5. Decidir com o grupo ou o cliente & Grupo & FM.2, FM.8, FM.9, SM.17, SM.21, SM.22, AM.25, PM.29 \\
+6. Pagamentos do grupo & Pagamento & FM.10, SM.20, CM.32 (em parte) \\
+7. Os meus clientes [A] & Os Meus Clientes & --- (lembrete do autocolante, AE01) \\
+\bottomrule
+\end{tabularx}
+\caption{Áreas de foco do UED, janelas da interface e \textit{breakdowns} a que respondem.}
+\label{tab:ued-areas}
+\end{table}
+
+\subsubsection{Revisão do UED (\textit{walkthrough})}
+
+À medida que se acrescentam funções, as áreas de foco tendem a perder a coerência; por
+isso revimos o UED no fim~\cite{beyer1998}. Com isto, pretendeu-se verificar se cada área apoia uma só
+atividade, se as ligações fazem sentido e se o trabalho real é apoiado. Para isso,
+corremos pelo UED as sequências reais de U0 e de A0, através das personas Inês e Rui
+(Secção~7).
+
+\paragraph{Sequências.} A viagem de U0 percorre o UED sem ficar presa. O vídeo entra em
+\textit{Explorar ideias} e o «bora?» segue logo para o grupo (1~$\rightarrow$~5); voo e
+alojamento são comparados em 2 e somados em 3; a visita à mina de sal é cortada em 4 \reg{UE12};quando o
+Amigo~B muda as datas, o grupo volta a 1 para refazer a pesquisa; o voo é pago no site
+da companhia (E); o MB Way fica registado em 6. A manhã de A0 também cabe no UED: o
+pedido entra em \textit{Os meus clientes}, o roteiro do casal em 1, a logística inviável é
+assinalada em 4 e a proposta com o logótipo da agência é revista e mostrada em 5.
+
+\paragraph{O que a revisão confirmou.}
+\begin{itemize}
+  \item \textbf{Não há corredores.} Todas as áreas têm funções próprias; nenhuma serve só
+        para dar acesso a outras, um padrão a evitar.
+  \item \textbf{O caminho principal não é demasiado longo.} De 1 a 5 há quatro passos, mas
+        em cada um faz-se trabalho real. O grupo não tem de esperar pelo fim: a ligação
+        1~$\rightarrow$~5 deixa partilhar a ideia logo no início, como U0 fez (UE01).
+\end{itemize}
+
+\paragraph{O que a revisão encontrou.}
+\begin{itemize}
+  \item \textbf{A área 5 acumula funções.} Junta a decisão do grupo, a revisão da proposta
+        pelo agente [A] e a partilha do plano com quem não vai. Mantivemo-la como uma só
+        área porque todas servem o mesmo momento, o de decidir sobre a proposta. É a área a
+        vigiar se forem acrescentadas funções.
+  \item \textbf{Faltam ligações de volta.} De \textit{Orçamento da viagem} só se segue para o
+        \textit{Roteiro}. Quando o total passa o orçamento, trocar um voo obriga a passar por
+        5 e voltar a 1. Uma ligação 3~$\rightarrow$~2 tornaria este caminho direto.
+  \item \textbf{A restrição da IA tem um custo para o agente.} Como a IA só aceita texto e
+        ligações, o roteiro impresso que o casal traz (AE03) tem de ser escrito à mão,
+        o que repete o tipo de cópia que o Roamly quer eliminar (FM.7).
+  \item \textbf{Um \textit{breakdown} fica por resolver.} O organizador continua a adiantar
+        o dinheiro de todos (SM.19). Como o Roamly não processa pagamentos, a área 6 só
+        controla quem já pagou. Fica como questão em aberto no próprio UED.
+\end{itemize}
+
+\subsubsection{Por onde começar}
+
+O UED mostra também que áreas dependem umas das outras, o que ajuda a decidir por
+onde começar a construir o sistema. O que distingue o Roamly está nas áreas
+\textit{Comparar opções} e \textit{Decidir com o grupo ou o cliente}, as que a
+Secção~10 apresenta como de maior valor. Sozinhas não funcionam: precisam de
+\textit{Explorar ideias}, de onde vêm as opções, bem como de \textit{Orçamento da
+viagem}, que dá o total da proposta. Estas quatro áreas formam um primeiro conjunto
+que já apoia o planeamento de uma viagem do início à decisão do grupo.
+\textit{Roteiro} e \textit{Pagamentos do grupo} vêm a seguir; a área \textit{Os meus
+clientes} e as funções [A] entram com a versão para agências.
+
 \subsection{Wireframes}
 
 \begin{figure}[!ht]
