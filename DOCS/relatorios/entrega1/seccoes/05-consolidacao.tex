@@ -89,6 +89,29 @@ Supervisor, fornecedores (A0) & Supervisor, fornecedores & -- \\
 
 %----------------------------------------------------------
 \subsection{Sequência consolidado}\label{sec:seq-cons}
+Consolidou-se a sequência de U0 com a sequência~3 de A0 (o casal ao balcão),
+porque são a mesma tarefa: chegar a uma viagem que funcione. As
+outras sequências de A0 (ver o que está pendente, responder a um pedido por email
+e o caso da taxa de serviço) são tarefas diferentes e ficam só no modelo
+individual.
+
+As atividades 1 a 6 são comuns às duas sequências. Os \textit{triggers} de U0 e
+de A0 juntaram-se num só, com duas alternativas: a inspiração vinda de fora (U0)
+e o cliente que traz um pedido ao balcão (A0). Os passos que fazem o mesmo
+trabalho juntaram-se num passo abstrato; por exemplo, «Verificar a logística»
+junta a pergunta de U0 sobre como chegar ao aeroporto às 5\,h \reg{UE04} e A0 a
+mostrar as 6\,h de comboio entre as duas cidades \reg{AE04}. Por baixo de cada
+passo abstrato fica o passo real de U0 e de A0, pela ordem em que aconteceu;
+quando um deles não tem esse passo, aparece «---». Os \textit{breakdowns} são os
+dos modelos individuais, e cada atividade tem um só \textit{intent}, que resume os
+\textit{intents} individuais.
+
+Depois da proposta, U0 e A0 seguem estratégias diferentes, e o modelo divide-se
+num losango: A0 envia a proposta e o casal decide sozinho; U0 continua a ajustar,
+fechar e pagar a viagem com o grupo. O \textit{loop} em que U0 refaz a pesquisa
+com as novas datas do Amigo~B \reg{UE09} fica depois desta divisão, porque o
+agente não refaz a proposta. A notação é a dos modelos de sequência individuais.
+
 \begin{figure}[H]
 \centering
 \includegraphics[page=1,width=\textwidth]{sequence_models/paginados/SeqConsolidado-paginado.pdf}
@@ -106,8 +129,53 @@ Supervisor, fornecedores (A0) & Supervisor, fornecedores & -- \\
 \caption{Sequência consolidada (A0 e U0) (3/3).}
 \end{figure}
 
+\paragraph{O que a sequência consolidada mostra.}
+\begin{itemize}
+  \item \textbf{A estrutura comum está nas atividades 1 a 6.} Os dois recebem uma
+        ideia ou um pedido, percebem o que quem viaja quer, veem as opções,
+        verificam se a viagem funciona, juntam tudo numa proposta e levam-na a
+        quem decide.
+  \item \textbf{Os \textit{breakdowns} comuns caem nos mesmos passos:} a logística
+        que não funciona \reg{UE04, AE04} e copiar dados à mão entre sistemas
+        \reg{UE06, AE05}. É aí que o \projeto{} pode ajudar os dois.
+  \item \textbf{Depois da proposta há duas estratégias.} A0 entrega a proposta e o
+        casal vai «pensar e comparar online» \reg{AE06}; U0 continua sozinho a
+        ajustar a viagem, a fechá-la e a acertar contas com o grupo
+        (atividades 7 a 9).
+      \item \textbf{Limite.} Junta as sequências de duas pessoas, de papéis
+        diferentes; a estrutura é um ponto de partida a confirmar com mais
+        entrevistas.
+\end{itemize}
 %----------------------------------------------------------
-\subsection{Artefacto consolidado}\label{sec:art-cons}
+\subsection{Artefactos consolidados}\label{sec:art-cons}
+
+Juntaram-se os artefactos que têm a mesma intenção ou o mesmo uso no trabalho e depois identificaram-se as partes comuns de cada
+grupo. Formaram-se dois grupos:
+\begin{itemize}
+  \item \textbf{Proposta / orçamento}: a folha de cálculo de U0 e a proposta no
+        modelo da agência de A0. Os dois juntam a viagem e o seu custo para quem
+        decide, montados à mão a partir de dados de outros sistemas
+        \reg{UE06, AE05}.
+  \item \textbf{Roteiro / lista de ideias}: o roteiro impresso do casal (A0) e,
+        de U0, as notas com o roteiro do ChatGPT, a lista do mapa e o vídeo
+        guardado. Todos guardam ideias que chegam de fora e que é preciso
+        verificar.
+\end{itemize}
+
+Cada parte mostra a variante de U0 e a de A0. Quando uma pessoa não tem a parte,
+aparece «---»; quando a parte existe mas a entrevista não diz o conteúdo, aparece
+«não registado», como o total na proposta de A0. Cada parte tem um só
+\textit{intent}, escrito de forma geral a partir dos \textit{intents} dos modelos
+individuais. Os \textit{breakdowns} são os dos modelos individuais. Não se mostra
+a apresentação (cores, letra, aspeto), porque as entrevistas não guardaram
+capturas nem fotos.
+
+Ficaram fora da consolidação os artefactos sem par na outra entrevista: a página
+de pagamento do voo e os pedidos MB Way (só U0), o caderno de fornecedores e o
+sistema com o papel autocolante (só A0), e o grupo de mensagens e o email do
+cliente, que são ambos canais de conversa mas com intenções diferentes: um
+coordena o grupo, o outro traz um pedido ao agente. Estes artefactos continuam
+nos modelos individuais.
 
 \begin{figure}[H]
 \centering
@@ -115,6 +183,24 @@ Supervisor, fornecedores (A0) & Supervisor, fornecedores & -- \\
 \caption{Artefactos consolidados (A0 e U0).}
 \label{fig:art-cons}
 \end{figure}
+
+\paragraph{O que os artefactos consolidados mostram.}
+\begin{itemize}
+  \item \textbf{A proposta é montada à mão nos dois casos.} Parte de um molde (a
+        folha da viagem anterior, o modelo da agência) e junta dados copiados de
+        outros sistemas \reg{UE06, AE05}. É aí que estão o custo real espalhado
+        de U0 \reg{U0-07} e o trabalho de copiar dados entre sistemas de A0
+        \reg{A0-07}.
+  \item \textbf{O total por pessoa só aparece em U0}, e vai mudando: 303\,€,
+        322\,€ e 294\,€ \reg{UE06, UE09, UE12}. Na proposta de A0 não ficou
+        registado.
+  \item \textbf{As ideias chegam de fora e têm de ser verificadas.} U0 verifica no
+        mapa as sugestões do ChatGPT \reg{UE10}; A0 lê o roteiro do casal, mostra
+        o que não funciona \reg{AE04} e tem de perguntar o que o roteiro não diz
+        \reg{AE03}.
+  \item \textbf{Limite.} Cada grupo junta artefactos de duas pessoas; a estrutura
+        comum é um ponto de partida a confirmar com mais entrevistas.
+\end{itemize}
 
 %----------------------------------------------------------
 \subsection{Físico consolidado}\label{sec:fisico-cons}
