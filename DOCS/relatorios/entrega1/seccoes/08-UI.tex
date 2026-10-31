@@ -43,7 +43,7 @@ representado como área externa (E), do lado de fora do sistema.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{UED/UED-Viajante.pdf}
+\includegraphics[width=\textwidth]{ued/UED-Viajante.pdf}
 \caption{User Environment Design do Roamly (viajante e agente de viagens).}
 \label{fig:ued}
 \end{figure}
@@ -178,6 +178,26 @@ A figura \ref{tab:NielCad} mostra a avaliação de usabilidade de Nielsen para a
   \end{tabular}
   \label{tab:NielCad}
 \end{table}
+
+As razões das notas dadas a cada uma das avaliações são as seguintes:
+
+\begin{itemize}
+  \item \textbf{1)} A janela \textbf{Caderno} mostra claramente se uma opção foi escolhida ou não e atualiza imediatamente o resto de orçamento disponível.
+          A janela \textbf{Grupo} mantém sempre visível a opinião de cada elemento do grupo, bem como as suas disponibilidades;
+  \item \textbf{2)} Parece-nos que ambas as janelas não contêm linguagem complexa e que o seguimento  de janela em janela (primeiro pesquisar, guardar e decidir o que escolher, depois discutir e pagar) e de funcionalidade para funcionalidade (primeiro opinião, depois disponibilidade, no caso do \textbf{Grupo}) nos parece natural e lógico;
+  \item \textbf{3)} No nosso sistema, basta clicar no botão da janela para onde queremos ir (caso haja um engano, a anterior).
+        Caso haja um engano dentro da janela, é fácil mudar a opção escolhida (\textit{Juntar/Retirar do orçamento} e \textit{Concordo/Prefiro outra}) ou reinserir outro valor (Disponibilidade dos elementos);
+  \item \textbf{4)} Nos wireframes que apresentamos, não há repetição de nenhuma palavra ou expressão que não tenha sempre o mesmo sentido. Todas as ações que o utilizador pode realizar são claras;
+  \item \textbf{5)} Em ambas as janelas, as ações possíveis de realizar são limitadas a um conjunto fechado de opções (a disponibilidade só pode ser entre dias que existam), prevenindo assim condições de erro;
+  \item \textbf{6)} Em todo o sistema, todas as opções e ações que os utilizadores escolherem e realizarem estão sempre guardadas e visíveis.
+        Além disso, caso um utilizador não queira procurar uma opção que tenha tomado numa janela anterior, pode sempre utilizar a IA para esse efeito;
+  \item \textbf{7)} Apesar de o sistema ser simples e rápido, não existe, em nenhuma janela, forma de acelerar o processo para utilizadores mais experientes. 
+        Todos os utilizadores têm de passar pelas mesmas etapas para planear as suas viagens;
+  \item \textbf{8)} Em ambas as janelas, o design é simples e minimalista, apenas contendo descrições curtas de cada opção, as ações disponíveis ao utilizador e as opções que ele escolheu;
+        Além disso, só aparecem avisos quando a IA os deteta (\textit{Extra só no fim}, \textit{Sem transporte anter das 5h30} e \textit{taxa turística só no fim}, no \textbf{Caderno} e \textit{preço subiu enquanto se esperava}, no \textbf{Grupo});
+  \item \textbf{9)} Como todos os avisos e erros são detetados por IA, eles também são gerados por IA, logo todo o texto destes tem uma linguagem natural a indicar precisamente o problema;
+  \item \textbf{10)} Apesar de a IA poder ser utilizada para resolver alguns problemas, se estes estiverem diretamente relacionados com a forma como o sistema funciona, ela já não servirá de ajuda, daí termos considerado que estes wireframes não passam neste teste;
+\end{itemize}
 
   
 
