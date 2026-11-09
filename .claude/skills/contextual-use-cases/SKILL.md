@@ -24,28 +24,31 @@ Write in the project's format and language (a Portuguese LaTeX report gets a Por
 ## 2. Choose actor, goal and level
 
 - **Primary actor** is a role from the consolidated flow model ("Group coordinator"), not a person or a persona. Other people or systems involved are secondary actors.
-- **Goal** comes from an intent in the consolidated sequence, written as actor + verb + object ("Get the group to decide on the proposal"). One goal per use case, not one screen.
-- **Level** is user goal by default (one focus area, or two linked ones). Use summary for a whole task spanning several sittings, and subfunction only for a step several use cases reuse.
+- **Goal** comes from an intent in the consolidated sequence, written as actor + verb + object ("Get the group to decide on the proposal"). ONE goal per use case. If you think
+there is more than one, you should write a separate use case for each. 
+- **Level** is user goal by default (one focus area, or two linked ones). Use 
+summary when a task takes several sessions to complete. Use subfunction
+for a a small step that needs to be reused in different contexts.
 
 ## 3. Fill in the fields
 
 - **ID and name**: `UC-NN`, with the goal as the name.
-- **Brief description**: 2–3 plain sentences, first in the use case. Who the actor is, what they want, the outcome, and what the system does for them. No UI, no step list.
-- **Primary actor, secondary actors, level, scope** (the system under design) and **focus area(s)**.
-- **Trigger**: from the sequence model. If the real trigger disappears with the system (e.g. "noticing the price went up"), say what replaces it; automatic UED functions often do.
+- **Brief description**: short text, first in the use case. Who the actor is, what they want, the outcome, and what the system does for them. No UI, no step list.
+- **Primary actor, secondary actors, level, scope** (the system under design) and **focus area(s)**. NEVER USE UI terms; use the UED functions instead.
+- **Trigger**: from the sequence model. If the real trigger disappears with the system (e.g. "noticing the price went up"), say what replaces it; automatic UED functions often do. Keep it short
 - **Preconditions**, **minimal guarantee** (what holds even if the goal fails) and **success guarantee**.
 - **Stakeholders and interests**: from the flow and cultural models. The scenario must protect these.
-- **Main success scenario**: 3–9 numbered steps. Each is the actor acting, the system responding, or the system involving a secondary actor.
+- **Main success scenario**: 3–9 numbered steps or an appropriate graphical representation (e.g. sequence diagram). Each is the actor acting, the system responding, or the system involving a secondary actor. If a distinction must be made between the actor's intent and the system's response, write them in double collumn format. NEVER
+USE UI TERMS.
 - **Extensions**: for each step, ask how it can fail or what else can happen. Write `<step><letter>. <condition>: <handling>`, ending with where it rejoins or how it ends. Every breakdown from the data that touches this goal must appear here, or be solved by the main scenario. Cite its ID.
-- **Traceability**: sequence activity, UED functions used (with step numbers), affinity groups, breakdown IDs, persona.
 
 ## Writing rules
 
-- **No UI.** Write at the level of intention ("the coordinator records the group's decision"), not widgets ("clicks Save"). UI is designed later; screen-level steps lock in a layout too early.
+- **NEVER USE UI TERMS OR WIDGETS.** Write at the level of intention ("the coordinator records the group's decision"), not widgets ("clicks Save"). UI is designed later; screen-level steps lock in a layout too early.
 - **Each step should use a UED function.** If a step needs a function the UED doesn't have, keep the step and tell the user about the gap in the chat.
 - **Write from the data.** Use the users' own words and real values in conditions (e.g. "no dorm", "limit of 300 € per person"). Don't invent behaviour the data doesn't show; mention unanswered questions in the chat instead.
 - **Keep secondary intents.** If users needed to "justify cuts to the group", the scenario must not silently drop rejected options.
 
 ## Output
 
-The file contains **only the use case(s)**: no introduction, goal list, analysis or findings. Save it where the project keeps its documentation, tell the user where, and don't overwrite existing requirements without asking. Mention UED gaps or open questions briefly in the chat.
+The file contains **only the use case(s)**: no introduction, goal list, analysis or findings. Save it where the project keeps its documentation, tell the user where, and don't overwrite existing requirements without asking. Mention UED gaps or open questions briefly in the chat. If some part needs clarification from the point of view of a reviewer, justify why you wrote it that way at the end of the page.
