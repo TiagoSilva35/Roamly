@@ -58,8 +58,6 @@ Sizes used to balance the work: small = 1, medium = 2, large = 3 (story map, sto
 | **José** | J1 use-case diagram (2), J2 UC-01 (2), J3 BDD UC-01 (1), J4 AI reflection on UC-04 (2), J5 final pass (1) | T3, G3, Jo3 |
 | **Gonçalo** | G1 context diagram (1), G2 UC-02 (2), G3 BDD UC-02 (1), G4 glossary (1), G5 AI reflection (2), G6 conclusion (1) | T1, J1, T4, Jo2 |
 
-Each person owns one of the three use cases with its BDD, or (João) the story map and domain model that the use cases are built on. Tiago and João review each other's story-map work.
-
 ## Everyone
 
 - [ ] Keep an **AI log** while working (prompt, what came out, what you kept or changed and why). This feeds J4 and G5.
