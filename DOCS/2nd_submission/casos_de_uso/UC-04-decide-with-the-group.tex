@@ -1,7 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[english]{babel}
+\usepackage[portuguese]{babel}
 \usepackage{lmodern}
 \usepackage[margin=2.3cm]{geometry}
 \usepackage{tabularx,booktabs,array,enumitem}
@@ -27,69 +27,68 @@
 
 \begin{document}
 
-\begin{usecase}{UC-04}{Get the group to decide on the proposal}
-\textbf{Brief description.} The group coordinator shares a trip proposal with the travel companions, collects each person's possible dates and opinions within a deadline, and records the group's decision so the trip can be booked and paid. While the group decides, the system tells everyone when a price changes, so no one decides on an outdated total.\par\smallskip
-\begin{tabularx}{\textwidth}{@{}p{3.4cm}L@{}}
+\begin{usecase}{UC-04}{Levar o grupo a decidir sobre a proposta}
+\textbf{Descrição breve.} O organizador do grupo partilha a proposta de viagem com os amigos que vão. Cada membro indica em que datas pode ir e se aceita cada item, e o organizador regista o que o grupo combinou. O sistema mostra a todos a mesma proposta e o mesmo total por pessoa, mostra ao organizador quem já respondeu e onde o grupo diverge, e guarda a decisão na proposta. A seguir, o organizador pode sair do Roamly para reservar no site de cada fornecedor.\par\smallskip
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.4cm}L@{}}
 \toprule
-\ucField{Primary actor}{Group coordinator}
-\ucField{Secondary actors}{Travel companions (give their availability, opinions and votes)}
-\ucField{Level}{User goal. The decision is asynchronous: the coordinator starts it in one session and closes it when the group has answered, within a deadline.}
-\ucField{Scope}{Roamly app (base version, traveller)}
-\ucField{Focus area}{5. Decide with the group or the client}
-\ucField{Trigger}{The coordinator has a proposal with the total per person calculated (UC-02) and wants a decision before the price changes. Today, what pushes the organiser to chase the group again is noticing that the price ``went up'' \reg{UE08}; in the system, the automatic price-rise alert takes over that role (extension *a).}
-\ucField{Preconditions}{The trip has a proposal with the total per person calculated. The budget per person is recorded (area 1). The coordinator knows who the companions are; they do not need to have opened Roamly before (extension 2a).}
-\ucField{Minimal guarantee}{Opinions and dates already given are not lost. No price rise is hidden from the group.}
-\ucField{Success guarantee}{The group's decision is recorded and visible to everyone, with the chosen proposal and the total per person. The trip can move on to booking on the supplier's site (area E) and to the group's payments (area 6).}
+\ucField{Ator principal}{Organizador(a) do grupo}
+\ucField{Atores secundários}{Membros do grupo (indicam as suas datas e a sua opinião sobre cada item)}
+\ucField{Nível}{Objetivo do utilizador}
+\ucField{Âmbito}{Roamly (versão base, viajante)}
+\ucField{Área de foco}{5. Decidir com o grupo ou o cliente}
+\ucField{Gatilho}{A proposta cabe no limite por pessoa (UC-02) e o organizador quer a decisão do grupo antes de o preço mudar.}
+\ucField{Pré-condições}{A viagem tem uma proposta com o total por pessoa (UC-02) e os seus limites (UC-01). O organizador sabe quem vai.}
+\ucField{Garantia mínima}{As datas e as opiniões já dadas ficam guardadas. Todos os membros veem a mesma versão, atual, da proposta.}
+\ucField{Garantia de sucesso}{O que o grupo combinou fica registado na proposta, junto dos itens a que se refere, e todos os membros o veem. O organizador sabe a resposta de cada um e pode sair do Roamly para reservar no site de cada fornecedor.}
 \bottomrule
 \end{tabularx}
 
 \medskip
-\textbf{Stakeholders and interests}
+\textbf{Partes interessadas e interesses}
 \begin{itemize}
-  \item \textbf{Coordinator:} get a decision before the price rises \reg{UE08}; not have to chase answers one by one; not be the only one who remembers what was agreed \reg{UE18}.
-  \item \textbf{Travel companions:} give an opinion with little effort, without opening spreadsheets \reg{UE17}; understand why an option was cut \reg{UE12}.
-  \item \textbf{Family:} know where their child will sleep \reg{UE13}.
+  \item \textbf{Organizador(a) do grupo:} ter uma decisão antes de o preço subir \reg{UE08}; saber a quem insistir sem perguntar um a um \reg{UE08}; não ser o único a lembrar-se, depois de cada conversa, do que ficou combinado \reg{UE18, U0-19}.
+  \item \textbf{Membros do grupo:} responder sem abrir folhas de cálculo («manda print») \reg{UE17}; dizer o que não aceitam («dormitório não») antes de se reservar alguma coisa \reg{UE05}; dizer quando podem ir \reg{UE02, UE09}.
 \end{itemize}
 
-\textbf{Main success scenario}
+\textbf{Cenário principal de sucesso}
 \begin{enumerate}
-  \item The coordinator shares the proposal with the group and sets a deadline for the decision.
-  \item The system shows each companion the proposal, with the total per person and what was cut and why.
-  \item Each companion gives their possible dates and their opinion on each option.
-  \item The system shows the coordinator everyone's opinions and dates, and who has not answered yet.
-  \item The coordinator records the group's decision.
-  \item The system saves the decision, shows it to the whole group and lets the trip move on to booking and payments.
+  \item O organizador partilha a proposta com o grupo.
+  \item O sistema mostra a proposta a cada membro: itens, preços, total por pessoa e o que foi cortado e porquê.
+  \item Cada membro indica se pode ir nas datas propostas ou em que outras datas pode.
+  \item Cada membro indica se aceita cada item.
+  \item O sistema mostra ao organizador quem já respondeu, quem ainda falta e os itens em que os membros divergem.
+  \item O organizador regista na proposta o que o grupo combinou.
+  \item O sistema guarda a decisão na proposta e mostra-a a todos os membros, junto dos itens a que se refere.
 \end{enumerate}
 
-\textbf{Extensions}
+\textbf{Extensões}
 \begin{itemize}[leftmargin=2.2em]
-  \item[1a.] \textit{The proposal's total exceeds the budget per person} \reg{UE06}: the system warns the coordinator before it is shared. The coordinator adjusts the proposal (UC-02) or shares it anyway, with the warning visible to the group.
-  \item[2a.] \textit{A companion does not open the proposal or is not in Roamly} \reg{UE17, FM.9, AM.25}: the coordinator sends the group a summary of the proposal that can be seen without opening anything (the ``print'' the group asks for), with the total per person. The coordinator records that companion's answer on their behalf (step 3).
-  \item[3a.] \textit{A companion has not answered and the deadline is approaching} \reg{FM.8}: the system reminds them before the deadline. If the deadline passes, the coordinator extends it or decides with the answers available (step 5).
-  \item[3b.] \textit{A companion can only travel on other dates} \reg{UE09}: the coordinator redoes the search with the new dates (area 1) and returns to step 1 with the updated proposal.
-  \item[3c.] \textit{A companion rejects an option} (``no dorm'', \reg{UE05}): the coordinator swaps the option (area 2) and returns to step 1.
-  \item[5b.] \textit{The group is divided on an item or on the dates}: the coordinator changes the items or dates in dispute (areas 1 or 2) and returns to step 1 with the updated proposal.
-  \item[5a.] \textit{The group decides in person, around a single phone} \reg{PM.29, SM.22}: the coordinator records what was agreed on the spot, on that phone; the system saves it as the group's decision and shows it to everyone (step 6).
-  \item[6a.] \textit{Someone outside the group needs to know the plan} (the mother asks where they will sleep, \reg{UE13}): the coordinator shares the plan with that person without adding them to the group.
-  \item[*a.] \textit{The price of an option rises while the group is deciding} \reg{FM.2, SM.17}: the system alerts the group and the coordinator, with the new total per person. If the total now exceeds the budget, continue with 1a.
+  \item[2a.] \textit{Um membro não abre a proposta partilhada} («manda print», \reg{UE17; FM.9, SM.21, AM.25}): o organizador envia um resumo com o total por pessoa que se lê na própria conversa do grupo (US-14). Continua no passo 5, onde esse membro continua a aparecer em falta.
+  \item[3a.] \textit{Um membro só pode ir noutras datas} (o Amigo~B só pode a partir de uma sexta-feira concreta, \reg{UE09, U0-03}): o sistema regista essas datas como alternativa às propostas (US-15) e mostra-as ao organizador junto da resposta desse membro (US-31). Se o organizador refizer a pesquisa, a janela de datas muda no UC-01 (*a) e a proposta atualizada volta a ser partilhada (passo 1).
+  \item[4a.] \textit{Um membro não aceita um item} («dormitório não», \reg{UE05}): a resposta do membro fica visível ao grupo junto desse item, e o sistema mostra ao organizador em que itens há divergência (US-16). O organizador muda o item (UC-02) e o grupo vê a proposta atualizada (*a), ou mantém-no e continua no passo 6.
+  \item[5a.] \textit{Os membros demoram a responder} (dois dias sem resposta, \reg{UE08; FM.8}): o organizador vê quem ainda falta (US-31) e insiste só com esses. Continua no passo 3 para esses membros.
+  \item[5b.] \textit{(Release 2, US-17) O prazo fixado pelo organizador passa e falta alguém responder}: o sistema avisa o organizador de quem falta. Continua em 5a ou no passo 6.
+  \item[6a.] \textit{O grupo decide ao vivo, à volta de um só telemóvel} (no café, \reg{UE18; SM.22, PM.29}): o organizador regista o combinado na proposta naquele momento (US-18). Continua no passo 7.
+  \item[6b.] \textit{Há membros que ainda não responderam quando o organizador regista a decisão}: a decisão fica registada e esses membros também a veem (US-18). Continua no passo 7.
+  \item[*a.] \textit{O organizador altera um item depois de partilhar a proposta}: quem abre a proposta vê a versão atualizada (US-14), com o novo total por pessoa.
+  \item[*b.] \textit{O preço de uma opção sobe enquanto o grupo decide} (o voo subiu 19\,€: «malta, subiu», \reg{UE08; FM.2, SM.17}); ponto de extensão \textit{subida de preço}: o sistema avisa o organizador e mostra de quanto subiu (US-08, «Alertar subida de preço»). O total por pessoa é atualizado e o grupo vê-o na proposta (*a).
 \end{itemize}
 
-\textbf{Traceability}
+\textbf{Rastreabilidade}
 \begin{itemize}
-  \item \textbf{Consolidated sequence:} activity 6 ``Take the proposal to whoever decides'' (intent: get a decision from the travellers before the price changes); activity 9 ``Bring the group up to date on the costs'' and ``Choose the rest together and record it''; activity 8 ``Tell whoever needs to know''; activity 2 ``Find out the budget, the dates and what can't be given up''.
-  \item \textbf{UED, area 5:} ``Show the group the shared idea and proposal'' (step 2), ``Show the group what was cut and why'' (2), ``Enter each friend's possible dates'' (3), ``Give an opinion on each option'' (3), ``Set a deadline for the group to decide'' (1), ``Record what was agreed'' (5, 5a), ``Alert the group when the price rises'' (*a), ``Share the plan with people who aren't going'' (6a). Links to areas 1 (3b), 6 and E (6).
-  \item \textbf{Affinity:} ``I wait for the group and meanwhile the price goes up''; ``The proposal I share doesn't reach my friends''.
-  \item \textbf{Breakdowns:} FM.2, SM.17 (*a); FM.8 (3a); FM.9, SM.21, AM.25 (step 2: the proposal is seen without opening a spreadsheet; 2a when it still does not reach someone); SM.22, PM.29 (5a).
+  \item \textbf{Histórias:} US-14 (passos 1 e 2; 2a, *a); US-15 (passo 3; 3a); US-16 (passo 4; 4a); US-31 (passo 5; 3a, 5a); US-18 (passos 6 e 7; 6a, 6b); US-08 (*b); US-17, Release~2 (5b).
+  \item \textbf{Sequência consolidada:} atividade 6 «Levar a proposta a quem decide» (intenção: conseguir uma decisão de quem viaja antes que o preço mude) e o seu \textit{breakdown} «o grupo responde devagar e o preço sobe» \reg{U0-09}; atividade 9, «Pôr o grupo a par das contas» \reg{UE17} e «Escolher o resto em conjunto e registá-lo» \reg{UE18}; atividade 7, «Refazer quando uma condição muda» \reg{UE09} (3a).
+  \item \textbf{UED, área 5:} «Mostrar ao grupo a ideia e a proposta partilhadas» (passos 1 e 2); «Mostrar ao grupo o que foi cortado e porquê» (2); «Indicar as datas possíveis de cada amigo» (3); «Dar a opinião sobre cada opção» (4); «Registar o que ficou combinado» (6 e 7, 6a); «Avisar o grupo quando o preço sobe» (*b); «Definir um prazo para o grupo decidir» (5b). Ligação da área 5 para a área 1, «para refazer a pesquisa com novas datas» (3a).
+  \item \textbf{Afinidade:} «Espero pelo grupo e entretanto o preço sobe»; «A proposta que partilho não chega aos meus amigos».
+  \item \textbf{\textit{Breakdowns} (área 5):} FM.2, SM.17 (*b); FM.8 (5a); FM.9, SM.21, AM.25 (2a e passo 2); SM.22, PM.29 (6a).
+  \item \textbf{Diagrama de casos de uso (L1):} inclui «Calcular o total por pessoa»; é estendido por «Alertar subida de preço» no ponto de extensão \textit{subida de preço}; ator secundário: membro do grupo.
   \item \textbf{Persona:} Inês.
 \end{itemize}
-
-\textbf{Open issues}
-\begin{itemize}
-  \item When the proposal changes and the use case returns to step 1 (3b, 3c, 5b), it is not known whether opinions and dates given on items that did not change carry over or must be given again. The data does not answer this.
-  \item Extensions 3a, 3c and 1a need parts of the system that the UED does not have yet: an automatic reminder to whoever has not answered in area 5 (today there is only one in area 6, for payments), and links from area 5 to area 2 (swap an option) and to area 3 (adjust the proposal). The UED only links area 5 to areas 1 and 6.
-  \item In 2a, it is not known how the coordinator records an answer given outside Roamly, or how the group can tell it apart from one the companion gave.
-  \item Area 5 also serves the agent's client (A0 shows the proposal to the couple in 5), where the client takes the proposal away to compare online \reg{AE06, FM.5}. That variant is out of this use case's scope and has no use case yet.
-\end{itemize}
 \end{usecase}
+
+\medskip
+{\footnotesize\textbf{Notas para revisão.}
+(1) O nível é objetivo do utilizador, como no diagrama de casos de uso, embora a decisão possa demorar dias \reg{UE08}: o objetivo do organizador é um só (uma decisão do grupo registada) e cada interação com o sistema acontece numa só sessão.
+(2) A extensão 5b depende da US-17, que é da Release~2; fica no caso de uso para mostrar desde já onde entra o prazo.\par}
 
 \end{document}
