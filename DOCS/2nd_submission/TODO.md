@@ -5,7 +5,7 @@
 DOCS/
   1st_submission/            # frozen: what was delivered in Deliverable 1
     relatorio/               # LaTeX report (compiles from here: latexmk -pdf main.tex)
-    work_models/             # interviews, flow/cultural/sequence/artifact/physical models, UED, wireframes, backlog
+    work_models/             # interviews, flow/cultural/sequence/artifact/physical models, UED, wireframes
   2nd_submission/
     TODO.md                  # this file
     casos_de_uso/            # UC-04 draft (AI-generated, unrevised; see J4)
@@ -18,9 +18,9 @@ DOCS/
 
 ## Decisions (não encontrei context diagrams e use case diagrams nos conteudos do prof)
 - [ ] **Which 3 use cases** get the full Cockburn treatment. Proposal, to confirm once the story map's first release slice exists:
-  - **UC-01** Find trips that fit the budget and dates (US-01, focus area 1. Explore ideas)
-  - **UC-02** Know the real total per person (US-02/US-03, focus area 3. Trip budget). UC-04 already depends on it.
-  - **UC-04** Get the group to decide on the proposal (US-04/US-05, focus area 5). A draft already exists.
+  - **UC-01** Define the trip's limits (US-02, US-28)
+  - **UC-02** Know the real total per person (US-06, US-09, US-10). UC-04 already depends on it.
+  - **UC-04** Get the group to decide on the proposal (US-14, US-15, US-31, US-16, US-18; US-17 in Release 2 as an extension). A draft already exists.
 - [ ] **Use draw.io for the context diagram: https://miro.com/blog/context-diagram/**
 - [ ] ***And for each use case diagram: https://www.geeksforgeeks.org/system-design/use-case-diagram/***
 
