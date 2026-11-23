@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{tabularx,booktabs,array,enumitem}
+\usepackage[table]{xcolor}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\definecolor{roamly}{HTML}{0E6E68}
+\definecolor{pendente}{HTML}{6B7280}
+\hypersetup{colorlinks=true,linkcolor=roamly,urlcolor=roamly}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.3}
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% reference to an interview record or a breakdown (as in the report)
+\newcommand{\reg}[1]{{\footnotesize\textcolor{pendente}{(#1)}}}
+% use case
+\newenvironment{usecase}[2]{%
+  \par\medskip\noindent{\large\bfseries\color{roamly}#1: #2}\par\smallskip\small\noindent\ignorespaces}{\par\medskip}
+\newcommand{\ucField}[2]{\textbf{#1} & #2 \\}
+
+\begin{document}
+
+\begin{usecase}{UC-01}{Define the trip's limits}
+\textbf{Brief description.} Before looking for options, the group organiser states how much each person can spend and when the group can travel. The system keeps these limits on the trip and compares everything the organiser adds later against them. The trip thus starts from the group's budget and dates, not from a destination.\par\smallskip
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.4cm}L@{}}
+\toprule
+\ucField{Primary actor}{Group organiser}
+\ucField{Secondary actors}{None}
+\ucField{Level}{User goal}
+\ucField{Scope}{Roamly (base version, traveller)}
+\ucField{Focus area}{1. Explore ideas}
+\ucField{Trigger}{The group replies to the trip idea with its price and date conditions (``depends on the price; it would be easier near the weekend'') \reg{UE02}.}
+\ucField{Preconditions}{The organiser has created the trip in Roamly. The trip does not need a destination yet.}
+\ucField{Minimal guarantee}{The limit per person and the dates already given are kept. No option is compared against a limit the organiser did not give.}
+\ucField{Success guarantee}{The trip has a limit per person and a date window. Every option the organiser adds is compared against them, and the total per person (UC-02) has a limit to be compared with.}
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textbf{Stakeholders and interests}
+\begin{itemize}
+  \item \textbf{Group organiser:} plan a cheap trip the whole group accepts, up to 300\,€ per person; start from the budget and the dates, not from the destination \reg{UE03, U0-05}; not have to redo everything by hand when a condition changes \reg{UE09}.
+  \item \textbf{Group members:} not be tied to a trip above what they can pay or on dates they cannot go \reg{UE02, U0-03}.
+  \item \textbf{Family (financial guardian):} ``don't spend what you don't have'' \reg{U0-12}.
+\end{itemize}
+
+\textbf{Main success scenario}
+\begin{enumerate}
+  \item The organiser states how much each person can spend (e.g. up to 300\,€ per person).
+  \item The system keeps the limit per person on the trip.
+  \item The organiser states the dates on which the group can travel.
+  \item The system keeps the date window on the trip.
+  \item From then on, the system compares every option the organiser adds (flight, stay or activity) against the limit per person and the date window.
+\end{enumerate}
+
+\textbf{Extensions}
+\begin{itemize}[leftmargin=2.2em]
+  \item[1a.] \textit{It is not yet known how much the group can spend} (``depends on the price'', \reg{UE02}): the organiser goes on without a limit. Whenever an option is added, the system reminds the organiser that there is no limit to compare it with (US-02). Continue at step 3.
+  \item[3a.] \textit{The group can go at any time within a period} (``whole month'', \reg{UE03, U0-05}): the organiser states the whole period as the date window, with no fixed destination. Continue at step 4.
+  \item[5a.] \textit{An option falls outside the date window}: the system warns the organiser that the option is outside the possible dates (US-28). The organiser keeps it or removes it from the trip.
+  \item[5b.] \textit{An option takes the total per person over the limit} (303\,€ for a 300\,€ limit, \reg{UE06}): the system warns the organiser. The organiser adjusts the trip in UC-02 (e.g. by cutting an item).
+  \item[*a.] \textit{The possible dates change after options have been added} (Friend~B can only go from a specific Friday, \reg{UE09, U0-03}): the organiser states the new date window (step 3). The system compares the options already added again and warns about those now outside it (as in 5a).
+\end{itemize}
+
+\textbf{Traceability}
+\begin{itemize}
+  \item \textbf{Stories:} US-02 ``Set the limit per person'' (steps 1, 2, 5; 1a); US-28 ``Set the date window'' (steps 3--5; 5a).
+  \item \textbf{Consolidated sequence:} activity 2 ``Understand what the travellers want'', step ``Find out the budget, the dates and what can't be given up'' (intent: understand what the travellers want and how flexible they are); activity 3, search with ``whole month'' dates \reg{UE03} (3a); activity 7, ``Redo when a condition changes'' \reg{UE09} (*a).
+  \item \textbf{UED, area 1:} ``State the budget per person, the possible dates and what can't be given up'' (steps 1--4); ``Search by budget and dates only, with no fixed destination'' (3a). Area 3: ``Warn when the total goes over the budget per person'' (5b). Link from area 5 to area 1, ``to redo the search with new dates'' (*a).
+  \item \textbf{Affinity:} ``I'm proud of spending less''.
+  \item \textbf{Breakdowns:} SM.11, AM.26 (see note below).
+  \item \textbf{Persona:} Inês.
+\end{itemize}
+\end{usecase}
+
+\medskip
+{\footnotesize\textbf{Notes for reviewers.}
+(1) The primary actor uses the name from the stories and the use-case diagram. In the consolidated flow model, this goal combines two roles: \textit{Trip planner} and \textit{Group coordinator}.
+(2) The area 1 breakdowns are SM.11 and AM.26: the client's itinerary does not state the budget, the flexible dates or ``what they won't give up'' \reg{A0-06}. They belong to the agent. In this use case (base version) they are solved by the main scenario, which sets the limit and the dates before any option is looked for. The agent's variant is US-03 [A] (Release~3).\par}
+
+\end{document}
