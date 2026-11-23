@@ -1,0 +1,42 @@
+%==========================================================
+\section{Cenários BDD}\label{sec:bdd}
+
+Os cenários estão escritos em Gherkin, com as palavras-chave em português (\texttt{\# language: pt}), e seguem Dan
+North\footnote{D.~North, «Introducing BDD», 2006, \url{https://dannorth.net/blog/introducing-bdd/}.}: cada cenário
+descreve um só comportamento, com um contexto (\textit{Dado}), um único acontecimento (\textit{Quando}) e resultados que um
+ator consegue observar (\textit{Então}). Usam as mesmas palavras dos casos de uso e das histórias, e o mesmo passo escreve-se
+sempre da mesma maneira, para corresponder a uma só definição de passo quando os cenários forem automatizados.
+
+Cada caso de uso tem um ficheiro \texttt{.feature}, com um cenário para o cenário principal de sucesso e um para cada
+extensão tratada. As etiquetas (\texttt{@UC-04}, \texttt{@ext-3a}, \texttt{@US-15}, \texttt{@FM.8}) ligam cada cenário ao
+passo ou à extensão do caso de uso, às histórias e aos \textit{breakdowns}.
+
+%----------------------------------------------------------
+\subsection{UC-04: Levar o grupo a decidir sobre a proposta}\label{sec:bdd-uc04}
+
+A Tabela~\ref{tab:bdd-uc04} liga cada cenário ao UC-04. Ficaram de fora a extensão 5b, que é da Release~2, e as extensões
+6b e *a, que não têm \textit{breakdown} associado.
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}L>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{2.5cm}@{}}
+\toprule
+\textbf{Cenário} & \textbf{Caso de uso} & \textbf{Histórias} & \textbf{\textit{Breakdowns}} \\
+\midrule
+Todos podem ir nas datas propostas e aceitam todos os itens & Cenário principal (passos 1--7) & US-14, US-15, US-16, US-31, US-18 & -- \\
+A proposta partilhada mostra o que foi cortado & Cenário principal (passos 1 e 2) & US-14, US-10 & -- \\
+Um membro não abre a proposta partilhada & Extensão 2a & US-14 & FM.9, SM.21, AM.25 \\
+Um membro não pode ir nas datas propostas & Extensão 3a & US-15, US-31 & -- \\
+Um membro não aceita um item & Extensão 4a & US-16 & -- \\
+Os membros demoram a responder & Extensão 5a & US-31 & FM.8 \\
+O grupo decide ao vivo, à volta de um só telemóvel & Extensão 6a & US-18 & SM.22, PM.29 \\
+O preço de um voo sobe enquanto o grupo decide & Extensão *b & US-08 & FM.2, SM.17 \\
+\bottomrule
+\end{tabularx}
+\caption{Rastreabilidade dos cenários BDD do UC-04.}
+\label{tab:bdd-uc04}
+\end{table}
+
+% Fonte: ../bdd/UC-04-decide-with-the-group.feature (editar o .feature; o relatório acompanha)
+\VerbatimInput[breaklines=true,fontsize=\footnotesize,frame=single,framesep=2mm,
+  rulecolor=\color{roamly},numbers=left,numbersep=4pt]{../bdd/UC-04-decide-with-the-group.feature}

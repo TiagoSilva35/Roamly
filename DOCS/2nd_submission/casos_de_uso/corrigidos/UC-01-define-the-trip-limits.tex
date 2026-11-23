@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{tabularx,booktabs,array,enumitem}
+\usepackage[table]{xcolor}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\definecolor{roamly}{HTML}{0E6E68}
+\definecolor{pendente}{HTML}{6B7280}
+\hypersetup{colorlinks=true,linkcolor=roamly,urlcolor=roamly}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.3}
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% reference to an interview record or a breakdown (as in the report)
+\newcommand{\reg}[1]{{\footnotesize\textcolor{pendente}{(#1)}}}
+% use case
+\newenvironment{usecase}[2]{%
+  \par\medskip\noindent{\large\bfseries\color{roamly}#1: #2}\par\smallskip\small\noindent\ignorespaces}{\par\medskip}
+\newcommand{\ucField}[2]{\textbf{#1} & #2 \\}
+
+\begin{document}
+
+\begin{usecase}{UC-01}{Definir os limites da viagem}
+\textbf{Descrição breve.} Antes de procurar opções, o organizador do grupo indica quanto cada pessoa pode gastar e em que datas o grupo pode viajar. O sistema guarda estes limites na viagem e compara com eles tudo o que o organizador juntar depois. Assim, a viagem parte do orçamento e das datas do grupo, e não de um destino.\par\smallskip
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.4cm}L@{}}
+\toprule
+\ucField{Ator principal}{Organizador(a) do grupo}
+\ucField{Atores secundários}{Nenhum}
+\ucField{Nível}{Objetivo do utilizador}
+\ucField{Âmbito}{Roamly (versão base, viajante)}
+\ucField{Área de foco}{1. Explorar ideias}
+\ucField{Gatilho}{O grupo responde à ideia de viagem com as suas condições de preço e de datas («depende do preço; era mais fácil perto do fim de semana») \reg{UE02}.}
+\ucField{Pré-condições}{Existe uma ideia de viagem guardada no Roamly («Guardar uma ideia de viagem», US-01). A viagem ainda não precisa de ter destino.}
+\ucField{Garantia mínima}{O limite por pessoa e as datas já indicados ficam guardados. Nenhuma opção é comparada com um limite que o organizador não indicou.}
+\ucField{Garantia de sucesso}{A viagem tem um limite por pessoa e uma janela de datas. Cada opção que o organizador juntar é comparada com eles, e o total por pessoa (UC-02) tem um limite com que ser comparado.}
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textbf{Partes interessadas e interesses}
+\begin{itemize}
+  \item \textbf{Organizador(a) do grupo:} planear uma viagem barata que todo o grupo aceite, até 300\,€ por pessoa; partir do orçamento e das datas, e não do destino \reg{UE03, U0-05}; não ter de refazer tudo à mão quando uma condição muda \reg{UE09}.
+  \item \textbf{Membros do grupo:} não ficarem presos a uma viagem acima do que podem pagar ou em datas em que não podem ir \reg{UE02, U0-03}.
+  \item \textbf{Família (guardião financeiro):} «não gastes o que não tens» \reg{U0-12}.
+\end{itemize}
+
+\textbf{Cenário principal de sucesso}
+\begin{enumerate}
+  \item O organizador indica quanto cada pessoa pode gastar (p.\,ex., até 300\,€ por pessoa).
+  \item O sistema guarda o limite por pessoa na viagem.
+  \item O organizador indica as datas em que o grupo pode viajar.
+  \item O sistema guarda a janela de datas na viagem.
+\end{enumerate}
+
+\textbf{Extensões}
+\begin{itemize}[leftmargin=2.2em]
+  \item[1a.] \textit{Ainda não se sabe quanto o grupo pode gastar} («depende do preço», \reg{UE02}): o organizador avança sem limite. Sempre que junta uma opção, o sistema lembra-o de que não há limite com que a comparar (US-02). Continua no passo 3.
+  \item[3a.] \textit{O grupo pode ir em qualquer altura de um período} («mês inteiro», \reg{UE03, U0-05}): o organizador indica o período inteiro como janela de datas, sem destino fixo. Continua no passo 4.
+  \item[*a.] \textit{As datas possíveis mudam depois de já haver opções na viagem} (o Amigo~B só pode a partir de uma sexta-feira concreta, \reg{UE09, U0-03}): o organizador indica a nova janela de datas (passo 3). O sistema volta a comparar as opções já juntas com as novas datas e avisa das que ficaram fora (US-28).
+\end{itemize}
+
+\textbf{Rastreabilidade}
+\begin{itemize}
+  \item \textbf{Histórias:} US-02 «Definir o limite por pessoa» (passos 1 e 2; 1a); US-28 «Definir a janela de datas» (passos 3 e 4; 3a, *a).
+  \item \textbf{Sequência consolidada:} atividade 2 «Perceber o que quem viaja quer», passo «Saber o orçamento, as datas e o que não se abdica» (intenção: perceber o que quem viaja quer e até onde é flexível); atividade 3, pesquisa com datas «mês inteiro» \reg{UE03} (3a); atividade 7, «Refazer quando uma condição muda» \reg{UE09} (*a).
+  \item \textbf{UED, área 1:} «Indicar o orçamento por pessoa, as datas possíveis e o que não se dispensa» (passos 1 a 4); «Pesquisar só por orçamento e datas, sem destino fixo» (3a). Ligação da área 5 para a área 1, «para refazer a pesquisa com novas datas» (*a).
+  \item \textbf{Afinidade:} «Tenho orgulho em gastar menos».
+  \item \textbf{\textit{Breakdowns}:} SM.11, AM.26 (ver nota 2).
+  \item \textbf{Persona:} Inês.
+\end{itemize}
+\end{usecase}
+
+\medskip
+{\footnotesize\textbf{Notas para revisão.}
+(1) O ator principal usa o nome das histórias e do diagrama de casos de uso. No modelo de fluxo consolidado, este objetivo junta dois papéis: \textit{Planeador da viagem} e \textit{Coordenador do grupo}.
+(2) Os \textit{breakdowns} da área 1 são SM.11 e AM.26: o roteiro do cliente não diz o orçamento, as datas flexíveis nem «o que não abdicam» \reg{A0-06}. São do agente e não entram neste caso de uso (versão base). A variante do agente é a US-03 [A] (Release~3).
+(3) A função do UED da área 1 inclui também «o que não se dispensa». Fica fora deste caso de uso: só o agente mostra esse dado \reg{A0-06}, o caso do viajante não mostra o grupo a fixá-lo à partida, e nenhuma história da Release~1 o pede.
+(4) O que acontece quando o organizador junta uma opção pertence a «Adicionar uma oferta por ligação»: o aviso de opção fora da janela de datas (US-28) é dessa altura. O aviso de total acima do limite está no UC-02 (4b).
+(5) Não há atores secundários. Os membros do grupo dão as suas condições na conversa do grupo, fora do Roamly (é o gatilho, \reg{UE02}), e a família não usa o Roamly. Por isso estão nas partes interessadas, e não nos atores.\par}
+
+\end{document}

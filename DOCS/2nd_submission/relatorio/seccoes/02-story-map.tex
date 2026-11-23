@@ -1,0 +1,15 @@
+%==========================================================
+% O título fica na página deitada, junto do mapa, para não ficar sozinho no fim da página anterior.
+\begin{landscape}
+\section{\textit{Story map}}\label{sec:storymap}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{story_map/story_map.png}
+\caption{\textit{Story map} do \projeto.}
+\label{fig:storymap}
+\end{figure}
+\end{landscape}
+
+% Tabela gerada a partir de ../story_map/historias_roamly.md (editar o .md e voltar a gerar)
+\input{../story_map/historias_roamly.tex}

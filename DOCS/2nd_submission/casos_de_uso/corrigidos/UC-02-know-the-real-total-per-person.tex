@@ -1,0 +1,94 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{tabularx,booktabs,array,enumitem}
+\usepackage[table]{xcolor}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\definecolor{roamly}{HTML}{0E6E68}
+\definecolor{pendente}{HTML}{6B7280}
+\hypersetup{colorlinks=true,linkcolor=roamly,urlcolor=roamly}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.3}
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% reference to an interview record or a breakdown (as in the report)
+\newcommand{\reg}[1]{{\footnotesize\textcolor{pendente}{(#1)}}}
+% use case
+\newenvironment{usecase}[2]{%
+  \par\medskip\noindent{\large\bfseries\color{roamly}#1: #2}\par\smallskip\small\noindent\ignorespaces}{\par\medskip}
+\newcommand{\ucField}[2]{\textbf{#1} & #2 \\}
+
+\begin{document}
+
+\begin{usecase}{UC-02}{Saber o total real por pessoa}
+\textbf{Descrição breve.} Depois de escolher as opções da viagem, o organizador do grupo quer saber quanto custa de facto a cada pessoa e se a viagem cabe no limite. O sistema soma num só sítio o preço das opções escolhidas, já com os extras, compara o total por pessoa com o limite da viagem e mantém-no atualizado quando um preço muda ou um item é cortado. Assim, o organizador deixa de copiar preços à mão para uma folha de cálculo e não tem surpresas na página de pagamento.\par\smallskip
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.4cm}L@{}}
+\toprule
+\ucField{Ator principal}{Organizador(a) do grupo}
+\ucField{Atores secundários}{Sites dos fornecedores (sistema externo): o sistema volta a ler as ofertas escolhidas para saber se o preço mudou (*a, *c)}
+\ucField{Nível}{Objetivo do utilizador}
+\ucField{Âmbito}{Roamly (versão base, viajante)}
+\ucField{Área de foco}{3. Orçamento da viagem}
+\ucField{Gatilho}{O organizador escolheu voo e alojamento e quer saber se a viagem cabe no limite por pessoa \reg{UE06}.}
+\ucField{Pré-condições}{A viagem tem pelo menos um voo ou um alojamento guardado a partir da ligação da oferta, com o preço por pessoa lido da página ou preenchido à mão («Adicionar uma oferta por ligação», US-04, US-05). O limite por pessoa (UC-01) pode ainda não estar definido (extensão 4a).}
+\ucField{Garantia mínima}{Nenhum custo conhecido fica fora do total. O que falta ou está por confirmar fica assinalado no total, em vez de ser omitido. Um item cortado não se perde.}
+\ucField{Garantia de sucesso}{O organizador vê num só sítio o total por pessoa, com os extras, e se cabe no limite. O total fica na proposta, atualizado, pronto para o grupo decidir (UC-04).}
+\bottomrule
+\end{tabularx}
+
+\medskip
+\textbf{Partes interessadas e interesses}
+\begin{itemize}
+  \item \textbf{Organizador(a) do grupo:} saber se a viagem cabe nos 300\,€ por pessoa sem refazer as contas à mão \reg{UE06, UE09, UE12}; ter num só sítio o custo que hoje está espalhado pelo comparador, pelo transporte e pela folha de cálculo \reg{U0-07}; não ter surpresas na página de pagamento («isto ninguém diz», \reg{UE07, U0-08}).
+  \item \textbf{Membros do grupo:} decidir com base no preço real («depende do preço», \reg{UE02}); perceber o que foi cortado e porquê \reg{UE12, U0-17}.
+  \item \textbf{Família (guardião financeiro):} «não gastes o que não tens» \reg{U0-12}.
+\end{itemize}
+
+\textbf{Cenário principal de sucesso}
+\begin{enumerate}
+  \item O organizador escolhe as opções que entram na viagem: voo, alojamento e atividades.
+  \item O sistema calcula o total por pessoa das opções escolhidas, já com os extras de cada oferta, como a bagagem de porão (inclui «Calcular o total por pessoa»).
+  \item O sistema mostra ao organizador, num só sítio, o total por pessoa e de que é feito: o preço de cada opção e os seus extras.
+  \item O sistema compara o total por pessoa com o limite da viagem (UC-01) e mostra ao organizador que a viagem cabe no limite.
+  \item O sistema guarda o total por pessoa na proposta, pronto para ser partilhado com o grupo (UC-04).
+\end{enumerate}
+
+\textbf{Extensões}
+\begin{itemize}[leftmargin=2.2em]
+  \item[2a.] \textit{O site não revela o preço dos extras de uma oferta} (\reg{FM.1, SM.16, CM.31}): o sistema conta a oferta no total e indica que os extras estão por confirmar, em vez de os omitir (US-06). Continua no passo 3.
+  \item[2b.] \textit{(Release 2, US-29) Um voo obriga a apanhar transporte até ao aeroporto} (comboio e metro, cerca de 13\,€ por sentido, \reg{UE04; AM.24, SM.14}): o custo desse transporte entra no total por pessoa. Se o custo não é conhecido, o total indica que falta esse custo. Continua no passo 3.
+  \item[4a.] \textit{A viagem ainda não tem limite por pessoa} («depende do preço», \reg{UE02}; UC-01, 1a): o sistema mostra o total por pessoa sem o comparar e lembra o organizador de que não há limite com que o comparar (US-02). Continua no passo 5.
+  \item[4b.] \textit{O total por pessoa passa o limite} (303\,€ para um limite de 300\,€, \reg{UE06}): o sistema avisa o organizador de que passou o limite (US-09). O organizador corta um item (*b) ou troca uma opção (área 2, «Comparar opções»), e o sistema volta ao passo 2.
+  \item[*a.] \textit{O preço de uma opção escolhida muda} (o voo subiu 19\,€, \reg{UE08}), ou as datas mudam e as opções são refeitas (322\,€ depois de o Amigo~B mudar as datas, \reg{UE09}): o sistema deteta a mudança quando volta a ler a oferta no site do fornecedor, ou quando o organizador refaz as opções. Atualiza sozinho o total por pessoa (US-09) e volta a compará-lo com o limite (passo 4).
+  \item[*b.] \textit{O organizador corta um item}; ponto de extensão \textit{corte de um item} («Cortar um item», US-10): o organizador corta a visita à mina de sal (28\,€, «isto é para turistas», \reg{UE12}). O sistema tira o item do total, que passa logo de 322\,€ para 294\,€, e o item continua visível como cortado, para o grupo ver o que saiu e porquê \reg{U0-17}. Se o organizador repuser o item, o total volta ao valor anterior. Continua no passo 3.
+  \item[*c.] \textit{O sistema já não consegue ler uma oferta escolhida no site do fornecedor}: o total por pessoa mantém o último preço conhecido dessa oferta e indica que pode estar desatualizado (US-08). Continua no passo 3.
+\end{itemize}
+
+\textbf{Rastreabilidade}
+\begin{itemize}
+  \item \textbf{Histórias:} US-09 «Ver o total por pessoa» (passos 1 a 5; 4b, *a); US-06 «Ver o preço final com extras» (passos 2 e 3; 2a); US-10 «Cortar um item e ver o efeito» (*b); US-02 «Definir o limite por pessoa» (4a); US-08 «Alertar quando o preço sobe», critério 2 (*c); US-29 «Contar o transporte até ao aeroporto no total», Release~2 (2b).
+  \item \textbf{Sequência consolidada:} atividade 5 «Juntar tudo numa proposta» (intenção: ter depressa uma proposta cujo total por pessoa caiba no orçamento), passos «Copiar os dados de outros sistemas para a proposta» \reg{UE06} e «Ver o custo real» \reg{UE07}; atividade 4, «Verificar a logística» \reg{UE04} (2b); atividade 7, «Cortar o que não cabe» \reg{UE12} (*b) e «Refazer quando uma condição muda» \reg{UE09} (*a).
+  \item \textbf{UED, área 3:} «Somar o total por pessoa» (passos 2 e 3); «Avisar quando o total passa o orçamento por pessoa» (4, 4b); «Cortar um item e ver o efeito no total» (*b); «Atualizar o total quando um preço muda» (*a); «Incluir o transporte até ao aeroporto» (2b). Área 2: «Mostrar o preço final, já com extras como a bagagem de porão» (2, 2a); ligação da área 2 para a área 3 (4b).
+  \item \textbf{Afinidade:} «Faço e refaço as contas eu mesmo/a»; «Copio à mão de um sistema para outro»; «Os extras só aparecem quando vou pagar»; «O custo de chegar ao aeroporto fica fora das minhas contas».
+  \item \textbf{\textit{Breakdowns} (área 3):} SM.14 (passos 2 e 3; 2b); AM.24 (2b); FM.7, SM.15, AM.23, PM.28 (ver nota 2). Da área 2, por tocarem neste objetivo: FM.1, SM.16, CM.31 (2a).
+  \item \textbf{Diagrama de casos de uso (L1):} inclui «Calcular o total por pessoa»; é estendido por «Cortar um item» no ponto de extensão \textit{corte de um item}; ator secundário: sites dos fornecedores.
+  \item \textbf{Persona:} Inês.
+\end{itemize}
+\end{usecase}
+
+\medskip
+{\footnotesize\textbf{Notas para revisão.}
+(1) Os sites dos fornecedores são ator secundário porque, nas extensões *a e *c, o sistema volta a ler as ofertas escolhidas para saber se o preço mudou. Os membros do grupo não são atores: não usam o Roamly neste caso de uso.
+(2) FM.7, SM.15, AM.23 e PM.28 descrevem o agente a copiar à mão os dados do portal para a proposta \reg{AE05, A0-07}. Na versão base, o mesmo problema existe do lado do organizador, que copia à mão os preços de cada site para a folha de cálculo \reg{UE06}, e fica resolvido pelo cenário principal: o total é calculado a partir das ofertas guardadas, sem cópia. A variante do agente é a US-30 [A] (Release~3).
+(3) A extensão 2b depende da US-29, que é da Release~2 e tem um \textit{spike} sobre a fonte de horários e preços de transportes; fica no caso de uso para mostrar desde já onde entra esse custo.
+(4) O ator principal usa o nome das histórias e do diagrama de casos de uso. No modelo de fluxo consolidado, este objetivo é do papel \textit{Planeador da viagem}.
+(5) O corte de um item é a extensão *b, e não 4c, porque pode acontecer em qualquer passo, e não só quando o total passa o limite.\par}
+
+\end{document}

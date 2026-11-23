@@ -1,0 +1,86 @@
+%==========================================================
+\section{Casos de uso}\label{sec:casosdeuso}
+
+%----------------------------------------------------------
+% Não é o diagrama de contexto do Contextual Design (nota do enunciado).
+\subsection{Diagrama de contexto (nível 0)}\label{sec:contexto}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{diagramas/diagrama_contexto_nivel0/Roamly-diagrama-contexto-N0.drawio.png}
+\caption{Diagrama de contexto (nível 0) do \projeto.}
+\label{fig:contexto}
+\end{figure}
+
+%----------------------------------------------------------
+\subsection{Diagrama de casos de uso (nível 1)}\label{sec:diagrama-uc}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{diagrams/use-case-diagram.png}
+\caption{Diagrama de casos de uso do \projeto{} (Release 1).}
+\label{fig:diagrama-uc}
+\end{figure}
+
+%----------------------------------------------------------
+\subsection{Casos de uso detalhados}\label{sec:uc-detalhados}
+
+Os três casos de uso detalhados cobrem as histórias de maior prioridade da Release~1: definir os limites da viagem (UC-01),
+saber o total real por pessoa (UC-02) e levar o grupo a decidir sobre a proposta (UC-04). Seguem o modelo de Cockburn e
+cada um indica as histórias, a sequência consolidada, as funções do UED e os \textit{breakdowns} em que se baseia.
+
+% Fonte: ../casos_de_uso/corrigidos/ (os originais, gerados por IA, estão em ../casos_de_uso/)
+\begingroup
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\clearpage
+\input{../casos_de_uso/corrigidos/UC-01-define-the-trip-limits}
+\clearpage
+\input{../casos_de_uso/corrigidos/UC-02-know-the-real-total-per-person}
+\clearpage
+\input{../casos_de_uso/corrigidos/UC-04-decide-with-the-group}
+\endgroup
+\clearpage
+
+%----------------------------------------------------------
+\subsection{Reflexão sobre um caso de uso gerado por IA}\label{sec:uc-ia}
+
+As primeiras versões dos três casos de uso foram geradas com IA (Claude Code, com uma \textit{skill} do projeto que aplica o
+método de \textit{Contextual Design} e o modelo de Cockburn). A Tabela~\ref{tab:uc-ia} lista o que estava errado, enganador ou
+em falta nessas versões, e como e porquê foi corrigido.
+
+\begingroup\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{@{}p{1.1cm}p{6.8cm}p{7.6cm}@{}}
+\caption{O que mudou entre as versões geradas por IA e as versões finais dos casos de uso.}\label{tab:uc-ia}\\
+\toprule
+\textbf{Caso} & \textbf{Problema na versão gerada por IA} & \textbf{Correção e porquê} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\textit{(continuação)}}\\
+\toprule
+\textbf{Caso} & \textbf{Problema na versão gerada por IA} & \textbf{Correção e porquê} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+UC-01 & \textit{Errado.} O passo 5 e as extensões 5a e 5b descreviam o que acontece depois, noutros casos de uso (juntar uma oferta; UC-02). A 5b repetia a 4b do UC-02. & O cenário acaba no passo 4 e uma nota diz onde ficam as extensões retiradas. Um caso de uso tem um só objetivo. \\
+UC-01 & \textit{Enganador.} Uma nota dizia que o cenário «obriga» a fixar o limite e as datas, mas a extensão 1a deixa avançar sem limite. Dava também como resolvidos os SM.11 e AM.26 («o que não abdicam»), que o cenário não trata. & Nota reescrita: SM.11 e AM.26 são do agente e ficam para a US-03 [A] (Release~3). \\
+UC-01 & \textit{Em falta.} A função do UED é «Indicar o orçamento por pessoa, as datas possíveis e o que não se dispensa»; a última parte desaparecia sem explicação. & Nota a justificar: só o agente mostra esse dado \reg{A0-06} e nenhuma história da Release~1 o pede. \\
+UC-01 & \textit{Errado.} A pré-condição «O organizador criou a viagem no Roamly» refere uma ação que nenhum caso de uso nem história cobre. & Passou a «Existe uma ideia de viagem guardada (US-01)», o passo real anterior, coerente com o gatilho \reg{UE02}. \\
+UC-01 & \textit{Em falta.} Não justificava a ausência de atores secundários. & Nota: os membros dão as suas condições na conversa do grupo, fora do Roamly, e a família não usa o Roamly; são partes interessadas, e não atores. \\
+\midrule
+UC-02 & \textit{Errado.} «Sem atores secundários», defendido numa nota, embora a extensão *a obrigue o sistema a voltar a ler a oferta no site do fornecedor para saber se o preço mudou. & Os sites dos fornecedores passam a ator secundário. Nova extensão *c para quando o site já não se consegue ler (US-08). \\
+UC-02 & \textit{Errado e vago.} A pré-condição dizia «opção escolhida», mas o passo 1 é o organizador a escolher as opções; «opção guardada» continuava vago. & «Pelo menos um voo ou um alojamento guardado a partir da ligação da oferta, com o preço por pessoa lido da página ou preenchido à mão.» \\
+UC-02 & \textit{Errado.} O corte de um item era a extensão 4c, mas pode acontecer em qualquer passo, e não só quando o total passa o limite. & Passou a *b, como o ponto de extensão do diagrama de casos de uso. \\
+UC-02 & \textit{Forma.} O gatilho misturava o gatilho com a descrição do processo atual. & Ficou numa frase. \\
+\midrule
+UC-04 & \textit{Errado.} Nível «objetivo do utilizador», defendido numa nota, embora a decisão demore dias e se faça em várias sessões, de pessoas diferentes \reg{UE08}. & Passou a «resumo». \\
+UC-04 & \textit{Inconsistente.} O aviso de subida de preço ia só para o organizador. A função do UED é «Avisar o grupo quando o preço sobe», com a restrição «Não usar mensagens de urgência». & O aviso chega ao organizador e aos membros, sem mensagens de urgência. \\
+UC-04 & \textit{Errado.} A extensão 4a mandava trocar o item «no UC-02»; trocar uma opção é na área 2 do UED, «Comparar opções». & Remete para a área 2. \\
+UC-04 & \textit{Legibilidade.} Cenário em lista simples, com três participantes e membros que respondem cada um no seu tempo. & Cenário em três colunas (organizador, membros, sistema), com os mesmos passos. A mudança de datas que altera a proposta fica na extensão 3a. \\
+\midrule
+Todos & \textit{Em falta.} O ator principal, «Organizador(a) do grupo», não é um papel do modelo de fluxo consolidado. & Mantido, por coerência com as histórias e o diagrama; uma nota indica o papel do fluxo (Planeador da viagem ou Coordenador do grupo). \\
+\end{longtable}
+\endgroup
+
