@@ -52,13 +52,3 @@ Os termos são os do relatório e da interface.
 | **Lembrete no quadro** | Uma nota no quadro de um cliente (substitui o papel autocolante). |
 | **Fornecedor** | Fornecedor que não está online, guardado com as notas do agente; aparece entre as opções. |
 | **Revisão da proposta** | A assinatura do agente; o cliente não vê nada antes dela. |
-
-## Mapa de contextos
-
-| A montante | A jusante | Relação | Notas |
-|---|---|---|---|
-| Planeamento da viagem | Decisão do grupo | Cliente/Fornecedor | A Decisão do grupo refere propostas e opções só por identificador (IdDaProposta, IdDaOpção). |
-| Vigilância de preços | Planeamento da viagem | Camada anticorrupção | Os preços lidos são traduzidos para o Preço de uma Opção; a introdução manual é a alternativa. |
-| Decisão do grupo | Acerto de pagamentos | Evento publicado | As opções acordadas geram Partes da despesa. |
-| Vigilância de preços | Decisão do grupo | Evento publicado | Um Alerta de preço notifica todos os Membros. |
-| Balcão da agência [A] | Planeamento da viagem | Open host / conformista | A agência reutiliza Proposta e Opção, acrescentando revisão e fornecedores. |
