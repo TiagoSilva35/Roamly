@@ -12,6 +12,35 @@ extensão tratada. As etiquetas (\texttt{@UC-04}, \texttt{@ext-3a}, \texttt{@US-
 passo ou à extensão do caso de uso, às histórias e aos \textit{breakdowns}.
 
 %----------------------------------------------------------
+\subsection{UC-01: Definir os limites da viagem}\label{sec:bdd-uc01}
+
+A Tabela~\ref{tab:bdd-uc01} liga cada cenário ao UC-01. O cenário principal tem dois passos de ação (indicar o limite por
+pessoa e indicar as datas), por isso tem dois cenários, um por acontecimento. Todas as extensões do UC-01 têm cenário. Nenhum
+cenário tem \textit{breakdown}: os da área 1 (SM.11, AM.26) são do agente e ficam fora deste caso de uso (nota 2 do UC-01).
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}L>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{2.5cm}@{}}
+\toprule
+\textbf{Cenário} & \textbf{Caso de uso} & \textbf{Histórias} & \textbf{\textit{Breakdowns}} \\
+\midrule
+O grupo sabe quanto cada pessoa pode gastar & Cenário principal (passos 1 e 2) & US-02 & -- \\
+O grupo sabe em que datas pode viajar & Cenário principal (passos 3 e 4) & US-02, US-28 & -- \\
+Ainda não se sabe quanto o grupo pode gastar & Extensão 1a & US-02 & -- \\
+O grupo pode ir em qualquer altura de um mês & Extensão 3a & US-28 & -- \\
+As datas possíveis mudam depois de já haver opções na viagem & Extensão *a & US-28 & -- \\
+\bottomrule
+\end{tabularx}
+\caption{Rastreabilidade dos cenários BDD do UC-01.}
+\label{tab:bdd-uc01}
+\end{table}
+
+% Fonte: ../bdd/UC-01-define-the-trip-limits.feature (editar o .feature; o relatório acompanha)
+\VerbatimInput[breaklines=true,fontsize=\footnotesize,frame=single,framesep=2mm,
+  rulecolor=\color{roamly},numbers=left,numbersep=4pt]{../bdd/UC-01-define-the-trip-limits.feature}
+
+
+%----------------------------------------------------------
 \subsection{UC-04: Levar o grupo a decidir sobre a proposta}\label{sec:bdd-uc04}
 
 A Tabela~\ref{tab:bdd-uc04} liga cada cenário ao UC-04. Ficaram de fora a extensão 5b, que é da Release~2, e as extensões
