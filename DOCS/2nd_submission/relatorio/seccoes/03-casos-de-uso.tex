@@ -16,9 +16,17 @@
 %----------------------------------------------------------
 \subsection{Diagrama de casos de uso (nível 1)}\label{sec:diagrama-uc}
 
+O diagrama da Figura~\ref{fig:diagrama-uc} mostra os casos de uso da Release~1, derivados das histórias da
+Secção~\ref{sec:storymap}. O organizador do grupo é o ator principal e está ligado aos objetivos que inicia. Os membros do
+grupo e os sites dos fornecedores são atores secundários: o Roamly precisa deles para cumprir o objetivo. Os sites dos
+fornecedores são um sistema externo, por isso estão marcados com \guillemotleft sistema\guillemotright. Cada caso de uso indica
+o seu nível de Cockburn. As relações \guillemotleft include\guillemotright{} e \guillemotleft extend\guillemotright{} mostram o
+comportamento partilhado (calcular o total por pessoa) e o opcional (cortar um item, alertar a subida de preço), com os pontos
+de extensão indicados nos casos base.
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{diagrams/use-case-diagram.png}
+\includegraphics[width=\textwidth]{diagramas/diagrama-nivel1/use-case-diagram.png}
 \caption{Diagrama de casos de uso do \projeto{} (Release 1).}
 \label{fig:diagrama-uc}
 \end{figure}
