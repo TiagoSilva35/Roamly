@@ -13,16 +13,14 @@ Funcionalidade: Definir os limites da viagem
   Cenário: O grupo sabe quanto cada pessoa pode gastar
     Dado que o grupo pode gastar até 300 € por pessoa
     Quando o organizador indica o limite de 300 € por pessoa
-    Então a viagem fica com o limite de 300 € por pessoa
-    E o organizador vê o limite de 300 € por pessoa junto de cada preço por pessoa
+    Então o organizador vê na viagem o limite de 300 € por pessoa
 
   @passo-principal @US-02 @US-28
   Cenário: O grupo sabe em que datas pode viajar
     Dado que a viagem tem o limite de 300 € por pessoa
     E o grupo pode viajar de 6 a 17 de março
     Quando o organizador indica a janela de datas de 6 a 17 de março
-    Então a viagem fica com o limite de 300 € por pessoa e a janela de datas de 6 a 17 de março
-    E cada opção que o organizador juntar à viagem é comparada com esse limite e com essas datas
+    Então o organizador vê na viagem a janela de datas de 6 a 17 de março
 
   @ext-1a @US-02
   Cenário: Ainda não se sabe quanto o grupo pode gastar
@@ -36,15 +34,15 @@ Funcionalidade: Definir os limites da viagem
   Cenário: O grupo pode ir em qualquer altura de um mês
     Dado que o grupo pode viajar em qualquer altura de março: «mês inteiro»
     Quando o organizador indica todo o mês de março como janela de datas
-    Então a viagem fica com a janela de datas de 1 a 31 de março
+    Então o organizador vê na viagem a janela de datas de 1 a 31 de março
     E a viagem continua sem destino
 
   @ext-*a @US-28
   Cenário: As datas possíveis mudam depois de já haver opções na viagem
     Dado que a viagem tem o limite de 300 € por pessoa e a janela de datas de 6 a 17 de março
-    E a viagem já tem um voo para 6 de março e um alojamento de 13 a 17 de março
+    E a viagem já tem duas opções de voo: uma a 6 de março e outra a 13 de março
     E o Amigo B só pode a partir de sexta-feira, 13 de março
     Quando o organizador indica a nova janela de datas de 13 a 17 de março
     Então o organizador é avisado de que o voo de 6 de março ficou fora das datas possíveis
-    E o alojamento de 13 a 17 de março continua dentro das datas possíveis
+    E o voo de 13 de março continua dentro das datas possíveis
     E o limite de 300 € por pessoa continua guardado
