@@ -21,7 +21,7 @@ Os termos são os do relatório e da interface.
 |---|---|
 | **Grupo** | As pessoas que viajam juntas. Tem exatamente um organizador. |
 | **Membro** | Uma pessoa do grupo que pode dar opiniões e indicar disponibilidade. |
-| **Coordenador** | O membro que planeia: partilha a proposta, define o prazo, regista decisões e pagamentos. Só o organizador pode marcar um pagamento como feito. |
+| **Organizador** | O membro que planeia: partilha a proposta, define o prazo, regista decisões e pagamentos. Só o organizador pode marcar um pagamento como feito. |
 | **Opinião («Concordo» / «Prefiro outra»)** | A posição de um membro sobre uma opção. O organizador só reserva quando todos concordam. |
 | **Disponibilidade** | Se um membro pode nas datas propostas, ou em que outras datas pode. |
 | **Decisão** | O que o grupo combinou, com um prazo enquanto está aberta. Fica junto das opções a que se refere. |

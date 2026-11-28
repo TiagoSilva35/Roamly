@@ -12,11 +12,11 @@ DOCS/
     casos_de_uso/            # first versions of UC-01, UC-02, UC-04 (AI-generated, kept unchanged; UC-04's first English version is in commit 60d2c25)
       corrigidos/            # revised UC-01, UC-02, UC-04 (T3, T5, T6); these go in the report (§3.3)
     diagramas/diagrama_contexto_nivel0/  # context diagram (G1), in the report (§3.1)
-    diagrams/                # use-case diagram (J1), in the report (§3.2)
-    bdd/                     # one Gherkin .feature per use case (T4, G3, J3); included verbatim in the report (§4)
-    relatorio/               # created (T1): main.tex, seccoes/, figuras/. Filled: cover, intro, §1, §2, §3, §4 (UC-04). Empty: §5–§7
+    diagramas/diagrama-nivel1/           # use-case diagram (J1, J6), in the report (§3.2)
+    bdd/                     # one Gherkin .feature per use case: UC-01 (J3) and UC-04 (T4) done; UC-02 (G3) missing
+    relatorio/               # created (T1): main.tex, seccoes/, figuras/. Filled: cover, intro, §1–§5, §6 (partial). Missing: §4 UC-02, §6 (rest), §7
     story_map/               # done (Jo1/T2): story_map.png + historias_roamly.md/.tex (the .tex is generated from the .md)
-    ddd/                     # to create (Jo2, Jo3, G4): domain model, context map
+    ddd/                     # done (Jo2, Jo3, G4): domain model, bounded contexts, context map, glossary (in the report §5)
 ```
 
 
@@ -44,14 +44,14 @@ DOCS/
 | ~~J6~~ | ~~§3.2 Use-case diagram (L1)~~ | ~~Update after the use-case review: link UC-02 to «Sites dos fornecedores» (secondary actor); mark UC-04 as summary level («resumo»). Then delete the "tem de ser atualizado" sentences in the notes of UC-02 (1) and UC-04 (1).~~ Done: `.drawio` and `.png` updated (UC-04 in blue, legend «Azul: resumo»), notes cleaned. | ~~Tiago~~ | ~~José~~ |
 | ~~T8~~ | ~~§2 Story map~~ | ~~Align US-08 with UC-04 (*b) and the UED: the price-rise alert goes to the whole group, without urgency messages. Regenerate `historias_roamly.tex` and delete the last sentence of UC-04 note (3).~~ Done: US-08 rewritten (organiser and members are alerted; new criterion 3, no urgency messages), table regenerated. | ~~Tiago~~ | ~~João~~ |
 | ~~T4~~ | ~~§4 BDD~~ | ~~Gherkin for UC-04: one happy-path scenario + at least one exception scenario (e.g. price rises while the group decides, deadline passes). **Status: written** (`bdd/UC-04-decide-with-the-group.feature`, 8 scenarios; report §4.1 with traceability table); waiting for review. Open point: in *b the 19 € rise takes the total to 313 €, over the 300 € limit, and UC-04 doesn't say whether the organiser is warned (UC-02 4b does).~~ | ~~Tiago~~ | ~~Gonçalo~~ |
-| G3 | §4 BDD | Gherkin for UC-02: happy path + at least one exception. Use the `bdd-scenarios` skill (`.claude/skills/bdd-scenarios/`) and follow `bdd/UC-04-…feature` and report §4.1 (same format, tags and traceability table). | Gonçalo | José |
-| J3 | §4 BDD | Gherkin for UC-01: happy path + at least one exception. Use the `bdd-scenarios` skill and follow `bdd/UC-04-…feature` and report §4.1. | José | Tiago |
-| Jo2 | §5 DDD | **Domain model** (class-style diagram) in the ubiquitous language: Trip, Proposal, Option (flight/stay/activity), Budget, Total per person, Group, Member/Coordinator, Vote/Opinion, Availability, Decision, Price alert, Expense share, Payment… Derived from the artifact and sequence models, consistent with the names used in the use cases. | João | Gonçalo |
-| Jo3 | §5 DDD | **At least two bounded contexts** and a context map (e.g. *Trip Planning & Pricing* / *Group Decision* / *Group Payments*). Say what each owns, which terms change meaning across them (e.g. "Proposal", "Member"), and the relationships between them. | João | José |
-| G4 | §5 DDD | **Glossary.** Short definition of each ubiquitous-language term, linked to its bounded context. | Gonçalo | João |
-| T7 | §6 AI reflection | Write the section from everyone's notes (see "Everyone" below): where AI helped, where it got things wrong or missed the point (generic epics in stories, UI words in use cases, invented behaviour…). Concrete examples. | Gonçalo | Everyone |
-| G6 | §7 Conclusion | How our understanding of the project changed from D1 to D2; open concerns and questions. | Gonçalo | Everyone |
-| J5 | Final pass | Consistency across sections: same actor/term names in stories, use cases, BDD, DDD; traceability story → UC → BDD; annexes (team organisation table, AI-use annex); compile; page numbers; version. | José | Everyone |
+| G3 | §4 BDD | Gherkin for UC-02: happy path + at least one exception. **Missing** (no `bdd/UC-02-…feature`, no §4 subsection). Use the `bdd-scenarios` skill and follow `bdd/UC-04-…feature` and §4.1 (same format, tags and traceability table). | Gonçalo | José |
+| ~~J3~~ | ~~§4 BDD~~ | ~~Gherkin for UC-01: happy path + at least one exception. Use the `bdd-scenarios` skill and follow `bdd/UC-04-…feature` and report §4.1.~~ | ~~José~~ | ~~Tiago~~ |
+| ~~Jo2~~ | ~~§5 DDD~~ | ~~**Domain model** (class-style diagram) in the ubiquitous language: Trip, Proposal, Option (flight/stay/activity), Budget, Total per person, Group, Member/Coordinator, Vote/Opinion, Availability, Decision, Price alert, Expense share, Payment… Derived from the artifact and sequence models, consistent with the names used in the use cases.~~ | ~~João~~ | ~~Gonçalo~~ |
+| ~~Jo3~~ | ~~§5 DDD~~ | ~~**At least two bounded contexts** and a context map (e.g. *Trip Planning & Pricing* / *Group Decision* / *Group Payments*). Say what each owns, which terms change meaning across them (e.g. "Proposal", "Member"), and the relationships between them.~~ | ~~João~~ | ~~José~~ |
+| ~~G4~~ | ~~§5 DDD~~ | ~~**Glossary.** Short definition of each ubiquitous-language term, linked to its bounded context.~~ | ~~Gonçalo~~ | ~~João~~ |
+| T7 | §6 AI reflection | Write §6 from everyone's AI logs. **Partial:** story map and user stories (in the story map part) and DDD are written. Use cases are already covered in §3.4: add one sentence in §6 pointing to it. Missing: diagrams and BDD (only if AI was used there). | Gonçalo | Everyone |
+| G6 | §7 Conclusion | How our understanding of the project changed from D1 to D2; open concerns and questions. **Missing** (§7 is empty). | Gonçalo | Everyone |
+| J5 | Final pass | Final pass: same actor/term names in stories, use cases, BDD, DDD; traceability story → UC → BDD; §5 intro (glossary, model, contexts) is thin; annexes (team organisation table, AI-use annex); compile; page numbers; version. | José | Everyone |
 
 ## Totals
 
@@ -60,9 +60,9 @@ Sizes used to balance the work: small = 1, medium = 2, large = 3 (story map, sto
 | Person | Tasks | Reviews |
 |---|---|---|
 | **Tiago** | T1 report setup, intro, brief (2, done), T2 stories (3), T3 UC-04 (2, done), T4 BDD UC-04 (1, done), T5 UC-02 (2, done), T6 UC-01 (2, done), T8 align US-08 (1, done), J6 update use-case diagram (1, done) — 14 | Jo1, G1, J3 |
-| **João** | Jo1 story map (3), Jo2 domain model (3), Jo3 bounded contexts (2) — 8 | T2, T6, J4, G4, T8 |
-| **José** | J1 use-case diagram (2), J3 BDD UC-01 (1), J4 AI reflection on UC-04 (2, done), J5 final pass (1) — 6 | T3, G3, Jo3, J6 |
-| **Gonçalo** | G1 context diagram (1), G3 BDD UC-02 (1), G4 glossary (1), G5 AI reflection (2), G6 conclusion (1) — 6 | T1, J1, T4, T5, Jo2 |
+| **João** | Jo1 story map (3, done), Jo2 domain model (3, done), Jo3 bounded contexts (2, done) — 8 | T2, T6, J4, G4, T8 |
+| **José** | J1 use-case diagram (2, done), J3 BDD UC-01 (1, done), J4 AI reflection on UC-04 (2, done), J5 final pass (1) — 6 | T3, G3, Jo3, J6 |
+| **Gonçalo** | G1 context diagram (1, done), G3 BDD UC-02 (1), G4 glossary (1, done), T7 AI reflection (2, partial), G6 conclusion (1) — 6 | T1, J1, T4, T5, Jo2 |
 
 ## Everyone
 
