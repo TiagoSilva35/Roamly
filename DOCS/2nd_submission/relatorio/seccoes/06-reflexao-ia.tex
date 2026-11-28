@@ -1,2 +1,35 @@
 %==========================================================
 \section{Reflexão sobre o uso de IA}\label{sec:reflexao}
+
+\subsection{\textit{Story map}}
+
+Foi fornecido ao Claude, na versão grátis, todo o relatório da primeira entrega, mais os enunciados da primeira e segunda metas.
+A prompt fornecida foi \"O ficheiro Elicitation é o enunciado da primeira entrega de um trabalho que estou a fazer em grupo para uma cadeira de Engenharia de Software. O relatório que entregámos é o documento main.pdf. O ficheiro Description é o enunciado da segunda entrega. A minha parte é fazer o story map. Consegues explicar-me o que é e fazer-me um story board baseado no relatório que entregámos?\"
+A resposta da IA foi quase perfeita.
+
+Criou automaticamente as 3 releases, criou user stories curta da forma INVEST (pois o enunciado assim o dizia) e também forneceu logo as User Stories, apesar de eu não as ter pedido como output.
+No entanto, das 27 US fornecidas, 11 estavam boas, 13 precisaram de pequenos ajustes e 3 precisaram mesmo de ser divididas em 2, resultando em 30 US.
+No geral, a qualidade de resposta foi bastante elevada.
+ 
+
+\subsection{\textit{Domain-driven model}}
+
+Para esta parte do projeto, foram feitos 2 conjuntos de prompts ao Claude, um para o modelo de domínio e outro para os contextos delimitados.
+
+\subsubsection{\textit{Domain model}}
+
+Para a construção do modelo de domínio, o modelo apenas tinha o contexto até ao \textit{Story map} e foram necessárias 3 prompts.
+A primeira prompt foi: \"My new task is now this: "Domain model (class-style diagram) in the ubiquitous language: Trip, Proposal, Option (flight/stay/activity), Budget, Total per person, Group, Member/Coordinator, Vote/Opinion, Availability, Decision, Price alert, Expense share, Payment… Derived from the artifact and sequence models", can you do it?\"
+Uma vez que os ficheiros fornecidos foram em inglês (pois a prompt também estava em inglês), a segunda prompt foi apenas para traduzir de inglês para português, para manter a coerência com o resto do trablho.
+A terceira prompt foi necessária para corrigir algumas incoerências entre as respostas dadas e o projeto, uma vez que eu não forneci ao modelo as alterações feitas pelo grupo.
+
+Se não fosse pelos erros humanos a utilizar esta ferramenta, a IA teria fornecido todos estes materiais (em especial as imagens, que são as mais difíceis de fazer à mão) à primeira.
+A qualidade de resposta foi novamente muito boa, e até devolveu o glossário que utilizou, sem eu ter explicitamente pedido por ele.
+
+\subsubsection{\textit{Bounded contexts}}
+
+Para a criação dos contextos delimitados, o Claude tinha o mesmo contexto que o do \textit{domain model}, mas já com as US's corretas.
+A prompt utilizada foi a seguinte:"Tens razão, as User stories foram alteradas pelo meu grupo e eu esqueci-me de tas dar. Aqui estão elas atualizadas. Agora, dou-te a minha última tarefa:"At least two bounded contexts and a context map (e.g. Trip Planning \& Pricing / Group Decision / Group Payments). Say what each owns, which terms change meaning across them (e.g. “Proposal”, “Member”), and the relationships between them.". Quero a resposta em português"
+O resultado também foi quase perfeito, apenas tendo utilizado a palavra "coordenador" em vez de "organizador" para o membro organizador do grupo pois diz ter visto este termo no enunciado, apesar de ele não existir (certamente alguma alucinação).
+No geral, a resposta foi de elevada qualidade e mais uma vez provou ser uma grande ajuda, especialmente a criar imagens.
+

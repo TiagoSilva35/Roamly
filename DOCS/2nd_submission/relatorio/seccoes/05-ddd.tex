@@ -1,2 +1,29 @@
 %==========================================================
 \section{\textit{Domain-Driven Design}}\label{sec:ddd}
+
+De forma a criar um \textit{Domain model}, foi preciso primeiro definir um glossário de termos para cada domínio.
+Este modelo mostra os vários conceitos que as palavras no glossário representam no nosso sistema.
+As setas e os traços representam as relações entre estes conceitos.
+As setas roxas conectam conceitos de diferentes contextos, enquanto os traços a preto representam as relações entre conceitos (associação ou herança).
+
+\subsection{Glossário}\label{sec:ddd-glossary}
+
+\input{../ddd/glossario.tex}
+
+\begin{landscape}
+\subsection{\textit{Doman model}}\label{sec:ddd-domain}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{ddd/modelo_dominio_geral.png}
+\caption{\textit{Domain Model} do \projeto.}
+\label{fig:domainmodel}
+\end{figure}
+\end{landscape}
+
+\subsection{\textit{Bounded contexts}}\label{sec:ddd-contexts}
+
+\input{../ddd/contextos_delimitados.tex}
+
+
+

@@ -1,8 +1,8 @@
 % requer: longtable, booktabs, array, graphicx
-\subsection{Contextos e o que cada um possui}
+\subsubsection{Contextos e o que cada um possui}
 O sistema divide-se em cinco contextos delimitados. Cada um tem a sua parte da linguagem ubíqua: o mesmo termo pode querer dizer coisas diferentes consoante o contexto, e é por isso que os contextos estão separados.
 
-\begin{longtable}{@{}p{2.4cm}p{2.9cm}p{3.5cm}p{4.6cm}p{1.9cm}@{}}
+\begin{longtable}{@{}p{2.4cm}p{3.2cm}p{2.7cm}p{4.0cm}p{1.9cm}@{}}
 \caption{Contextos delimitados do Roamly.}\label{tab:contextos}\\
 \toprule \textbf{Contexto} & \textbf{Responsabilidade} & \textbf{Possui} & \textbf{Regras que garante} & \textbf{Histórias} \\ \midrule \endfirsthead
 \toprule \textbf{Contexto} & \textbf{Responsabilidade} & \textbf{Possui} & \textbf{Regras que garante} & \textbf{Histórias} \\ \midrule \endhead
@@ -13,7 +13,7 @@ O sistema divide-se em cinco contextos delimitados. Cada um tem a sua parte da l
 \textbf{Balcão da agência {[A]}} & Dá ao agente de viagens um espaço de trabalho por cliente (só na versão para agências). & Quadro do cliente (raiz do agregado), Pedido do cliente, Lembrete no quadro, Fornecedor e Revisão da proposta. & O cliente não vê a proposta antes de o agente a assinar; um pedido com dados em falta é assinalado antes de se montar a proposta; um fornecedor sem preço aparece \guillemotleft{}sem preço\guillemotright{}, nunca como 0 \texteuro{}. & US-03, 13, 19, 23, 24, 25, 27, 30 \\ \bottomrule
 \end{longtable}
 
-\subsection{Termos que mudam de significado}
+\subsubsection{Termos que mudam de significado}
 \begin{longtable}{@{}p{3cm}p{3.6cm}p{8.7cm}@{}}
 \caption{Termos cujo significado muda entre contextos.}\label{tab:termos}\\
 \toprule \textbf{Termo} & \textbf{Contexto} & \textbf{Significado} \\ \midrule \endfirsthead
@@ -44,15 +44,15 @@ O sistema divide-se em cinco contextos delimitados. Cada um tem a sua parte da l
 \bottomrule
 \end{longtable}
 
-\subsection{Mapa de contextos}
+\subsubsection{Mapa de contextos}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{mapa_de_contextos.pdf}
+\includegraphics[width=\linewidth]{ddd/mapa_de_contextos.pdf}
 \caption{Mapa de contextos. M = a montante (fornece), J = a jusante (consome).}
 \label{fig:mapa-contextos}
 \end{figure}
 
-\begin{longtable}{@{}p{2.3cm}p{2.3cm}p{2.5cm}p{6.1cm}p{1.9cm}@{}}
+\begin{longtable}{@{}p{2.3cm}p{2.3cm}p{2.5cm}p{5.0cm}p{1.9cm}@{}}
 \caption{Relações entre contextos.}\label{tab:relacoes}\\
 \toprule \textbf{A montante} & \textbf{A jusante} & \textbf{Relação} & \textbf{O que passa} & \textbf{Histórias} \\ \midrule \endfirsthead
 \toprule \textbf{A montante} & \textbf{A jusante} & \textbf{Relação} & \textbf{O que passa} & \textbf{Histórias} \\ \midrule \endhead
