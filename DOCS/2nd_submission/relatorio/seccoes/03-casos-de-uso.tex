@@ -12,8 +12,37 @@
 \label{fig:contexto}
 \end{figure}
 
+O diagrama de contexto nível 0 representa o Roamly como um sistema único e fechado, rodeado pelas
+entidades externas que com ele trocam informação. Cada seta identifica a informação trocada e o
+respetivo sentido. Os atores e os fluxos foram derivados das histórias de utilizador, pelo que
+cada termo associado a uma seta tem correspondência em, pelo menos, uma história.
 
+\subsubsection{Estrutura do diagrama}\label{sec:contexto-estrutura}
+
+Os atores principais encontram-se à esquerda, uma vez que são estes que iniciam a interação com o
+Roamly para atingir um objetivo próprio, nomeadamente o organizador do grupo e, na versão para
+agências, o agente de viagens. À direita encontram-se os atores secundários, cuja participação é
+necessária para que esses objetivos sejam cumpridos. Incluem-se aqui o membro do grupo, que indica
+a sua disponibilidade e se pronuncia sobre a proposta, e os sites dos fornecedores, a partir dos
+quais o Roamly obtém os preços e as condições das ofertas. Os atores humanos são representados pelo
+símbolo de ator, enquanto os sistemas externos são representados por um retângulo, como acontece
+com os sites dos fornecedores, que constituem um sistema com o qual o Roamly interage. Esta
+disposição coincide com a do diagrama de casos de uso (Secção~\ref{sec:diagrama-uc}), garantindo
+que os atores são os mesmos nos dois níveis.
+
+\subsubsection{Entidades excluídas}\label{sec:contexto-exclusoes}
+
+Algumas entidades identificadas na Entrega~1 não foram incluídas, por não interagirem diretamente
+com o Roamly. O cliente da agência não tem relação direta com o sistema, uma vez que é o agente
+quem prepara, revê e assina a proposta no Roamly e, em seguida, a envia ao cliente através do email
+da agência. A família, na pessoa da mãe de U0, manifesta interesse em saber onde o filho
+ficará alojado, mas nenhuma história lhe atribui uma interação com o Roamly. Trata-se, assim, de
+uma parte interessada e não de um ator. Não foi igualmente representado um fornecedor de
+pagamentos, dado que o Roamly não processa pagamentos e o organizador se limita a registar os que
+recebeu, nem um destino de reservas, uma vez que estas são efetuadas diretamente no site de cada
+fornecedor.
 %----------------------------------------------------------
+
 \subsection{Diagrama de casos de uso (nível 1)}\label{sec:diagrama-uc}
 
 O diagrama da Figura~\ref{fig:diagrama-uc} mostra os casos de uso da Release~1, derivados das histórias da
