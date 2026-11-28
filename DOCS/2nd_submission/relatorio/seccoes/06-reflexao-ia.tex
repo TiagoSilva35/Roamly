@@ -17,7 +17,50 @@ fazer-me um story board baseado no relatório que entregámos?»
 A resposta da IA foi muito próxima do que procurávamos. Dividiu o mapa nas três \textit{releases} e propôs histórias de
 utilizador curtas, escritas segundo os critérios INVEST, como pede o enunciado, mesmo sem lhe termos pedido as histórias.
 Comparada com a versão da equipa, das 27 histórias propostas, 11 ficaram como estavam, 13 precisaram de pequenos ajustes e 3
-tiveram de ser divididas em duas, o que deu 30 histórias.
+tiveram de ser divididas em duas. Com a US-31, que saiu de um critério da US-15, ficaram 31 histórias.
+
+\subsection{Histórias de utilizador}
+
+As histórias foram depois revistas uma a uma, com a ajuda da IA, segundo os critérios INVEST e os dados da Entrega~1.
+O \textit{prompt} foi apenas «review João's stories with the user-stories skill», sem dizer que as histórias tinham partido
+de uma proposta da IA, para a revisão não ser enviesada. A revisão confirmou que os 61 registos e \textit{breakdowns} citados
+existem, e apontou o que faltava: critérios de aceitação sem a forma \textit{Dado / quando / então} e sem caso de falha,
+palavras de interface («Caderno», «quadro», «riscado»), histórias com duas capacidades e provas do agente usadas em histórias
+do organizador. Também encontrou uma contradição: a US-16 dizia que o organizador «só reserva quando todos concordam», mas o
+Roamly não faz reservas.
+
+A IA propôs um plano de reescrita, mas as decisões foram da equipa: um só nome para o papel, «organizador(a) do grupo»;
+histórias divididas com números novos (US-28 a US-31), sem sufixos a/b; e, em todas as histórias, a indicação de que a
+reserva é feita fora do Roamly, no site de cada fornecedor. A equipa decidiu também passar a US-11 e a US-12 para a
+Release~1, para esta cobrir a jornada toda. A IA concordou, mas desaconselhou mover também a US-07, porque depende de dados de
+transportes que ninguém sabe ainda onde obter, e a US-07 ficou na Release~2. A numeração antiga do \textit{backlog} da
+Entrega~1 deixou de ser usada, porque a IA não a conhecia e não acrescentava nada.
+
+\subsection{Diagrama de casos de uso}
+
+O diagrama de casos de uso foi pedido à IA a partir das histórias da Release~1, do material da cadeira (Cockburn, Gilson et
+al., os \textit{slides} de UML) e de uma disposição definida pela equipa. A primeira versão não foi aceite: estava em inglês,
+tinha subfunções que não tinham sido pedidas e não tinha pontos de extensão. Ao perguntarmos de onde vinham algumas regras,
+percebemos que a IA apresentava decisões de desenho próprias como se fossem teoria e citava um critério que não está no material
+da cadeira. A partir daí, demos-lhe os PDFs da cadeira e as decisões passaram a ser nossas: só as subfunções dadas como
+exemplo, a IA do Roamly como parte do sistema, e não como ator, e os sites dos fornecedores como sistema externo. Corrigimos
+também problemas visuais (linhas a cruzar elipses, texto cortado) e, depois da revisão do professor, pedimos a disposição
+vertical, com o organizador ligado diretamente a cada objetivo.
+
+\subsection{Casos de uso}
+
+A reflexão sobre os casos de uso está na Secção~\ref{sec:uc-ia}, como pede o enunciado: a equipa reviu as primeiras versões,
+com base em Cockburn e no UED, e a Tabela~\ref{tab:uc-ia} mostra o que mudou e porquê.
+
+\subsection{Cenários BDD}
+
+A equipa fixou primeiro as regras dos cenários, a partir de Dan North e do enunciado: um só comportamento por cenário, um só
+\textit{Quando}, resultados observáveis, a linguagem dos casos de uso e etiquetas que ligam cada cenário à extensão, às
+histórias e aos \textit{breakdowns}. Com essas regras e os casos de uso já corrigidos, a IA ajudou a escrever os primeiros
+cenários, que a equipa reviu. Na revisão, retirámos um preço de voo que não vinha dos dados, passámos para um \textit{Dado} o
+motivo que estava junto do acontecimento no \textit{Quando} e reescrevemos o cenário da extensão 3a do UC-04, que estava
+confuso, para mostrar só o caso de um membro que não pode ir nas datas propostas. Como as entrevistas não dão datas exatas, as
+datas de março usadas nos cenários são exemplos, iguais em todos os ficheiros.
 
 \subsection{\textit{Domain-Driven Design}}
 
