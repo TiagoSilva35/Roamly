@@ -14,9 +14,18 @@ inseridas no mercado.
 Na Entrega~1 estudámos como esse trabalho é feito hoje, com duas entrevistas contextuais: um jovem que organizou uma
 viagem de grupo e um agente de viagens de balcão. Os modelos de trabalho mostraram que o problema não é só encontrar
 opções baratas, mas saber quanto a viagem custa de facto, coordenar o grupo e o dinheiro e confiar no que a IA sugere.
-Por isso a nossa visão deixou de ser um agente que propõe o itinerário sozinho e passou a ser um quadro que o
-utilizador monta e que a IA vigia. Nesta entrega, o \projeto{} também não faz reservas nem processa pagamentos: o
-organizador escolhe a proposta combinada e reserva no site de cada fornecedor.
+Por isso, o agente de IA do \projeto{} não gera uma viagem de ponta a ponta. Ajuda o organizador a ficar só com opções
+viáveis, que caibam no orçamento e nas datas do grupo:
+\begin{itemize}
+  \item lê as ofertas a partir das ligações;
+  \item soma o custo real por pessoa, já com os extras;
+  \item avisa quando um preço sobe ou o total passa o limite;
+  \item sugere atividades que caibam no que sobra do orçamento, sempre com a fonte, para o organizador as confirmar.
+\end{itemize}
+Assim, a viagem pode ser refeita sempre que uma condição muda: um amigo que só pode noutras datas, um preço que sobe ou um
+item que o grupo não aceita. Cada nova versão volta a ser mostrada ao grupo, até se chegar a um plano final consensual e
+adequado ao orçamento de todos. Nesta entrega, o \projeto{} não faz reservas nem processa pagamentos: o organizador escolhe
+a proposta combinada e reserva no site de cada fornecedor.
 
 Esta entrega descreve o sistema a construir a partir desses resultados.
 
