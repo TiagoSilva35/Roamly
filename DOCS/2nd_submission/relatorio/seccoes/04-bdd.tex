@@ -40,6 +40,38 @@ As datas possíveis mudam depois de já haver opções na viagem & Extensão *a 
   rulecolor=\color{roamly},numbers=left,numbersep=4pt]{../bdd/UC-01-define-the-trip-limits.feature}
 
 
+\subsection{UC-02: Saber o total real por pessoa}\label{sec:bdd-uc02}
+
+A Tabela~\ref{tab:bdd-uc02} liga cada cenário ao UC-02. O cenário principal tem dois cenários, um
+para o total por pessoa dentro do limite e outro para os extras de uma oferta, e a extensão *b tem
+dois, um para cortar um item e outro para o repor, como pede a US-10. Ficou de fora a extensão 2b,
+que é da Release~2 (US-29).
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}L>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{2.5cm}@{}}
+\toprule
+\textbf{Cenário} & \textbf{Caso de uso} & \textbf{Histórias} & \textbf{\textit{Breakdowns}} \\
+\midrule
+As opções escolhidas cabem no limite por pessoa & Cenário principal (passos 1--5) & US-09 & SM.14 \\
+O voo tem bagagem de porão & Cenário principal (passos 2 e 3) & US-06 & -- \\
+O site não revela o preço dos extras & Extensão 2a & US-06 & FM.1, SM.16, CM.31 \\
+A viagem ainda não tem limite por pessoa & Extensão 4a & US-02 & -- \\
+O total por pessoa passa o limite & Extensão 4b & US-09 & -- \\
+O preço de um voo escolhido sobe & Extensão *a & US-09 & -- \\
+O organizador corta um item & Extensão *b & US-10 & -- \\
+O organizador repõe um item cortado & Extensão *b & US-10 & -- \\
+O site do fornecedor de uma oferta escolhida deixa de poder ser lido & Extensão *c & US-08 & -- \\
+\bottomrule
+\end{tabularx}
+\caption{Rastreabilidade dos cenários BDD do UC-02.}
+\label{tab:bdd-uc02}
+\end{table}
+
+% Fonte: ../bdd/UC-02-know-the-real-total-per-person.feature (editar o .feature; o relatório acompanha)
+\VerbatimInput[breaklines=true,fontsize=\footnotesize,frame=single,framesep=2mm,
+  rulecolor=\color{roamly},numbers=left,numbersep=4pt]{../bdd/UC-02-know-the-real-total-per-person.feature}
+
 %----------------------------------------------------------
 \subsection{UC-04: Levar o grupo a decidir sobre a proposta}\label{sec:bdd-uc04}
 

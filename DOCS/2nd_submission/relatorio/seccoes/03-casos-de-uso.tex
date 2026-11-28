@@ -12,8 +12,29 @@
 \label{fig:contexto}
 \end{figure}
 
+O diagrama de contexto mostra o Roamly como um só sistema, rodeado pelas entidades externas que trocam informação com ele.
+Cada seta diz que informação passa e em que sentido. Os atores e os fluxos vêm das histórias de utilizador: cada termo
+numa seta corresponde a pelo menos uma história.
 
+À esquerda estão os atores principais, que usam o Roamly para cumprir um objetivo seu: o organizador do grupo e, na versão
+para agências, o agente de viagens. À direita estão os atores secundários, de que o Roamly precisa para cumprir esses
+objetivos: o membro do grupo, que indica as datas em que pode ir e dá a sua opinião sobre a proposta, e os sites dos
+fornecedores, de onde o Roamly lê os preços e as condições das ofertas. As pessoas são representadas pelo símbolo de ator,
+e os sites dos fornecedores, por serem um sistema externo, por um retângulo. A disposição é a mesma do diagrama de casos de
+uso (Secção~\ref{sec:diagrama-uc}) e os atores também, com uma exceção: o agente de viagens só existe na versão para
+agências (Release~3) e por isso não aparece no diagrama de casos de uso, que mostra só a Release~1.
+
+Algumas entidades da Entrega~1 ficaram de fora, porque não interagem diretamente com o Roamly:
+\begin{itemize}
+  \item \textbf{Cliente da agência.} O agente prepara, revê e assina a proposta no Roamly, que a gera no modelo da
+  agência. Depois, é o agente quem a envia ao cliente, pelo email da agência: o Roamly não envia nada ao cliente.
+  \item \textbf{Família.} A mãe de U0 quer saber onde U0 vai dormir \reg{UE13}, mas nenhuma história lhe dá uma
+  interação com o Roamly. É uma parte interessada, e não um ator.
+  \item \textbf{Serviço de pagamentos.} O Roamly não processa pagamentos; o organizador só regista os que recebeu.
+  \item \textbf{Reservas.} As reservas são feitas no site de cada fornecedor, fora do Roamly.
+\end{itemize}
 %----------------------------------------------------------
+
 \subsection{Diagrama de casos de uso (nível 1)}\label{sec:diagrama-uc}
 
 O diagrama da Figura~\ref{fig:diagrama-uc} mostra os casos de uso da Release~1, derivados das histórias da
